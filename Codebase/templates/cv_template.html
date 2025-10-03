@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ personal_info.name or "Professional Resume" }}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .name {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            font-size: 1.1em;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .position-title, .degree-title, .project-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+        
+        .company, .institution {
+            font-weight: bold;
+            color: #3498db;
+            font-size: 1.1em;
+        }
+        
+        .dates {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .location {
+            color: #95a5a6;
+            float: right;
+        }
+        
+        .summary {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: justify;
+            font-style: italic;
+            color: #34495e;
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 30px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .skill-category h4 {
+            margin-top: 0;
+            color: #2c3e50;
+            text-transform: uppercase;
+            font-size: 1em;
+        }
+        
+        .skill-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .skill-list li {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            margin: 2px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        
+        .responsibility, .achievement {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .responsibility::before, .achievement::before {
+            content: "▸ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .technologies {
+            margin-top: 10px;
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 2px 8px;
+            margin: 2px;
+            border-radius: 10px;
+            font-size: 0.8em;
+        }
+        
+        @media print {
+            body { font-size: 12pt; }
+            .section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">{{ personal_info.name or "Your Name" }}</div>
+        {% if personal_info.email %}
+        <div class="contact-info">📧 {{ personal_info.email }}</div>
+        {% endif %}
+        {% if personal_info.phone %}
+        <div class="contact-info">📞 {{ personal_info.phone }}</div>
+        {% endif %}
+        {% if personal_info.address %}
+        <div class="contact-info">📍 {{ personal_info.address }}</div>
+        {% endif %}
+        {% if personal_info.linkedin %}
+        <div class="contact-info">🔗 <a href="{{ personal_info.linkedin }}">LinkedIn</a></div>
+        {% endif %}
+        {% if personal_info.github %}
+        <div class="contact-info">🔗 <a href="{{ personal_info.github }}">GitHub</a></div>
+        {% endif %}
+    </div>
+
+    {% if summary %}
+    <div class="section">
+        <div class="summary">{{ summary }}</div>
+    </div>
+    {% endif %}
+
+    {% if experience %}
+    <div class="section">
+        <div class="section-title">Professional Experience</div>
+        {% for exp in experience %}
+        <div class="experience-item">
+            <div class="position-title">{{ exp.position or "Position Title" }}</div>
+            <div class="company">{{ exp.company or "Company Name" }}
+                {% if exp.location %}<span class="location">{{ exp.location }}</span>{% endif %}
+            </div>
+            <div class="dates">{{ exp.start_date or "Start Date" }} - {{ exp.end_date or "End Date" }}</div>
+            
+            {% if exp.responsibilities %}
+            <div style="margin-top: 10px;">
+                {% for resp in exp.responsibilities %}
+                <div class="responsibility">{{ resp }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            {% if exp.achievements %}
+            <div style="margin-top: 10px;">
+                {% for achievement in exp.achievements %}
+                <div class="achievement">{{ achievement }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            {% if exp.technologies %}
+            <div class="technologies">
+                {% for tech in exp.technologies %}
+                <span class="tech-tag">{{ tech }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if education %}
+    <div class="section">
+        <div class="section-title">Education</div>
+        {% for edu in education %}
+        <div class="education-item">
+            <div class="degree-title">{{ edu.degree or "Degree" }}</div>
+            <div class="institution">{{ edu.institution or "Institution" }}
+                {% if edu.location %}<span class="location">{{ edu.location }}</span>{% endif %}
+            </div>
+            <div class="dates">{{ edu.start_date or "Start" }} - {{ edu.end_date or "End" }}</div>
+            {% if edu.gpa %}
+            <div>GPA: {{ edu.gpa }}</div>
+            {% endif %}
+            
+            {% if edu.relevant_coursework %}
+            <div style="margin-top: 10px;">
+                <strong>Relevant Coursework:</strong>
+                {% for course in edu.relevant_coursework %}
+                <span class="tech-tag">{{ course }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if skills and (skills.technical or skills.soft or skills.tools) %}
+    <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="skills-grid">
+            {% if skills.technical %}
+            <div class="skill-category">
+                <h4>Technical Skills</h4>
+                <ul class="skill-list">
+                    {% for skill in skills.technical %}
+                    <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            
+            {% if skills.tools %}
+            <div class="skill-category">
+                <h4>Tools & Technologies</h4>
+                <ul class="skill-list">
+                    {% for skill in skills.tools %}
+                    <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            
+            {% if skills.soft %}
+            <div class="skill-category">
+                <h4>Soft Skills</h4>
+                <ul class="skill-list">
+                    {% for skill in skills.soft %}
+                    <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if projects %}
+    <div class="section">
+        <div class="section-title">Projects</div>
+        {% for project in projects %}
+        <div class="project-item">
+            <div class="project-title">{{ project.name or "Project Name" }}</div>
+            <div class="dates">{{ project.start_date or "" }}{% if project.start_date and project.end_date %} - {% endif %}{{ project.end_date or "" }}</div>
+            
+            {% if project.description %}
+            <div style="margin-top: 10px;">{{ project.description }}</div>
+            {% endif %}
+            
+            {% if project.technologies %}
+            <div class="technologies" style="margin-top: 10px;">
+                {% for tech in project.technologies %}
+                <span class="tech-tag">{{ tech }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            {% if project.url or project.github_url %}
+            <div style="margin-top: 10px;">
+                {% if project.url %}<a href="{{ project.url }}">Live Demo</a>{% endif %}
+                {% if project.url and project.github_url %} | {% endif %}
+                {% if project.github_url %}<a href="{{ project.github_url }}">GitHub</a>{% endif %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if certifications %}
+    <div class="section">
+        <div class="section-title">Certifications</div>
+        {% for cert in certifications %}
+        <div class="experience-item">
+            <div class="position-title">{{ cert.name or "Certification Name" }}</div>
+            <div class="company">{{ cert.issuer or "Issuer" }}</div>
+            <div class="dates">{{ cert.date or "Date" }}</div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if achievements %}
+    <div class="section">
+        <div class="section-title">Achievements</div>
+        {% for achievement in achievements %}
+        <div class="responsibility">{{ achievement }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,42 @@
+John Smith
+Email: john.smith@email.com
+Phone: +1-555-0123
+Location: San Francisco, CA
+
+Work Experience:
+- Software Engineer at TechCorp (2020-2023)
+  * Developed web applications using Python and JavaScript
+  * Worked with databases and APIs
+  * Collaborated with cross-functional teams
+  * Implemented new features and bug fixes
+
+- Junior Developer at StartupXYZ (2019-2020)
+  * Built mobile applications
+  * Used React Native and Flutter
+  * Participated in code reviews
+  * Maintained existing codebase
+
+Education:
+Bachelor of Science in Computer Science
+University of California, Berkeley (2015-2019)
+GPA: 3.7/4.0
+
+Skills:
+Programming: Python, JavaScript, Java, C++
+Web: React, Node.js, HTML, CSS
+Databases: MySQL, PostgreSQL, MongoDB
+Tools: Git, Docker, AWS
+Soft Skills: Team collaboration, Problem solving, Communication
+
+Projects:
+1. E-commerce Platform - Built a full-stack online shopping application
+2. Task Manager App - Created a productivity application with real-time updates
+3. Data Analysis Tool - Developed analytics dashboard for business insights
+
+Achievements:
+- Won hackathon competition in 2022
+- Completed AWS certification
+- Contributed to open source projects
+- Mentored junior developers
+
+Languages: English (Native), Spanish (Conversational)

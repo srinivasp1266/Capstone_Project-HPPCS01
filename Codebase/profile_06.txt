@@ -1,0 +1,57 @@
+Lisa Wang
+Email: lisa.wang@data.com
+Phone: +1-555-2468
+GitHub: github.com/lisawang
+Location: Seattle, WA
+
+Data Science Experience:
+- Senior Data Scientist at Tech Giant (2021-Present)
+  * Build machine learning models for recommendation systems
+  * Analyze large datasets to derive business insights
+  * Lead data science projects from conception to deployment
+  * Mentor junior data scientists and analysts
+
+- Data Scientist at E-commerce Company (2019-2021)
+  * Developed predictive models for customer behavior
+  * Implemented A/B testing frameworks
+  * Created automated reporting dashboards
+  * Collaborated with product and engineering teams
+
+- Data Analyst at Consulting Firm (2017-2019)
+  * Performed statistical analysis for client projects
+  * Built data pipelines and ETL processes
+  * Created visualizations and reports for stakeholders
+  * Supported business intelligence initiatives
+
+Education:
+Master of Science in Data Science
+University of Washington (2015-2017)
+
+Bachelor of Science in Statistics
+UC Berkeley (2011-2015)
+Honors Graduate
+
+Technical Expertise:
+Machine Learning, Deep Learning, Statistical Analysis
+Python, R, SQL, Scala, Java
+TensorFlow, PyTorch, Scikit-learn
+Spark, Hadoop, AWS, GCP
+Tableau, Power BI, Matplotlib, Seaborn
+
+Projects & Research:
+- Customer churn prediction model (reduced churn by 15%)
+- Fraud detection system using ensemble methods
+- Natural language processing for sentiment analysis
+- Time series forecasting for demand planning
+
+Publications:
+- Co-authored 3 papers in data science conferences
+- Regular contributor to data science blog
+- Speaker at PyData and KDD conferences
+
+Certifications:
+- AWS Certified Machine Learning Specialist
+- Google Cloud Professional Data Engineer
+- Databricks Certified Associate Developer
+
+Languages: English (Fluent), Mandarin (Native), Korean (Conversational)

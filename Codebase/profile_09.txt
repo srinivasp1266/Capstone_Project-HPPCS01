@@ -1,0 +1,58 @@
+David Kim
+Email: david.kim@mech.eng
+Phone: (555) 567-8901
+LinkedIn: linkedin.com/in/davidkim
+Location: Detroit, MI
+
+Engineering Experience:
+- Senior Mechanical Engineer at Auto Manufacturer (2020-Present)
+  * Design and develop automotive components and systems
+  * Lead cross-functional teams for product development
+  * Conduct failure analysis and root cause investigations
+  * Manage supplier relationships and quality control
+
+- Mechanical Engineer at Aerospace Company (2018-2020)
+  * Designed aircraft engine components using CAD software
+  * Performed structural analysis and thermal simulations
+  * Collaborated with manufacturing teams on production optimization
+  * Supported flight testing and certification processes
+
+- Design Engineer at Manufacturing Firm (2016-2018)
+  * Created detailed technical drawings and specifications
+  * Prototyped and tested new product designs
+  * Optimized manufacturing processes for efficiency
+  * Provided technical support to production teams
+
+Education:
+Master of Science in Mechanical Engineering
+University of Michigan (2014-2016)
+Focus: Thermal and Fluid Systems
+
+Bachelor of Science in Mechanical Engineering
+Purdue University (2010-2014)
+Summa Cum Laude, Tau Beta Pi Honor Society
+
+Technical Competencies:
+CAD Software: SolidWorks, AutoCAD, CATIA, NX
+Simulation: ANSYS, MATLAB, Simulink
+Manufacturing: CNC Programming, 3D Printing, Lean Manufacturing
+Project Management: PMP Certified, Six Sigma Green Belt
+
+Engineering Projects:
+- Led development of lightweight automotive transmission (15% weight reduction)
+- Designed cooling system for electric vehicle battery pack
+- Optimized manufacturing process reducing cycle time by 20%
+- Patent holder for innovative gear mechanism design
+
+Certifications:
+- Professional Engineer (PE) License - Michigan
+- Project Management Professional (PMP)
+- Six Sigma Green Belt
+- OSHA 30-Hour Safety Training
+
+Professional Memberships:
+- American Society of Mechanical Engineers (ASME)
+- Society of Automotive Engineers (SAE)
+- Institute of Industrial and Systems Engineers (IISE)
+
+Languages: English (Native), Korean (Fluent), Japanese (Conversational)

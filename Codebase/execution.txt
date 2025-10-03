@@ -1,0 +1,68 @@
+EXECUTION INSTRUCTIONS FOR HAAI++ CV BUILDER APPLICATION
+=========================================================
+
+Project ID: HPPCS[01]
+Project Title: CV Creation using Multi-LLM Architecture
+Date: October 2025
+
+PREREQUISITES:
+--------------
+1. Python 3.8 or higher installed
+2. Ollama installed and running locally
+3. Required LLM models downloaded
+
+SETUP COMMANDS:
+---------------
+
+1. Create virtual environment:
+   python -m venv venv
+
+2. Activate virtual environment:
+   # On macOS/Linux:
+   source venv/bin/activate
+   # On Windows:
+   # venv\Scripts\activate
+
+3. Install Python dependencies:
+   pip install -r requirements.txt
+
+4. Start Ollama server (in separate terminal):
+   ollama serve
+
+5. Download required LLM models:
+   ollama pull gemma:2b
+   ollama pull llama2:7b
+
+EXECUTION COMMANDS:
+-------------------
+
+Basic execution (Streamlit web interface):
+streamlit run main.py
+
+
+VERIFICATION STEPS:
+-------------------
+1. Check if Ollama is running: curl http://localhost:11434/api/tags
+2. Verify models are available: ollama list
+3. Test application: Open browser to http://localhost:8501
+
+EXPECTED BEHAVIOR:
+------------------
+- Web interface launches on http://localhost:8501
+- Upload resume files (PDF, DOCX supported)
+- Input job descriptions
+- Generate tailored CVs using dual-LLM architecture
+- Download professional HTML/PDF CVs
+
+TROUBLESHOOTING:
+----------------
+- If port 8501 is busy: streamlit run main.py --server.port 8502
+- If Ollama connection fails: Check if ollama serve is running
+- For model errors: Ensure gemma:2b and llama2:7b are pulled
+- For dependency issues: Re-run pip install -r requirements.txt
+
+DIRECTORY STRUCTURE:
+--------------------
+data/output/     - Generated CV files
+data/uploads/    - Temporary uploaded files
+templates/       - CV templates
