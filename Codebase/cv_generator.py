@@ -217,7 +217,13 @@ class CVTailoringEngine:
             if exp.technologies:
                 relevant_techs = []
                 for tech in exp.technologies:
-                    if tech.lower() in job_keywords_lower:
+                    # Handle both string and dict technologies
+                    if isinstance(tech, dict):
+                        tech_text = tech.get('name', '') or tech.get('technology', '') or str(tech)
+                    else:
+                        tech_text = str(tech)
+                    
+                    if tech_text.lower() in job_keywords_lower:
                         relevant_techs.insert(0, tech)  # Put relevant tech first
                     else:
                         relevant_techs.append(tech)
@@ -338,7 +344,13 @@ class CVTailoringEngine:
                 other_techs = []
                 
                 for tech in project.technologies:
-                    if tech.lower() in job_keywords_lower:
+                    # Handle both string and dict technologies
+                    if isinstance(tech, dict):
+                        tech_text = tech.get('name', '') or tech.get('technology', '') or str(tech)
+                    else:
+                        tech_text = str(tech)
+                    
+                    if tech_text.lower() in job_keywords_lower:
                         relevant_techs.append(tech)
                     else:
                         other_techs.append(tech)
@@ -392,7 +404,13 @@ class CVTailoringEngine:
         scored_achievements = []
         for achievement in achievements:
             score = 0
-            achievement_lower = achievement.lower()
+            # Handle both string and dict achievements
+            if isinstance(achievement, dict):
+                achievement_text = achievement.get('text', '') or achievement.get('description', '') or str(achievement)
+            else:
+                achievement_text = str(achievement)
+            
+            achievement_lower = achievement_text.lower()
             
             for keyword in job_keywords_lower:
                 if keyword in achievement_lower:
@@ -427,14 +445,26 @@ class CVTailoringEngine:
         
         # Check responsibilities
         for responsibility in experience.responsibilities:
-            resp_lower = responsibility.lower()
+            # Handle both string and dict responsibilities
+            if isinstance(responsibility, dict):
+                resp_text = responsibility.get('text', '') or responsibility.get('description', '') or str(responsibility)
+            else:
+                resp_text = str(responsibility)
+            
+            resp_lower = resp_text.lower()
             for keyword in job_keywords_lower:
                 if keyword in resp_lower:
                     score += 1
         
         # Check technologies
         for tech in experience.technologies:
-            if tech.lower() in job_keywords_lower:
+            # Handle both string and dict technologies
+            if isinstance(tech, dict):
+                tech_text = tech.get('name', '') or tech.get('technology', '') or str(tech)
+            else:
+                tech_text = str(tech)
+            
+            if tech_text.lower() in job_keywords_lower:
                 score += 1.5
         
         return score
@@ -455,7 +485,13 @@ class CVTailoringEngine:
         
         # Check relevant coursework
         for course in education.relevant_coursework:
-            course_lower = course.lower()
+            # Handle both string and dict courses
+            if isinstance(course, dict):
+                course_text = course.get('name', '') or course.get('title', '') or str(course)
+            else:
+                course_text = str(course)
+            
+            course_lower = course_text.lower()
             for keyword in job_keywords_lower:
                 if keyword in course_lower:
                     score += 0.5
@@ -479,7 +515,13 @@ class CVTailoringEngine:
         
         # Check technologies
         for tech in project.technologies:
-            if tech.lower() in job_keywords_lower:
+            # Handle both string and dict technologies
+            if isinstance(tech, dict):
+                tech_text = tech.get('name', '') or tech.get('technology', '') or str(tech)
+            else:
+                tech_text = str(tech)
+            
+            if tech_text.lower() in job_keywords_lower:
                 score += 1.5
         
         return score

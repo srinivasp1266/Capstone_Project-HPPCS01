@@ -26,6 +26,7 @@ import sys
 import json
 import logging
 import argparse
+from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any, Optional
 from dataclasses import asdict
@@ -537,13 +538,29 @@ def handle_document_generation():
         st.warning("⚠️ Please complete the CV tailoring step first.")
         return
     
+    # Check PDF availability
+    try:
+        from reportlab.pdfgen import canvas
+        from reportlab.lib.pagesizes import letter, A4
+        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+        from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+        pdf_available = True
+    except ImportError:
+        pdf_available = False
+    
     # Document format selection
     st.subheader("📋 Document Options")
     
-    # Format selection: HTML and PDF only
+    # Format selection: HTML always available, PDF conditionally
+    format_options = ["HTML"]
+    if pdf_available:
+        format_options.append("PDF")
+    else:
+        st.warning("⚠️ PDF generation is not available. Please install reportlab: `pip install reportlab`")
+    
     format_type = st.selectbox(
         "📄 Choose Output Format:",
-        ["HTML", "PDF"],
+        format_options,
         index=0,
         help="Select the output format for your CV"
     )
@@ -576,14 +593,36 @@ def handle_document_generation():
                         template_name="cv_template.html"
                     )
                     
+                    # Generate filename with timestamp
+                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                    html_filename = f"tailored_cv_{template_style}_{timestamp}.html"
+                    
+                    # Save to data/output directory
+                    output_path = Path("data/output") / html_filename
+                    output_path.parent.mkdir(parents=True, exist_ok=True)
+                    
+                    try:
+                        with open(output_path, 'w', encoding='utf-8') as f:
+                            f.write(document_content)
+                        
+                        # Verify the file was created
+                        if output_path.exists():
+                            file_size = output_path.stat().st_size
+                            st.success(f"✅ HTML CV document generated and saved successfully!")
+                            st.info(f"📁 File saved to: {output_path} ({file_size:,} bytes)")
+                        else:
+                            st.error(f"❌ Failed to save HTML file to {output_path}")
+                    except Exception as e:
+                        st.error(f"❌ Error saving HTML file: {str(e)}")
+                        logger.error(f"Error saving HTML file: {str(e)}")
+                    
                     # Store the generated document
                     st.session_state.generated_document = {
                         'html_content': document_content,
-                        'html_filename': f"tailored_cv_{template_style}.html",
+                        'html_filename': html_filename,
+                        'output_path': str(output_path),
                         'format': 'HTML'
                     }
-                    
-                    st.success("✅ HTML CV document generated successfully!")
                     
                     # Preview
                     with st.expander("👁️ Document Preview", expanded=True):
@@ -610,16 +649,72 @@ def handle_document_generation():
                         template_name="cv_template.html"
                     )
                     
+                    # Generate filenames with timestamp
+                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                    html_filename = f"tailored_cv_{template_style}_{timestamp}.html"
+                    pdf_filename = f"tailored_cv_{template_style}_{timestamp}.pdf"
+                    
+                    # Save both files to data/output directory
+                    output_dir = Path("data/output")
+                    output_dir.mkdir(parents=True, exist_ok=True)
+                    
+                    html_output_path = output_dir / html_filename
+                    pdf_output_path = output_dir / pdf_filename
+                    
+                    # Save HTML file
+                    try:
+                        with open(html_output_path, 'w', encoding='utf-8') as f:
+                            f.write(html_content)
+                        
+                        # Verify the file was created
+                        if html_output_path.exists():
+                            file_size = html_output_path.stat().st_size
+                            st.success(f"✅ HTML file saved successfully: {html_output_path} ({file_size:,} bytes)")
+                        else:
+                            st.error(f"❌ Failed to save HTML file to {html_output_path}")
+                    except Exception as e:
+                        st.error(f"❌ Error saving HTML file: {str(e)}")
+                        logger.error(f"Error saving HTML file: {str(e)}")
+                    
+                    # Save PDF file
+                    try:
+                        with open(pdf_output_path, 'wb') as f:
+                            f.write(pdf_bytes)
+                        
+                        # Verify the file was created
+                        if pdf_output_path.exists():
+                            file_size = pdf_output_path.stat().st_size
+                            st.success(f"✅ PDF file saved successfully: {pdf_output_path} ({file_size:,} bytes)")
+                        else:
+                            st.error(f"❌ Failed to save PDF file to {pdf_output_path}")
+                    except Exception as e:
+                        st.error(f"❌ Error saving PDF file: {str(e)}")
+                        logger.error(f"Error saving PDF file: {str(e)}")
+                    
                     # Store the generated documents
                     st.session_state.generated_document = {
                         'html_content': html_content,
                         'pdf_content': pdf_bytes,
-                        'html_filename': f"tailored_cv_{template_style}.html",
-                        'pdf_filename': f"tailored_cv_{template_style}.pdf",
+                        'html_filename': html_filename,
+                        'pdf_filename': pdf_filename,
+                        'html_output_path': str(html_output_path),
+                        'pdf_output_path': str(pdf_output_path),
                         'format': 'PDF'
                     }
                     
-                    st.success("✅ PDF CV document generated successfully!")
+                    st.success("✅ PDF CV document with HTML preview generated successfully!")
+                    st.info(f"📁 Both files saved to data/output directory")
+                    
+                    # Show files in output directory
+                    try:
+                        output_files = list(Path("data/output").glob("*.html")) + list(Path("data/output").glob("*.pdf"))
+                        if output_files:
+                            st.markdown("**Recent files in output directory:**")
+                            for file_path in sorted(output_files, key=lambda x: x.stat().st_mtime, reverse=True)[:5]:
+                                file_size = file_path.stat().st_size
+                                st.markdown(f"- {file_path.name} ({file_size:,} bytes)")
+                    except Exception as e:
+                        logger.error(f"Error listing output files: {str(e)}")
                     
                     # Preview (show HTML version)
                     with st.expander("👁️ Document Preview (HTML version)", expanded=True):
