@@ -1,53 +1,52 @@
 David Kim
-Email: david.kim@mech.eng
+Contact: david.kim@softwaredev.com
 Phone: (555) 567-8901
-LinkedIn: linkedin.com/in/davidkim
 Location: Detroit, MI
 
-Engineering Experience:
-- Senior Mechanical Engineer at Auto Manufacturer (2020-Present)
-  * Design and develop automotive components and systems
-  * Lead cross-functional teams for product development
-  * Conduct failure analysis and root cause investigations
-  * Manage supplier relationships and quality control
+Professional Experience:
+- Senior Software Engineer at Automotive Tech Company (2020-Present)
+  * Develop embedded software for automotive systems
+  * Lead cross-functional teams for software product development
+  * Conduct code reviews and debugging of complex systems
+  * Manage integration with hardware components and APIs
 
-- Mechanical Engineer at Aerospace Company (2018-2020)
-  * Designed aircraft engine components using CAD software
-  * Performed structural analysis and thermal simulations
-  * Collaborated with manufacturing teams on production optimization
-  * Supported flight testing and certification processes
+- Software Engineer at Aerospace Software Solutions (2018-2020)
+  * Developed flight control software using C++ and Python
+  * Performed software testing and validation procedures
+  * Collaborated with engineering teams on system architecture
+  * Supported software certification and compliance processes
 
-- Design Engineer at Manufacturing Firm (2016-2018)
-  * Created detailed technical drawings and specifications
-  * Prototyped and tested new product designs
-  * Optimized manufacturing processes for efficiency
+- Software Developer at Manufacturing Solutions (2016-2018)
+  * Created industrial automation software and interfaces
+  * Developed and tested new software features
+  * Optimized algorithms for manufacturing efficiency
   * Provided technical support to production teams
 
 Education:
-Master of Science in Mechanical Engineering
+Master of Science in Computer Science
 University of Michigan (2014-2016)
-Focus: Thermal and Fluid Systems
+Focus: Software Engineering and Systems
 
-Bachelor of Science in Mechanical Engineering
+Bachelor of Science in Computer Engineering
 Purdue University (2010-2014)
-Summa Cum Laude, Tau Beta Pi Honor Society
+Summa Cum Laude, IEEE Honor Society
 
-Technical Competencies:
-CAD Software: SolidWorks, AutoCAD, CATIA, NX
-Simulation: ANSYS, MATLAB, Simulink
-Manufacturing: CNC Programming, 3D Printing, Lean Manufacturing
-Project Management: PMP Certified, Six Sigma Green Belt
+Technical Specializations:
+Programming: C++, Python, Java, JavaScript, C
+Frameworks: React, Node.js, Django, Spring Boot
+Tools: Git, Docker, Jenkins, JIRA, Linux
+Project Management: Agile/Scrum, DevOps, CI/CD
 
-Engineering Projects:
-- Led development of lightweight automotive transmission (15% weight reduction)
-- Designed cooling system for electric vehicle battery pack
-- Optimized manufacturing process reducing cycle time by 20%
-- Patent holder for innovative gear mechanism design
+Projects & Publications:
+- Led development of vehicle diagnostic software (improved efficiency by 15%)
+- Built real-time monitoring system for electric vehicle fleet
+- Optimized data processing pipeline reducing latency by 20%
+- Patent holder for innovative software algorithm design
 
-Certifications:
-- Professional Engineer (PE) License - Michigan
-- Project Management Professional (PMP)
-- Six Sigma Green Belt
+Professional Certifications:
+- AWS Certified Solutions Architect Associate
+- Certified ScrumMaster (CSM)
+- Oracle Certified Professional Java SE
 - OSHA 30-Hour Safety Training
 
 Professional Memberships:

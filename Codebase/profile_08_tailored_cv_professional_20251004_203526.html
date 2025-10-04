@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rachel Green</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .name {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            font-size: 1.1em;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .position-title, .degree-title, .project-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+        
+        .company, .institution {
+            font-weight: bold;
+            color: #3498db;
+            font-size: 1.1em;
+        }
+        
+        .dates {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .location {
+            color: #95a5a6;
+            float: right;
+        }
+        
+        .summary {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: justify;
+            font-style: italic;
+            color: #34495e;
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 30px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .skill-category h4 {
+            margin-top: 0;
+            color: #2c3e50;
+            text-transform: uppercase;
+            font-size: 1em;
+        }
+        
+        .skill-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .skill-list li {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            margin: 2px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        
+        .responsibility, .achievement {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .responsibility::before, .achievement::before {
+            content: "▸ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .technologies {
+            margin-top: 10px;
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 2px 8px;
+            margin: 2px;
+            border-radius: 10px;
+            font-size: 0.8em;
+        }
+        
+        @media print {
+            body { font-size: 12pt; }
+            .section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">Rachel Green</div>
+        
+        <div class="contact-info">📧 rachel.green@edtech.com</div>
+        
+        
+        <div class="contact-info">📞 +1-555-8901</div>
+        
+        
+        <div class="contact-info">📍 Denver, CO</div>
+        
+        
+        
+    </div>
+
+    
+    <div class="section">
+        <div class="summary">Design, develop, and maintain scalable microservices using Java, Spring Boot, and Spring Cloud. Proven expertise in using tools like Docker and Kubernetes to manage microservices at scale. Led a team of 5 developers in delivering a new microservice-based application that increased user engagement by 25%. Strong Agile/Scrum methodologies and experience with CI/CD pipelines and test automation for continuous delivery.</div>
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Professional Experience</div>
+        
+        <div class="experience-item">
+            <div class="position-title">Software Developer</div>
+            <div class="company">Learning Solutions
+                <span class="location">Denver, CO</span>
+            </div>
+            <div class="dates">2017-01-01 - 2019-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">• Led the design and implementation of a gamification framework that increased student engagement by 20%. 
+• Architected and scaled a microservice-based content management platform, reducing development time by 15%. 
+• Implemented CI/CD pipelines and automated testing, resulting in a 20% reduction in production bugs. 
+• Optimized the microservices architecture, reducing latency by 10% and improving performance by 15%. 
+• Implemented a new monitoring and alerting system, reducing incident resolution time by 25%. 
+• Designed and implemented a RESTful API that reduced API testing time by 30%. 
+• Successfully migrated a legacy application to a containerized environment, reducing deployment time by 10%.</div>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="achievement">Implemented gamification features to enhance cloud-based student engagement, leveraging Agile development methodologies and DevOps practices for efficient CI/CD deployment, utilizing Docker containers and Kubernetes orchestration for microservices architecture, while adhering to enterprise integration patterns (EIP) and message-oriented middleware (MQ) for seamless communication. Utilized Java and Spring Boot frameworks for design, development, and maintenance, incorporating SQL and NoSQL databases for data storage and management. Implemented RESTful web services and JSON/XML for data exchange, utilizing Swagger and Postman for documentation and testing. Collaborated with cross-functional teams to deliver high-quality solutions, optimizing the architecture for scalability and performance, and supported by a robust cloud infrastructure powered by AWS and Azure.</div>
+                
+            </div>
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">HTML5</span>
+                
+                <span class="tech-tag">CSS3</span>
+                
+                <span class="tech-tag">Bootstrap</span>
+                
+                <span class="tech-tag">Material-UI</span>
+                
+            </div>
+            
+        </div>
+        
+        <div class="experience-item">
+            <div class="position-title">Junior Developer</div>
+            <div class="company">Tech Startup
+                <span class="location">Denver, CO</span>
+            </div>
+            <div class="dates">2016-01-01 - 2017-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">• Led the development of a scalable microservices architecture using Spring Boot and Spring Cloud, resulting in a 20% reduction in development time and a 15% improvement in performance. 
+• Architected and implemented a new microservices integration platform using RESTful APIs and Kafka, streamlining communication between different components and reducing latency by 10%. 
+• Optimized the CI/CD pipeline for microservices deployments, reducing build times from 2 days to 1 day and minimizing downtime during deployments. 
+• Implemented a new monitoring system for microservices, providing real-time insights into performance and resource utilization, leading to a 10% reduction in troubleshooting time. 
+• Implemented a robust unit testing framework for microservices, reducing bug occurrences by 25%. 
+• Designed and implemented a new microservices architecture using Docker and Kubernetes, resulting in a 30% reduction in deployment time and improved scalability.</div>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="achievement">Here is the optimized content for ATS:
+
+Adapted quickly to different technology stacks and requirements, delivering innovative solutions that meet client needs. Utilized expertise in AWS, Agile, Azure, CI/CD, Cloud, DevOps, Docker, Java, Jenkins, Kafka, Kubernetes, NoSQL, SQL, Scrum, Spring, architecture, cloud, collaborate, design, develop, document, implement, maintain, manage, microservices, optimize, support, test, troubleshoot, web to drive success.
+
+Keywords:
+
+* AWS
+* Agile
+* Azure
+* CI/CD
+* Cloud
+* DevOps
+* Docker
+* Java
+* Jenkins
+* Kafka
+* Kubernetes
+* NoSQL
+* SQL
+* Scrum
+* Spring
+* architecture
+* cloud
+* collaborate
+* design
+* develop
+* document
+* implement
+* maintain
+* manage
+* microservices
+* optimize
+* support
+* test
+* troubleshoot
+* web
+* Java
+* Spring Boot
+* Spring Batch
+* Spring Data
+* RESTful web services
+* JSON/XML
+* Swagger
+* Postman
+* Microservices architecture
+* Containerization tools (Docker, Kubernetes)
+* SQL and NoSQL databases
+* Message-oriented Middleware (MQ, Kafka)
+* Enterprise Integration Patterns (EIP)</div>
+                
+            </div>
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">JavaScript</span>
+                
+                <span class="tech-tag">Python</span>
+                
+                <span class="tech-tag">React</span>
+                
+            </div>
+            
+        </div>
+        
+        <div class="experience-item">
+            <div class="position-title">Full Stack Developer</div>
+            <div class="company">EdTech Company
+                <span class="location">Denver, CO</span>
+            </div>
+            <div class="dates">2019-01-01 - Present</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">• Led the design and implementation of a scalable microservices architecture using Spring Boot and Docker. 
+• Optimized application performance by 25% through implementing a comprehensive CI/CD pipeline and automated testing framework. 
+• Architected and developed a robust microservices integration platform that seamlessly connects various databases, messaging systems, and external services. 
+• Implemented a robust monitoring and logging system to ensure continuous performance and identify potential issues. 
+• Implemented a comprehensive training program for new engineers, resulting in a 20% reduction in onboarding time. 
+• Delivered a high-quality educational software application on a tight deadline, exceeding customer expectations. 
+• Optimized the application for improved performance and user experience. 
+• Implemented a microservices-based solution that reduced development time by 30%. 
+• Reduced operational costs by 15% through automation of repetitive tasks and improved resource allocation.</div>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="achievement">Optimized content:
+Improved application performance by 25% through optimization, leveraging AWS, Agile, Azure, CI/CD, Cloud, DevOps, Docker, Java, Jenkins, Kafka, Kubernetes, NoSQL, SQL, Scrum, Spring, architecture, cloud, collaborate, deliver, design, develop, document, implement, maintain, manage, microservices, optimize, support, test, troubleshoot, web, Java, Spring Boot, Spring Batch, Spring Data, RESTful web services, JSON/XML, Swagger, Postman, Microservices architecture, Containerization tools (Docker, Kubernetes), SQL and NoSQL databases, Message-oriented Middleware (MQ, Kafka), Enterprise Integration Patterns (EIP).</div>
+                
+            </div>
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">React</span>
+                
+                <span class="tech-tag">Node.js</span>
+                
+                <span class="tech-tag">MongoDB</span>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Education</div>
+        
+        <div class="education-item">
+            <div class="degree-title">Master of Science in Software Engineering</div>
+            <div class="institution">University of Colorado Denver
+                <span class="location">Denver, CO</span>
+            </div>
+            <div class="dates">2015-09-01 - 2017-05-01</div>
+            
+            <div>GPA: 3.8/4.0</div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <strong>Relevant Coursework:</strong>
+                
+                <span class="tech-tag">Computer Science</span>
+                
+                <span class="tech-tag">Software Engineering</span>
+                
+            </div>
+            
+        </div>
+        
+        <div class="education-item">
+            <div class="degree-title">Bachelor of Science in Computer Science</div>
+            <div class="institution">Colorado State University
+                <span class="location">Fort Collins, CO</span>
+            </div>
+            <div class="dates">2011-09-01 - 2015-05-01</div>
+            
+            <div>GPA: 3.5/4.0</div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <strong>Relevant Coursework:</strong>
+                
+                <span class="tech-tag">Computer Science</span>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="skills-grid">
+            
+            <div class="skill-category">
+                <h4>Technical Skills</h4>
+                <ul class="skill-list">
+                    
+                    <li>React</li>
+                    
+                    <li>Node.js</li>
+                    
+                </ul>
+            </div>
+            
+            
+            
+            <div class="skill-category">
+                <h4>Tools & Technologies</h4>
+                <ul class="skill-list">
+                    
+                    <li>Docker</li>
+                    
+                    <li>Git</li>
+                    
+                </ul>
+            </div>
+            
+            
+            
+            <div class="skill-category">
+                <h4>Soft Skills</h4>
+                <ul class="skill-list">
+                    
+                    <li>Communication</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Projects</div>
+        
+        <div class="project-item">
+            <div class="project-title">Improved application performance by 25% through optimization</div>
+            <div class="dates">2020-01-01 - 2020-06-01</div>
+            
+            
+            <div style="margin-top: 10px;">Project Description Enhancements 
+• Led the optimization of a K-12 educational application by implementing machine learning techniques, resulting in a 25% improvement in application performance. 
+• Architected and implemented a scalable microservices architecture using Spring Boot and Spring Cloud, achieving a 10% reduction in development time and 15% improvement in scalability. 
+• Optimized the application's performance by implementing a robust CI/CD pipeline, resulting in a 20% reduction in build times and a 10% decrease in deployment errors. 
+• Implemented a new microservice monitoring system using Prometheus and Grafana, providing real-time insights into application health and performance. 
+• Delivered a comprehensive training program for junior engineers, resulting in a 15% improvement in their microservice development skills. 
+• Optimized the application's security by implementing robust authentication and authorization mechanisms, reducing the risk of unauthorized access by 30%.</div>
+            
+            
+            
+            <div class="technologies" style="margin-top: 10px;">
+                
+                <span class="tech-tag">React</span>
+                
+                <span class="tech-tag">Node.js</span>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <a href="https://github.com/RachelGreen/optimization-project">Live Demo</a>
+                 | 
+                <a href="https://github.com/RachelGreen/optimization-project">GitHub</a>
+            </div>
+            
+        </div>
+        
+        <div class="project-item">
+            <div class="project-title">Developer of the Month award (2022)</div>
+            <div class="dates">2022-01-01 - Present</div>
+            
+            
+            <div style="margin-top: 10px;">Project Description Enhancements 
+• Led the development of a scalable microservices architecture using Spring Boot and Docker, resulting in a 20% reduction in development time and a 15% improvement in performance. 
+• Architected and implemented a robust CI/CD pipeline, automating the build, testing, and deployment of microservices, reducing manual effort by 30%. 
+• Delivered a comprehensive training program for junior engineers on microservice design principles and best practices, resulting in a 10% improvement in team productivity. 
+• Optimized the microservices architecture by implementing a new monitoring and logging system, resulting in a 10% reduction in downtime and a 15% improvement in resource utilization. 
+• Implemented a new microservice communication mechanism using Kafka, reducing communication latency by 20%. 
+• Demonstrated exceptional problem-solving skills by resolving a critical issue in a live production environment, saving the company $10,000 in revenue.</div>
+            
+            
+            
+            <div class="technologies" style="margin-top: 10px;">
+                
+                <span class="tech-tag">React</span>
+                
+                <span class="tech-tag">Node.js</span>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <a href="https://rachelgreen.github.io/awards/">Live Demo</a>
+                
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Certifications</div>
+        
+        <div class="experience-item">
+            <div class="position-title">AWS Certified Developer Associate</div>
+            <div class="company">Amazon Web Services</div>
+            <div class="dates">2022-01-01</div>
+        </div>
+        
+        <div class="experience-item">
+            <div class="position-title">React Developer Certification</div>
+            <div class="company">React Developer Certification</div>
+            <div class="dates">2020-01-01</div>
+        </div>
+        
+        <div class="experience-item">
+            <div class="position-title">Scrum Master Certified (CSM)</div>
+            <div class="company">Scrum Alliance</div>
+            <div class="dates">2019-01-01</div>
+        </div>
+        
+    </div>
+    
+
+    
+</body>
+</html>

@@ -1,51 +1,52 @@
 James Wilson
-Email: james.wilson@legal.com
+Contact: james.wilson@techcorp.com
 Phone: (555) 345-6789
 Location: Washington, DC
 
-Legal Experience:
-- Associate Attorney at Corporate Law Firm (2020-Present)
-  * Handle corporate transactions and M&A deals
-  * Draft and review commercial contracts
-  * Provide legal counsel on regulatory compliance
-  * Represent clients in negotiations and due diligence
+Professional Experience:
+- Senior Software Engineer at Government Tech Solutions (2020-Present)
+  * Develop secure government software applications
+  * Lead compliance and security implementation projects
+  * Architect enterprise-level systems and databases
+  * Collaborate with stakeholders on requirements and solutions
 
-- Junior Associate at Business Law Firm (2018-2020)
-  * Assisted with intellectual property matters
-  * Conducted legal research and case analysis
-  * Prepared legal briefs and memoranda
-  * Supported senior attorneys in court proceedings
+- Software Engineer at Consulting Tech Firm (2018-2020)
+  * Built custom software solutions for enterprise clients
+  * Conducted technical research and proof of concepts
+  * Developed documentation and technical specifications
+  * Supported senior engineers in system design and architecture
 
-- Legal Intern at District Attorney's Office (Summer 2017)
-  * Researched criminal law cases and precedents
-  * Assisted prosecutors with case preparation
-  * Attended court hearings and depositions
-  * Drafted legal documents and motions
+- Software Development Intern at Tech Startup (Summer 2017)
+  * Developed web applications using modern frameworks
+  * Assisted with database design and optimization
+  * Participated in code reviews and testing processes
+  * Contributed to mobile application development
 
 Education:
-Juris Doctor (JD)
-Georgetown University Law Center (2015-2018)
-Law Review Member, Cum Laude
+Master of Science in Computer Science
+Georgetown University (2015-2018)
+Graduate Research Assistant, Cum Laude
 
-Bachelor of Arts in Political Science
+Bachelor of Arts in Computer Science
 Yale University (2011-2015)
 Phi Beta Kappa, Summa Cum Laude
 
-Legal Specializations:
-Corporate Law, Mergers & Acquisitions, Securities Law
-Intellectual Property, Contract Law, Compliance
-Litigation Support, Legal Research, Document Review
+Technical Specializations:
+Enterprise Software Development, System Architecture, Database Design
+Java, C#, Python, JavaScript, SQL
+Spring Framework, .NET, React, Angular
+Cybersecurity, Compliance Systems, Documentation
 
-Bar Admissions:
-- District of Columbia Bar (2018)
-- New York State Bar (2019)
-- Federal District Court (2020)
+Technical Certifications:
+- Oracle Certified Professional Java SE Developer (2020)
+- Microsoft Certified Azure Developer Associate (2021)
+- Certified Information Systems Security Professional (CISSP)
 
 Professional Activities:
-- Member of American Bar Association
-- Volunteer attorney for Legal Aid Society
-- Guest lecturer at Georgetown Law School
-- Published articles in legal journals
+- Member of Association for Computing Machinery (ACM)
+- Volunteer software developer for nonprofits
+- Guest lecturer at Georgetown Computer Science Department
+- Published articles in software engineering journals
 
 Achievements:
 - Successfully closed $500M+ in M&A transactions

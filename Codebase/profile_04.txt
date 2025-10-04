@@ -1,46 +1,47 @@
 Emma Rodriguez
-Email: emma.rodriguez@design.com
+Email: emma.rodriguez@tech.com
 Phone: +1-555-4567
-Portfolio: www.emmadesigns.com
-Location: Los Angeles, CA
+GitHub: github.com/emmarodriguez
+Location: Austin, TX
 
-Design Experience:
-- Senior UX/UI Designer at DesignStudio (2020-Present)
-  * Lead design for mobile and web applications
-  * Conduct user research and usability testing
-  * Create wireframes, prototypes, and design systems
-  * Collaborate with development and product teams
+Professional Experience:
+- Senior Frontend Engineer at TechCorp (2020-Present)
+  * Lead development of responsive web applications using React
+  * Implement modern JavaScript frameworks and libraries
+  * Collaborate with backend engineers and product teams
+  * Optimize application performance and user experience
 
-- UX Designer at TechStartup (2018-2020)
-  * Designed user interfaces for SaaS platform
-  * Improved user engagement by 40% through redesign
-  * Created design documentation and style guides
-  * Worked closely with frontend developers
+- Frontend Developer at StartupTech (2018-2020)
+  * Built user interfaces for SaaS platform using Vue.js
+  * Improved application load times by 40% through optimization
+  * Created reusable component libraries and documentation
+  * Worked closely with UX designers and backend developers
 
-- Graphic Designer (Freelance) (2016-2018)
-  * Designed logos, branding, and marketing materials
+- Web Developer (Freelance) (2016-2018)
+  * Developed responsive websites and web applications
   * Worked with diverse clients across industries
   * Managed multiple projects simultaneously
 
 Education:
-Bachelor of Fine Arts in Graphic Design
-Art Center College of Design (2012-2016)
+Bachelor of Science in Computer Science
+University of Texas at Austin (2012-2016)
 
-Design Skills:
-User Experience Design, User Interface Design, Graphic Design
-Figma, Sketch, Adobe Creative Suite, InVision
-User Research, Prototyping, Design Systems
-HTML/CSS basics, Design Thinking
+Technical Specializations:
+JavaScript, TypeScript, React, Vue.js, Angular
+HTML5, CSS3, SASS, Responsive Design
+Node.js, Express.js, RESTful APIs
+Git, Webpack, Jest, Cypress
+Agile Development, Test-Driven Development
 
-Portfolio Highlights:
-- Mobile app design for health tracking (500K+ downloads)
-- E-commerce website redesign (25% conversion increase)
-- Brand identity design for tech startup
-- Design system for enterprise software
+Projects & Publications:
+- E-commerce platform with React and Node.js (1M+ users)
+- Real-time chat application using WebSocket technology
+- Progressive Web App for mobile-first experience
+- Component library adopted across multiple teams
 
-Recognition:
-- Winner of UX Design Awards 2022
-- Featured in Design Magazine
-- Speaker at Design Conference 2023
+Professional Certifications:
+- Best Frontend Developer Award 2022
+- Contributing author to JavaScript Weekly
+- Speaker at React Conference 2023
 
 Languages: English (Native), Spanish (Native)

@@ -26,6 +26,7 @@ import sys
 import json
 import logging
 import argparse
+import re
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any, Optional
@@ -757,6 +758,31 @@ def initialize_services():
     return True
 
 
+def generate_output_filename(base_name: str, template_style: str, file_extension: str) -> str:
+    """Generate output filename including original input filename for easy identification."""
+    # Get original filename if available
+    original_filename = getattr(st.session_state, 'original_filename', None)
+    
+    # Clean the original filename (remove extension and special chars)
+    if original_filename:
+        # Extract name without extension and clean it
+        clean_name = os.path.splitext(original_filename)[0]
+        clean_name = re.sub(r'[^\w\-_]', '_', clean_name)  # Replace special chars with underscore
+        clean_name = re.sub(r'_+', '_', clean_name)  # Remove multiple underscores
+        clean_name = clean_name.strip('_')  # Remove leading/trailing underscores
+    else:
+        # Fallback to generic name if no original filename
+        clean_name = "resume"
+    
+    # Generate timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    # Create filename: original_name_templatestyle_timestamp.extension
+    filename = f"{clean_name}_{base_name}_{template_style}_{timestamp}.{file_extension}"
+    
+    return filename
+
+
 def handle_resume_upload():
     """Handle resume file upload and processing."""
     st.markdown('''
@@ -803,6 +829,8 @@ def handle_resume_upload():
                 try:
                     with st.spinner("🤖 Processing resume with AI models..."):
                         st.session_state.resume_data = parser.parse_resume(resume_text)
+                        # Store original filename for output file naming
+                        st.session_state.original_filename = uploaded_file.name
                     
                     # Check what was parsed
                     if st.session_state.resume_data:
@@ -1239,12 +1267,11 @@ def handle_document_generation():
                         template_name="cv_template.html"
                     )
                     
-                    # Generate filename with timestamp
-                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                    html_filename = f"tailored_cv_{template_style}_{timestamp}.html"
+                    # Generate filename with original input name
+                    html_filename = generate_output_filename("tailored_cv", template_style, "html")
                     
-                    # Save to data/output directory
-                    output_path = Path("data/output") / html_filename
+                    # Save to current directory
+                    output_path = Path(".") / html_filename
                     output_path.parent.mkdir(parents=True, exist_ok=True)
                     
                     try:
@@ -1291,13 +1318,12 @@ def handle_document_generation():
                         template_name="cv_template.html"
                     )
                     
-                    # Generate filenames with timestamp
-                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                    html_filename = f"tailored_cv_{template_style}_{timestamp}.html"
-                    pdf_filename = f"tailored_cv_{template_style}_{timestamp}.pdf"
+                    # Generate filenames with original input name
+                    html_filename = generate_output_filename("tailored_cv", template_style, "html")
+                    pdf_filename = generate_output_filename("tailored_cv", template_style, "pdf")
                     
-                    # Save both files to data/output directory
-                    output_dir = Path("data/output")
+                    # Save both files to current directory
+                    output_dir = Path(".")
                     output_dir.mkdir(parents=True, exist_ok=True)
                     
                     html_output_path = output_dir / html_filename
@@ -1339,11 +1365,11 @@ def handle_document_generation():
                     }
                     
                     st.success("✅ PDF CV document with HTML preview generated successfully!")
-                    st.info(f"📁 Both files saved to data/output directory")
+                    st.info(f"📁 Both files saved to current directory")
                     
                     # Show files in output directory
                     try:
-                        output_files = list(Path("data/output").glob("*.html")) + list(Path("data/output").glob("*.pdf"))
+                        output_files = list(Path(".").glob("*.html")) + list(Path(".").glob("*.pdf"))
                         if output_files:
                             st.markdown("**Recent files in output directory:**")
                             for file_path in sorted(output_files, key=lambda x: x.stat().st_mtime, reverse=True)[:5]:

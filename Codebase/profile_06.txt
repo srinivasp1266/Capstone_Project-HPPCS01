@@ -1,55 +1,104 @@
-Lisa Wang
-Email: lisa.wang@data.com
-Phone: +1-555-2468
-GitHub: github.com/lisawang
-Location: Seattle, WA
+Ryan MitchellLisa Wang
 
-Data Science Experience:
-- Senior Data Scientist at Tech Giant (2021-Present)
-  * Build machine learning models for recommendation systems
-  * Analyze large datasets to derive business insights
-  * Lead data science projects from conception to deployment
-  * Mentor junior data scientists and analysts
+Contact: ryan.mitchell@cloudtech.comContact: lisa.wang@data.com
 
-- Data Scientist at E-commerce Company (2019-2021)
-  * Developed predictive models for customer behavior
-  * Implemented A/B testing frameworks
-  * Created automated reporting dashboards
-  * Collaborated with product and engineering teams
+Phone: +1-555-9876Phone: +1-555-2468
 
-- Data Analyst at Consulting Firm (2017-2019)
-  * Performed statistical analysis for client projects
-  * Built data pipelines and ETL processes
-  * Created visualizations and reports for stakeholders
-  * Supported business intelligence initiatives
+Location: Austin, TXLocation: Seattle, WA
 
-Education:
-Master of Science in Data Science
-University of Washington (2015-2017)
 
-Bachelor of Science in Statistics
-UC Berkeley (2011-2015)
-Honors Graduate
 
-Technical Expertise:
-Machine Learning, Deep Learning, Statistical Analysis
-Python, R, SQL, Scala, Java
-TensorFlow, PyTorch, Scikit-learn
-Spark, Hadoop, AWS, GCP
-Tableau, Power BI, Matplotlib, Seaborn
+Professional Experience:Professional Experience:
 
-Projects & Research:
-- Customer churn prediction model (reduced churn by 15%)
-- Fraud detection system using ensemble methods
-- Natural language processing for sentiment analysis
-- Time series forecasting for demand planning
+- Lead DevOps Engineer at CloudTech Solutions (2022-Present)- Senior Data Scientist at Tech Giant (2021-Present)
 
-Publications:
-- Co-authored 3 papers in data science conferences
-- Regular contributor to data science blog
-- Speaker at PyData and KDD conferences
+  * Design and implement CI/CD pipelines for microservices architecture  * Build machine learning models for recommendation systems
 
-Certifications:
+  * Manage cloud infrastructure across AWS and Azure platforms  * Analyze large datasets to derive business insights
+
+  * Lead automation initiatives reducing deployment time by 70%  * Lead data science projects from conception to deployment
+
+  * Mentor team of 5 junior DevOps engineers  * Mentor junior data scientists and analysts
+
+
+
+- Senior Site Reliability Engineer at TechFlow Inc (2019-2022)- Data Scientist at E-commerce Company (2019-2021)
+
+  * Maintained 99.9% uptime for high-traffic web applications  * Developed predictive models for customer behavior
+
+  * Implemented monitoring and alerting systems using Prometheus and Grafana  * Implemented A/B testing frameworks
+
+  * Automated infrastructure provisioning with Terraform and Ansible  * Created automated reporting dashboards
+
+  * Collaborated with development teams on scalable system design  * Collaborated with product and engineering teams
+
+
+
+- DevOps Engineer at StartupLab (2017-2019)- Data Analyst at Consulting Firm (2017-2019)
+
+  * Built containerized deployment solutions using Docker and Kubernetes  * Performed statistical analysis for client projects
+
+  * Established monitoring and logging infrastructure  * Built data pipelines and ETL processes
+
+  * Implemented automated testing and deployment workflows  * Created visualizations and reports for stakeholders
+
+  * Reduced manual deployment time from hours to minutes  * Supported business intelligence initiatives
+
+
+
+Education:Education:
+
+Master of Science in Computer Systems EngineeringMaster of Science in Data Science
+
+University of Texas at Austin (2015-2017)University of Washington (2015-2017)
+
+
+
+Bachelor of Science in Computer ScienceBachelor of Science in Statistics
+
+Texas A&M University (2011-2015)UC Berkeley (2011-2015)
+
+Magna Cum LaudeHonors Graduate
+
+
+
+Technical Specializations:Technical Specializations:
+
+Cloud Platforms: AWS, Azure, Google Cloud PlatformMachine Learning, Deep Learning, Statistical Analysis
+
+DevOps Tools: Jenkins, GitLab CI/CD, Docker, KubernetesPython, R, SQL, Scala, Java
+
+Infrastructure as Code: Terraform, CloudFormation, AnsibleTensorFlow, PyTorch, Scikit-learn
+
+Monitoring: Prometheus, Grafana, ELK Stack, DataDogSpark, Hadoop, AWS, GCP
+
+Programming: Python, Go, Bash, PowerShellTableau, Power BI, Matplotlib, Seaborn
+
+
+
+Projects & Publications:Projects & Publications:
+
+- Designed multi-cloud disaster recovery system serving 10M+ users- Customer churn prediction model (reduced churn by 15%)
+
+- Open-source contributor to Kubernetes and Terraform projects- Fraud detection system using ensemble methods
+
+- Built automated compliance monitoring for SOC2 and ISO27001- Natural language processing for sentiment analysis
+
+- Speaker at KubeCon and AWS re:Invent conferences- Time series forecasting for demand planning
+
+
+
+Professional Certifications:Publications:
+
+- AWS Certified DevOps Engineer Professional- Co-authored 3 papers in data science conferences
+
+- Certified Kubernetes Administrator (CKA)- Regular contributor to data science blog
+
+- HashiCorp Certified Terraform Associate- Speaker at PyData and KDD conferences
+
+
+
+Languages: English (Native), Spanish (Conversational)Professional Certifications:
 - AWS Certified Machine Learning Specialist
 - Google Cloud Professional Data Engineer
 - Databricks Certified Associate Developer

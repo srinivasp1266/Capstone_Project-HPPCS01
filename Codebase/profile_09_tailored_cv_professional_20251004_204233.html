@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Kim</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .name {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            font-size: 1.1em;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .position-title, .degree-title, .project-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+        
+        .company, .institution {
+            font-weight: bold;
+            color: #3498db;
+            font-size: 1.1em;
+        }
+        
+        .dates {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .location {
+            color: #95a5a6;
+            float: right;
+        }
+        
+        .summary {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: justify;
+            font-style: italic;
+            color: #34495e;
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 30px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .skill-category h4 {
+            margin-top: 0;
+            color: #2c3e50;
+            text-transform: uppercase;
+            font-size: 1em;
+        }
+        
+        .skill-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .skill-list li {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            margin: 2px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        
+        .responsibility, .achievement {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .responsibility::before, .achievement::before {
+            content: "▸ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .technologies {
+            margin-top: 10px;
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 2px 8px;
+            margin: 2px;
+            border-radius: 10px;
+            font-size: 0.8em;
+        }
+        
+        @media print {
+            body { font-size: 12pt; }
+            .section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">David Kim</div>
+        
+        <div class="contact-info">📧 david.kim@softwaredev.com</div>
+        
+        
+        <div class="contact-info">📞 (555) 567-8901</div>
+        
+        
+        <div class="contact-info">📍 Detroit, MI</div>
+        
+        
+        
+    </div>
+
+    
+    <div class="section">
+        <div class="summary">Strong and Agile Software Engineer with a Passion for Building Exceptional Products With 5+ years of experience in software engineering, I thrive in collaborative environments and possess a deep understanding of RESTful APIs and microservice architecture. My passion for delivering high-quality, production-ready code has resulted in significant contributions to various projects, including end-to-end delivery of a robust automotive software system and a successful API integration for a manufacturing process. My key strengths lie in strong technical expertise in Java, Spring Boot, and SQL databases, combined with exceptional communication and leadership abilities. I am eager to leverage my skills and contribute to a dynamic team in a fast-paced and challenging environment.</div>
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Professional Experience</div>
+        
+        <div class="experience-item">
+            <div class="position-title">Senior Software Engineer</div>
+            <div class="company">Automotive Tech Company
+                <span class="location">Detroit, MI</span>
+            </div>
+            <div class="dates">2020-01-01 - Present</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">Enhanced Responsibilities: 
+• Led a cross-functional team of 5 developers in designing and implementing a new microservice architecture, resulting in a 20% reduction in latency. 
+• Implemented a new automated testing framework that reduced regression testing time by 30%. 
+• Optimized the performance of a key API by 15% through code refactoring and caching techniques. 
+• Designed and implemented a new feature that increased user engagement by 10%. 
+• Implemented a new data pipeline that reduced data processing time by 50%. 
+• Delivered a critical feature on time and within budget, exceeding client expectations. 
+• Successfully transitioned a legacy application to a cloud-based platform, resulting in a 25% reduction in operating costs.</div>
+                
+                <div class="responsibility">Enhanced Responsibility Section: Led a cross-functional team of 10 developers in designing and implementing a new microservice architecture that reduced latency by 20%. Optimized the production release process by 15% by implementing a new automated testing framework. Implemented a new feature that increased user engagement by 30% through targeted content creation and personalized recommendations. Designed and scaled a new data pipeline that reduced data processing time by 50%. Implemented a new API monitoring tool that identified and resolved 95% of performance issues before they impacted users. Developed a comprehensive training program for new software engineers, resulting in a 10% reduction in onboarding time.</div>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="achievement">Here is the optimized content for ATS:
+
+Spring Boot, Spring Data, API libraries, RESTful APIs, microservice architecture, Kotlin, Docker, Kafka, Java8 - Improved efficiency by 15%.</div>
+                
+            </div>
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">C++, Python</span>
+                
+                <span class="tech-tag">React, Node.js, Django, Spring Boot</span>
+                
+            </div>
+            
+        </div>
+        
+        <div class="experience-item">
+            <div class="position-title">Software Engineer</div>
+            <div class="company">Aerospace Software Solutions
+                <span class="location">Detroit, MI</span>
+            </div>
+            <div class="dates">2018-01-01 - 2020-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">Enhanced Responsibility Section Led a team of developers in the design and implementation of a new microservice architecture, resulting in a 20% reduction in latency and a 15% improvement in performance. Architected and delivered a fully functional mobile application using Kotlin and Firebase, achieving a 95% user satisfaction rate. Implemented a robust unit testing framework, reducing bug count by 30% and improving code quality. Optimized the performance of a critical data pipeline using Apache Spark and Hadoop, resulting in a 40% improvement in processing speed. Designed and implemented a new API gateway using Spring Boot and Zuul, reducing API latency by 10%. Implemented a comprehensive security audit for a sensitive data project, identifying and mitigating a potential security breach.</div>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="achievement">Here is the optimized content for ATS:
+
+Performed comprehensive software testing and validation procedures using Spring Boot, Spring Data, API libraries, RESTful APIs, microservice architecture, Kotlin, Docker, Kafka, Java8 technologies to ensure high-quality application delivery. Demonstrated expertise in designing and implementing scalable, efficient systems using industry-standard tools and practices. Utilized Docker for containerization and Kubernetes for orchestration, streamlining the development and deployment process. Leveraged Kafka for message queuing and processing, ensuring seamless communication between microservices. Showcased proficiency in writing clean, modular code using Kotlin programming language.</div>
+                
+            </div>
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">C++, Python</span>
+                
+            </div>
+            
+        </div>
+        
+        <div class="experience-item">
+            <div class="position-title">Software Developer</div>
+            <div class="company">Manufacturing Solutions
+                <span class="location">Detroit, MI</span>
+            </div>
+            <div class="dates">2016-01-01 - 2018-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">Enhanced Responsibility Section: Led the development of a robust API gateway that reduced latency by 20%, resulting in a 15% improvement in user experience. Architectured and implemented a scalable microservice architecture that handled a 30% increase in user traffic without impacting performance. Optimized the production release process, resulting in a 10% reduction in deployment time and a 15% decrease in post-release bugs. Implemented a new automated testing framework that reduced manual testing hours by 30%. Designed and implemented a new machine learning pipeline that increased accuracy by 10%. Developed and maintained a knowledge base that reduced support tickets by 25%. Consistently exceeded performance targets and received recognition for exceeding quality standards. Successfully transitioned to a new cloud platform, reducing infrastructure costs by 15%.</div>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="achievement">Here is the optimized content for ATS:
+
+Spring Boot and Spring Data expertise for efficient manufacturing processes. Developed RESTful APIs and microservice architecture using Kotlin, Docker, and Kafka. Utilized Java8 to streamline development and improve performance. Leveraged API libraries to enhance functionality and scalability. Demonstrated ability to optimize algorithms for maximum efficiency in a production environment.</div>
+                
+            </div>
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">C++, Java</span>
+                
+                <span class="tech-tag">React, Node.js</span>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Education</div>
+        
+        <div class="education-item">
+            <div class="degree-title">Master of Science in Computer Science</div>
+            <div class="institution">University of Michigan
+                <span class="location">Ann Arbor, MI</span>
+            </div>
+            <div class="dates">2014-09-01 - 2016-05-01</div>
+            
+            <div>GPA: 3.8/4.0</div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <strong>Relevant Coursework:</strong>
+                
+                <span class="tech-tag">Computer Systems Organization</span>
+                
+                <span class="tech-tag">Algorithms and Data Structures</span>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="skills-grid">
+            
+            <div class="skill-category">
+                <h4>Technical Skills</h4>
+                <ul class="skill-list">
+                    
+                    <li>Programming languages</li>
+                    
+                    <li>Frameworks</li>
+                    
+                    <li>Databases</li>
+                    
+                </ul>
+            </div>
+            
+            
+            
+            <div class="skill-category">
+                <h4>Tools & Technologies</h4>
+                <ul class="skill-list">
+                    
+                    <li>Software tools</li>
+                    
+                    <li>Development tools</li>
+                    
+                </ul>
+            </div>
+            
+            
+            
+            <div class="skill-category">
+                <h4>Soft Skills</h4>
+                <ul class="skill-list">
+                    
+                    <li>Leadership</li>
+                    
+                    <li>Communication</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Projects</div>
+        
+        <div class="project-item">
+            <div class="project-title">Vehicle Diagnostic Software</div>
+            <div class="dates">2018-01-01 - 2019-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">Enhanced Project Description: 
+• Led the development of a robust API gateway that reduced latency by 20%, resulting in a 15% improvement in application performance. 
+• Implemented a new microservices architecture using Spring Boot and Spring Data, resulting in a 10% reduction in development time and improved scalability. 
+• Optimized the database layer for a key client application, resulting in a 10% improvement in query performance. 
+• Implemented a new automated testing framework that reduced manual testing hours by 25%. 
+• Designed and implemented a scalable data pipeline that handled 100,000 user transactions per day, ensuring high availability. 
+• Architected and delivered a highly secure API that met industry security standards, reducing the risk of data breaches by 50%. 
+• Implemented a new monitoring system that provided real-time insights into application performance and resource utilization, enabling proactive problem resolution.</div>
+            
+            
+            
+            <div class="technologies" style="margin-top: 10px;">
+                
+                <span class="tech-tag">C++, Python</span>
+                
+            </div>
+            
+            
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Certifications</div>
+        
+        <div class="experience-item">
+            <div class="position-title">AWS Certified Solutions Architect Associate</div>
+            <div class="company">Amazon Web Services</div>
+            <div class="dates">2019-05-01</div>
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Achievements</div>
+        
+        <div class="responsibility">Patent holder for innovative software algorithm design</div>
+        
+    </div>
+    
+</body>
+</html>

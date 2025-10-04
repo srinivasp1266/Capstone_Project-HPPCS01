@@ -1,52 +1,52 @@
 Amanda Foster
-Email: amanda.foster@nurse.com
+Contact: amanda.foster@healthtech.com
 Phone: +1-555-6789
 Location: Miami, FL
 
-Nursing Experience:
-- Registered Nurse - ICU at Miami General Hospital (2019-Present)
-  * Provide critical care to patients in intensive care unit
-  * Monitor vital signs and administer medications
-  * Collaborate with multidisciplinary healthcare teams
-  * Train and mentor new nursing staff
+Professional Experience:
+- Senior Software Engineer at HealthTech Solutions (2019-Present)
+  * Develop healthcare software applications and patient management systems
+  * Build secure APIs for medical data integration
+  * Collaborate with healthcare professionals on requirements
+  * Ensure HIPAA compliance and data security standards
 
-- Staff Nurse - Medical/Surgical Unit at Regional Medical Center (2017-2019)
-  * Delivered comprehensive nursing care to diverse patient population
-  * Managed medication administration and patient education
-  * Coordinated discharge planning and follow-up care
-  * Maintained accurate patient documentation
+- Software Developer at Medical Software Company (2017-2019)
+  * Built comprehensive healthcare management web applications
+  * Implemented electronic health record (EHR) systems
+  * Developed patient portal and communication features
+  * Maintained accurate system documentation and user guides
 
-- Clinical Nursing Assistant at Community Hospital (2015-2017)
-  * Assisted registered nurses with patient care activities
-  * Performed basic nursing procedures and vital sign monitoring
-  * Provided emotional support and comfort to patients and families
-  * Maintained clean and safe patient environments
+- Junior Developer at Healthcare Startup (2015-2017)
+  * Assisted in developing patient care mobile applications
+  * Performed software testing and quality assurance
+  * Provided technical support and bug fixes
+  * Maintained clean and efficient codebase
 
 Education:
-Bachelor of Science in Nursing (BSN)
-University of Miami School of Nursing (2013-2017)
-Magna Cum Laude, Sigma Theta Tau Honor Society
+Bachelor of Science in Computer Science
+University of Miami School of Engineering (2013-2017)
+Magna Cum Laude, ACM Honor Society
 
-Associate Degree in Nursing (ADN)
+Associate Degree in Computer Programming
 Miami Dade College (2013-2015)
 
-Nursing Credentials:
-- Registered Nurse License - Florida
-- Basic Life Support (BLS) Certified
-- Advanced Cardiovascular Life Support (ACLS) Certified
-- Critical Care Registered Nurse (CCRN) Certified
+Technical Certifications:
+- AWS Certified Developer Associate
+- Certified Information Systems Security Professional (CISSP)
+- MongoDB Certified Developer
+- Agile Certified Practitioner (PMI-ACP)
 
-Clinical Specializations:
-Critical Care Nursing, Medical-Surgical Nursing
-Patient Assessment, Medication Administration
-Wound Care, IV Therapy, Ventilator Management
-Patient Education, Family Communication
+Technical Specializations:
+Healthcare Software Development, API Design, Database Management
+Java, Python, JavaScript, React, Node.js
+MySQL, MongoDB, RESTful Services, Cloud Computing
+HIPAA Compliance, Security Implementation, System Integration
 
 Professional Development:
-- Certified in trauma nursing (TNCC)
-- Completed sepsis recognition training
-- Advanced wound care certification
-- Pain management continuing education
+- Certified in healthcare data security (HIPAA)
+- Completed cloud computing specialization
+- Advanced API development certification
+- Healthcare informatics continuing education
 
 Achievements:
 - Employee of the Month (3 times)

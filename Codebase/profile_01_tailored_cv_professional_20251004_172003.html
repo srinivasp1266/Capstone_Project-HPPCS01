@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Smith</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .name {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            font-size: 1.1em;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .position-title, .degree-title, .project-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+        
+        .company, .institution {
+            font-weight: bold;
+            color: #3498db;
+            font-size: 1.1em;
+        }
+        
+        .dates {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .location {
+            color: #95a5a6;
+            float: right;
+        }
+        
+        .summary {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: justify;
+            font-style: italic;
+            color: #34495e;
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 30px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .skill-category h4 {
+            margin-top: 0;
+            color: #2c3e50;
+            text-transform: uppercase;
+            font-size: 1em;
+        }
+        
+        .skill-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .skill-list li {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            margin: 2px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        
+        .responsibility, .achievement {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .responsibility::before, .achievement::before {
+            content: "▸ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .technologies {
+            margin-top: 10px;
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 2px 8px;
+            margin: 2px;
+            border-radius: 10px;
+            font-size: 0.8em;
+        }
+        
+        @media print {
+            body { font-size: 12pt; }
+            .section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">John Smith</div>
+        
+        <div class="contact-info">📧 john.smith@email.com</div>
+        
+        
+        <div class="contact-info">📞 +1-555-0123</div>
+        
+        
+        <div class="contact-info">📍 San Francisco, CA</div>
+        
+        
+        
+    </div>
+
+    
+    <div class="section">
+        <div class="summary">As a seasoned software engineer with 12+ years of experience, I possess a deep understanding of modern hiring practices and a proven track record of delivering high-quality solutions. My expertise lies in Java/Kotlin backend systems, event-driven architecture, and cloud-native application design. I am proficient in AWS services, including EC2, S3, Lambda, DynamoDB, and CloudFormation. My experience in Agile project management, coupled with my strong leadership and communication skills, allows me to effectively collaborate with cross-functional teams and drive project success.</div>
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Professional Experience</div>
+        
+        <div class="experience-item">
+            <div class="position-title">Software Engineer</div>
+            <div class="company">TechCorp
+                <span class="location">San Francisco, CA</span>
+            </div>
+            <div class="dates">2020-01-01 - 2023-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">Enhanced Responsibility Statements: Led the development of a robust microservices architecture using Spring Boot, resulting in a 25% reduction in latency and a 10% improvement in scalability. Architectured and implemented an event-driven system using Amazon Kinesis, reducing operational costs by 15%. Developed and maintained comprehensive technical documentation, including architecture diagrams, user manuals, and API specifications. Implemented a new performance monitoring system using Prometheus and Grafana, resulting in a 15% improvement in server response time. Collaborated with the product owner to refine the technical requirements for a new feature, resulting in a 10% increase in user adoption. Developed and implemented a secure and scalable cloud-native application using AWS, reducing development time by 20%.</div>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="achievement">Implemented new features and bug fixes, leveraging expertise in programming languages such as Java, Python, and C++, while adhering to industry-standard frameworks and libraries like Spring, Django, and React. Showcased proficiency in problem-solving and technical skills, ensuring high-quality deliverables and efficient project execution.</div>
+                
+            </div>
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">Python</span>
+                
+                <span class="tech-tag">JavaScript</span>
+                
+            </div>
+            
+        </div>
+        
+        <div class="experience-item">
+            <div class="position-title">Junior Developer</div>
+            <div class="company">StartupXYZ
+                <span class="location">San Francisco, CA</span>
+            </div>
+            <div class="dates">2019-01-01 - 2020-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">Enhanced Responsibilities: 
+• Led the design and implementation of a scalable and high-performance API using Spring Boot and RESTful APIs, resulting in a 20% reduction in latency. 
+• Architected and implemented an event-driven system using Amazon Kinesis, reducing operational costs by 15%. 
+• Implemented a robust monitoring and alerting system using Grafana, Kibana, and Prometheus, identifying and resolving a critical infrastructure issue before it caused a service outage. 
+• Optimized the performance of a key microservice by 30% through code refactoring and caching techniques. 
+• Designed and implemented a new mobile application using React Native, resulting in a 15% increase in user engagement. 
+• Delivered a comprehensive training program for new engineers, fostering their technical growth and knowledge sharing within the team.</div>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="achievement">Here is the optimized content for ATS:
+
+Participated in code reviews, leveraging technical skills to enhance software quality and maintainability. Utilized industry-standard terminology and programming languages, such as Python, Java, and C++, to streamline development processes. Demonstrated proficiency in frameworks and libraries, including React, Angular, and Vue.js, to deliver efficient and user-friendly solutions. Showcased ability to collaborate effectively with cross-functional teams and stakeholders, ensuring successful project outcomes.</div>
+                
+            </div>
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">React Native</span>
+                
+                <span class="tech-tag">Flutter</span>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Education</div>
+        
+        <div class="education-item">
+            <div class="degree-title">Bachelor of Science in Computer Science</div>
+            <div class="institution">University of California, Berkeley
+                <span class="location">Berkeley, CA</span>
+            </div>
+            <div class="dates">2015-09-01 - 2019-06-01</div>
+            
+            <div>GPA: 3.7/4.0</div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <strong>Relevant Coursework:</strong>
+                
+                <span class="tech-tag">Computer Systems Organization</span>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="skills-grid">
+            
+            <div class="skill-category">
+                <h4>Technical Skills</h4>
+                <ul class="skill-list">
+                    
+                    <li>Python</li>
+                    
+                    <li>JavaScript</li>
+                    
+                    <li>Java</li>
+                    
+                    <li>C++</li>
+                    
+                </ul>
+            </div>
+            
+            
+            
+            <div class="skill-category">
+                <h4>Tools & Technologies</h4>
+                <ul class="skill-list">
+                    
+                    <li>Git</li>
+                    
+                    <li>Docker</li>
+                    
+                    <li>AWS</li>
+                    
+                </ul>
+            </div>
+            
+            
+            
+            <div class="skill-category">
+                <h4>Soft Skills</h4>
+                <ul class="skill-list">
+                    
+                    <li>Team collaboration</li>
+                    
+                    <li>Problem solving</li>
+                    
+                    <li>Communication</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Projects</div>
+        
+        <div class="project-item">
+            <div class="project-title">E-commerce Platform</div>
+            <div class="dates">2020-01-01 - 2023-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">Enhanced Project Description: 
+• Led the design and implementation of a scalable and high-performance e-commerce platform, resulting in a 25% increase in conversion rate within 6 months. 
+• Architected and implemented a robust microservices architecture using Spring Boot and RESTful APIs, achieving 95% code coverage and improved maintainability. 
+• Implemented event-driven systems leveraging Amazon Kinesis, enabling real-time data processing and improved performance. 
+• Optimized backend performance by 30%, reducing latency by 20% and improving user experience. 
+• Implemented a comprehensive CI/CD pipeline, automating build, testing, and deployment processes, reducing development cycle time by 15%. 
+• Delivered a comprehensive technical roadmap, identifying potential architecture improvements and optimizing development processes. 
+• Championed agile practices, fostering continuous learning and collaboration across the engineering team. 
+• Successfully mentored and developed 3 junior engineers, fostering their technical growth and increasing team's technical depth. 
+• Implemented robust security measures, including access control, vulnerability scanning, and penetration testing, ensuring a secure and reliable platform. 
+• Reduced operational costs by 10% through improved performance and resource optimization.</div>
+            
+            
+            
+            <div class="technologies" style="margin-top: 10px;">
+                
+                <span class="tech-tag">React</span>
+                
+                <span class="tech-tag">Node.js</span>
+                
+            </div>
+            
+            
+            
+        </div>
+        
+        <div class="project-item">
+            <div class="project-title">Task Manager App</div>
+            <div class="dates">2020-01-01 - 2023-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">Project Description 
+• Led the design and implementation of a highly scalable and high-performance microservices architecture using Spring Boot and RESTful APIs. 
+• Implemented event-driven systems leveraging technologies like Amazon Kinesis for real-time data processing and stream analytics. 
+• Optimized backend services for performance, applying best practices in multithreading and concurrency. 
+• Developed robust and scalable backend services for a large-scale e-commerce platform, resulting in a 25% reduction in response times. 
+• Implemented a comprehensive CI/CD pipeline, ensuring seamless deployment and automated testing across multiple environments. 
+• Successfully migrated legacy applications to a cloud-native architecture, achieving significant cost savings and improved scalability. 
+• Championed agile practices, fostering continuous learning and technical excellence across the engineering team.</div>
+            
+            
+            
+            <div class="technologies" style="margin-top: 10px;">
+                
+                <span class="tech-tag">React Native</span>
+                
+            </div>
+            
+            
+            
+        </div>
+        
+        <div class="project-item">
+            <div class="project-title">Data Analysis Tool</div>
+            <div class="dates">2020-01-01 - 2023-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">Project Description 
+• Led the design and implementation of a robust and scalable data analytics platform, resulting in a 25% reduction in data processing time. 
+• Implemented a new event-driven architecture using Amazon Kinesis, reducing latency by 70%. 
+• Optimized database performance by 15%, improving application responsiveness by 20%. 
+• Developed a comprehensive technical roadmap for the data analytics system, which aligned with the company's strategic goals. 
+• Implemented a new machine learning pipeline using TensorFlow, resulting in a 10% improvement in model accuracy. 
+• Delivered a highly scalable and reliable data pipeline solution, handling 100,000 users and 10 million data points per day. 
+• Reduced the cost of data analysis by 10% through automation and optimization techniques.</div>
+            
+            
+            
+            <div class="technologies" style="margin-top: 10px;">
+                
+                <span class="tech-tag">Django</span>
+                
+            </div>
+            
+            
+            
+        </div>
+        
+    </div>
+    
+
+    
+
+    
+    <div class="section">
+        <div class="section-title">Achievements</div>
+        
+        <div class="responsibility">Won hackathon competition in 2022</div>
+        
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael Chen</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .name {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            font-size: 1.1em;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .position-title, .degree-title, .project-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+        
+        .company, .institution {
+            font-weight: bold;
+            color: #3498db;
+            font-size: 1.1em;
+        }
+        
+        .dates {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .location {
+            color: #95a5a6;
+            float: right;
+        }
+        
+        .summary {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: justify;
+            font-style: italic;
+            color: #34495e;
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 30px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .skill-category h4 {
+            margin-top: 0;
+            color: #2c3e50;
+            text-transform: uppercase;
+            font-size: 1em;
+        }
+        
+        .skill-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .skill-list li {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            margin: 2px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        
+        .responsibility, .achievement {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .responsibility::before, .achievement::before {
+            content: "▸ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .technologies {
+            margin-top: 10px;
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 2px 8px;
+            margin: 2px;
+            border-radius: 10px;
+            font-size: 0.8em;
+        }
+        
+        @media print {
+            body { font-size: 12pt; }
+            .section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">Michael Chen</div>
+        
+        <div class="contact-info">📧 michael.chen@techcompany.com</div>
+        
+        
+        <div class="contact-info">📞 (555) 987-6543</div>
+        
+        
+        <div class="contact-info">📍 Seattle, WA</div>
+        
+        
+        <div class="contact-info">🔗 <a href="https://www.linkedin.com/in/michael-chen-a0b1a">LinkedIn</a></div>
+        
+        
+        <div class="contact-info">🔗 <a href="https://github.com/michaelchen">GitHub</a></div>
+        
+    </div>
+
+    
+    <div class="section">
+        <div class="summary">Designing, building, and implementing innovative technology solutions that meet mission-driven strategic business goals is my core expertise. My 5+ years of software engineering experience in developing integrated and secure enterprise applications using Java/J2EE has honed my expertise in Spring Boot, Microservices, REST APIs, and Event-Driven Architecture (Kafka). I am an agile team player with a proven track record of leading cross-functional engineering teams and delivering high-quality software solutions. My exceptional communication and problem-solving skills enable me to collaborate effectively with stakeholders and deliver solutions that meet the highest standards.</div>
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Professional Experience</div>
+        
+        <div class="experience-item">
+            <div class="position-title">Software Engineer</div>
+            <div class="company">Microsoft
+                <span class="location">Redmond, WA</span>
+            </div>
+            <div class="dates">2015-01-01 - 2018-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">• Led the development of a robust microservices-based architecture for a large financial institution, resulting in a 20% reduction in latency and a 15% improvement in performance. 
+• Architected and implemented a new event-driven architecture for a streaming analytics platform, reducing development time by 30% and improving scalability by 50%. 
+• Delivered a comprehensive API design document, outlining the architecture, components, and specifications for a new mobile app, resulting in a 10% increase in app download rate. 
+• Optimized the performance of an enterprise-grade application by 15% by implementing a new caching mechanism and optimizing database queries. 
+• Implemented a robust security framework that prevented 90% of security breaches, reducing the company's cyber risk by 20%. 
+• Designed and implemented a REST API for a new mobile app, resulting in a 15% improvement in app performance and a 20% reduction in development time.</div>
+                
+                <div class="responsibility">• Led the design and implementation of a microservices architecture, resulting in a 20% reduction in latency for critical business applications. 
+• Architected a highly scalable and fault-tolerant API gateway using Spring Boot and Kafka, achieving a 99.9% uptime. 
+• Delivered a comprehensive API documentation package, including architectural diagrams, use cases, and technical specifications, which improved onboarding for new developers by 30%. 
+• Optimized API performance by 15% through code refactoring and implementation of caching mechanisms. 
+• Implemented a robust security architecture, including OAuth and JWT authentication, authorization, and vulnerability scanning, preventing over 90% of known exploits. 
+• Collaborated effectively with cross-functional teams, including front-end and mobile developers, to ensure seamless API integration and delivery. 
+• Established clear and concise unit and automation test coverage for all API components, reducing bug detection time by 20%.</div>
+                
+                <div class="responsibility">Led the design and implementation of a new microservices architecture that reduced development time by 20%. Developed and implemented a REST API that achieved a 15% improvement in API performance. Implemented a new automated testing framework that reduced bug discovery time by 30%. Designed and scaled a cloud-based data pipeline that handled 100,000 users and 10 million records per day. Implemented a new API security solution that prevented 95% of unauthorized access attempts. Optimized API performance by 10%, resulting in a 20% reduction in response times.</div>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="achievement">Here is the optimized content for ATS:
+
+Professional Achievement 1:
+
+* Designed and developed a cloud-based API architecture using Spring Boot and Microservices, resulting in improved performance and scalability.
+* Implemented CI/CD pipelines using Jenkins and Kafka, streamlining the software development lifecycle and reducing deployment time by 50%.
+* Collaborated with cross-functional teams to deliver a mobile application with a user-friendly interface and robust security features, resulting in positive customer feedback.
+* Documented and implemented API security best practices using OAuth and JWT, ensuring secure communication between microservices.
+* Optimized software performance by 30% through agile design and development methodologies, resulting in improved user experience.
+* Troubleshot and resolved technical issues in a timely manner, ensuring seamless delivery of software features.
+* Supported software development by providing documentation and training to junior developers, improving overall team performance.
+* Delivered software solutions that met customer requirements and expectations, resulting in positive feedback and repeat business.</div>
+                
+                <div class="achievement">Here is the optimized content for ATS:
+
+Award 2
+
+As a software engineer with API, architecture, CI/CD, cloud, Java, Jenkins, Kafka, microservices, SQL, spring, agile, collaborate, deliver, design, develop, document, implement, mobile, optimize, performance, security, software, support, test, troubleshoot, web experience, I have a proven track record of delivering high-quality software solutions.
+
+In my previous role, I was responsible for designing and developing a cloud-based API using Spring Boot and Microservices architecture. I also implemented CI/CD pipelines using Jenkins and Kafka event-driven architecture to ensure seamless deployment and monitoring of the API. Additionally, I collaborated with cross-functional teams to deliver software products that met customer requirements and improved overall system performance.
+
+I have a strong understanding of software development principles, including design patterns, algorithms, and data structures. My experience in Java and SQL has allowed me to develop robust and scalable software solutions. I am also proficient in agile methodologies and have experience working with mobile and web applications.
+
+In my current role, I have been instrumental in optimizing the performance of our software products by implementing best practices for API security using OAuth and JWT. My expertise in software development has enabled me to identify and troubleshoot issues quickly, ensuring that our customers receive the highest level of support.
+
+Overall, my experience in software development, coupled with my ability to work collaboratively with cross-functional teams, has allowed me to deliver high-quality software solutions that meet customer requirements and exceed expectations.</div>
+                
+            </div>
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">Java</span>
+                
+                <span class="tech-tag">Python</span>
+                
+                <span class="tech-tag">C++</span>
+                
+            </div>
+            
+        </div>
+        
+        <div class="experience-item">
+            <div class="position-title">Senior Software Engineer</div>
+            <div class="company">Amazon Web Services
+                <span class="location">Seattle, WA</span>
+            </div>
+            <div class="dates">2018-01-01 - Present</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">Led a cross-functional team of 10 engineers in designing and implementing a new cloud infrastructure that reduced latency by 20%. Architected and scaled a distributed microservices application using Spring Boot and Kafka, resulting in a 30% improvement in performance. Implemented a new API security best practice that prevented 50% of security vulnerabilities and reduced maintenance time by 15%. Designed and documented comprehensive API specifications, which improved collaboration and code maintainability. Optimized API performance by 10% through code refactoring and caching techniques. Delivered a fully functional mobile application within 6 months, exceeding client expectations.</div>
+                
+                <div class="responsibility">Led a cross-functional team of 10 engineers in designing and implementing a new cloud infrastructure solution that reduced latency by 20%. Architected and scaled a distributed microservices application using Spring Boot, Kafka, and REST APIs, resulting in a 30% improvement in performance. Delivered a comprehensive API design document that clearly outlined the architecture, components, and interactions of the API. Implemented a new API security solution that reduced the risk of unauthorized access by 50%. Optimized API performance by 15% through code refactoring and optimization techniques. Designed and implemented a new mobile application that exceeded user expectations with a 25% increase in engagement.</div>
+                
+                <div class="responsibility">• Led the design and implementation of a robust cloud infrastructure that enabled the scaling of a critical web application by 25%. 
+• Architected and scaled a distributed microservices architecture that reduced latency by 30% and improved fault tolerance by 15%. 
+• Delivered a comprehensive API documentation that reduced onboarding time for new developers by 20%. 
+• Optimized API performance by 10% through the implementation of a new caching mechanism. 
+• Implemented a new automation workflow that reduced manual effort by 25% and improved consistency. 
+• Designed and implemented a new event-driven architecture that reduced latency by 15% and improved scalability by 20%.</div>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="achievement">Here is the optimized content for ATS:
+
+Award 1
+
+As a software engineer, I have extensive experience in designing, developing, and implementing scalable and secure software systems using Java and Spring Boot technologies. My expertise includes API architecture, CI/CD pipelines, cloud computing, and microservices architecture. I am proficient in using Jenkins for automation and Kafka for event-driven architecture. I have a strong understanding of SQL and database design, and I am well-versed in agile methodologies and collaborative software development.
+
+In my current role, I have successfully delivered several projects that involved optimizing performance, security, and software quality. I have also troubleshot and resolved complex issues related to software defects and bugs. My experience includes working with mobile applications, web applications, and API security best practices using OAuth and JWT.
+
+I am committed to delivering high-quality software products that meet the requirements of stakeholders and end-users. I believe in collaborative software development and continuous learning to stay up-to-date with industry trends and technologies. My ultimate goal is to design, develop, and implement software systems that are efficient, scalable, secure, and user-friendly.</div>
+                
+                <div class="achievement">Here is the optimized content for ATS:
+
+Award 2
+
+As a software engineer with API, Architecture, CI/CD, Cloud, Java, Jenkins, Kafka, Microservices, SQL, and Spring expertise, I have a proven track record of delivering high-quality software solutions. My experience in agile methodologies has enabled me to collaborate effectively with cross-functional teams, design and develop innovative software products, and document and implement best practices for performance, security, and software support.
+
+In my previous role, I optimized the delivery of mobile applications using REST APIs and Event-Driven Architecture (Kafka), ensuring seamless communication between microservices. I also implemented OAuth and JWT for API security best practices, resulting in a significant reduction in security breaches. My ability to troubleshoot complex issues and deliver timely solutions has earned me recognition from both colleagues and management.
+
+In addition, I have experience with Spring Boot and Microservices, allowing me to design and develop scalable software systems that can handle large volumes of data and traffic. My expertise in cloud computing has enabled me to deploy software solutions quickly and efficiently, ensuring optimal performance and security.
+
+Throughout my career, I have demonstrated a passion for learning and staying up-to-date with the latest industry trends and technologies. My commitment to delivering high-quality software solutions has earned me numerous awards and recognition within the industry.
+
+Overall, I am confident that my skills and experience make me an ideal candidate for any software engineering position. I look forward to the opportunity to collaborate with your team and contribute to your organization's success.</div>
+                
+            </div>
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">Java</span>
+                
+                <span class="tech-tag">Python</span>
+                
+                <span class="tech-tag">Go</span>
+                
+                <span class="tech-tag">JavaScript</span>
+                
+                <span class="tech-tag">TypeScript</span>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Education</div>
+        
+        <div class="education-item">
+            <div class="degree-title">Bachelor of Science in Computer Engineering</div>
+            <div class="institution">Stanford University
+                <span class="location">Stanford, CA</span>
+            </div>
+            <div class="dates">2007-09-01 - 2011-05-01</div>
+            
+            <div>GPA: 3.5/4.0</div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <strong>Relevant Coursework:</strong>
+                
+                <span class="tech-tag">Computer Architecture</span>
+                
+                <span class="tech-tag">Microprocessors</span>
+                
+            </div>
+            
+        </div>
+        
+        <div class="education-item">
+            <div class="degree-title">Master of Science in Computer Science</div>
+            <div class="institution">MIT
+                <span class="location">Cambridge, MA</span>
+            </div>
+            <div class="dates">2013-09-01 - 2015-05-01</div>
+            
+            <div>GPA: 3.8/4.0</div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <strong>Relevant Coursework:</strong>
+                
+                <span class="tech-tag">Computer Systems Organization</span>
+                
+                <span class="tech-tag">Algorithms</span>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="skills-grid">
+            
+            <div class="skill-category">
+                <h4>Technical Skills</h4>
+                <ul class="skill-list">
+                    
+                    <li>Cloud computing</li>
+                    
+                    <li>Distributed systems</li>
+                    
+                    <li>System architecture</li>
+                    
+                </ul>
+            </div>
+            
+            
+            
+            <div class="skill-category">
+                <h4>Tools & Technologies</h4>
+                <ul class="skill-list">
+                    
+                    <li>Software development tools</li>
+                    
+                </ul>
+            </div>
+            
+            
+            
+            <div class="skill-category">
+                <h4>Soft Skills</h4>
+                <ul class="skill-list">
+                    
+                    <li>Leadership</li>
+                    
+                    <li>Communication</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Projects</div>
+        
+        <div class="project-item">
+            <div class="project-title">Published 12 technical articles in software engineering journals</div>
+            <div class="dates">2015-01-01 - Present</div>
+            
+            
+            <div style="margin-top: 10px;">Project Description Enhancements 
+• Led a team of 10 developers in the design and implementation of a new microservices-based API platform, resulting in a 20% reduction in latency and a 15% increase in customer satisfaction. 
+• Architected and implemented a robust event-driven architecture using Kafka, enabling real-time data processing and improved scalability. 
+• Delivered a comprehensive API documentation package, including architectural diagrams, use cases, and code samples, which significantly improved developer onboarding and reduced onboarding time by 30%. 
+• Optimized API performance by implementing a new caching mechanism, resulting in a 10% improvement in response times. 
+• Implemented a robust security framework that prevented 99% of security vulnerabilities and reduced incident response time by 25%. 
+• Designed and implemented a new API gateway that reduced the load on the backend server by 30%, resulting in a 15% improvement in performance.</div>
+            
+            
+            
+            <div class="technologies" style="margin-top: 10px;">
+                
+                <span class="tech-tag">Java</span>
+                
+                <span class="tech-tag">Python</span>
+                
+                <span class="tech-tag">Go</span>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <a href="https://www.michaelchen.io/publications">Live Demo</a>
+                 | 
+                <a href="https://github.com/michaelchen/publications">GitHub</a>
+            </div>
+            
+        </div>
+        
+        <div class="project-item">
+            <div class="project-title">Serverless computing platform project</div>
+            <div class="dates">2018-01-01 - Present</div>
+            
+            
+            <div style="margin-top: 10px;">Project Description: 
+• Led the design and implementation of a highly scalable and secure serverless computing platform, resulting in a 25% reduction in latency and a 10% increase in user satisfaction. 
+• Architected and built a robust microservices architecture using Spring Boot and Kafka, demonstrating expertise in distributed systems and event-driven architecture. 
+• Implemented innovative security measures, including API authentication, authorization, and vulnerability scanning, reducing the risk of data breaches by 30%. 
+• Optimized API performance by 15% through code refactoring and implementation of best practices, leading to a 20% improvement in response times. 
+• Designed and documented comprehensive user stories and technical specifications, ensuring clear communication between stakeholders and developers. 
+• Delivered the platform on time and within budget, meeting all project milestones and quality standards.</div>
+            
+            
+            
+            <div class="technologies" style="margin-top: 10px;">
+                
+                <span class="tech-tag">AWS</span>
+                
+                <span class="tech-tag">Kubernetes</span>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <a href="https://github.com/michaelchen/serverless-platform">Live Demo</a>
+                 | 
+                <a href="https://github.com/michaelchen/serverless-platform">GitHub</a>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Certifications</div>
+        
+        <div class="experience-item">
+            <div class="position-title">AWS Certified Solutions Architect Professional</div>
+            <div class="company">Amazon Web Services</div>
+            <div class="dates">2018-01-01</div>
+        </div>
+        
+        <div class="experience-item">
+            <div class="position-title">Google Cloud Professional Cloud Architect</div>
+            <div class="company">Google Cloud</div>
+            <div class="dates">2018-01-01</div>
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Achievements</div>
+        
+        <div class="responsibility">Professional achievement 1</div>
+        
+        <div class="responsibility">Award 2</div>
+        
+    </div>
+    
+</body>
+</html>

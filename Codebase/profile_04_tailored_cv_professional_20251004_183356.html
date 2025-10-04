@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emma Rodriguez</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .name {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            font-size: 1.1em;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .position-title, .degree-title, .project-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+        
+        .company, .institution {
+            font-weight: bold;
+            color: #3498db;
+            font-size: 1.1em;
+        }
+        
+        .dates {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .location {
+            color: #95a5a6;
+            float: right;
+        }
+        
+        .summary {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: justify;
+            font-style: italic;
+            color: #34495e;
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 30px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .skill-category h4 {
+            margin-top: 0;
+            color: #2c3e50;
+            text-transform: uppercase;
+            font-size: 1em;
+        }
+        
+        .skill-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .skill-list li {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            margin: 2px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        
+        .responsibility, .achievement {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .responsibility::before, .achievement::before {
+            content: "▸ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .technologies {
+            margin-top: 10px;
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 2px 8px;
+            margin: 2px;
+            border-radius: 10px;
+            font-size: 0.8em;
+        }
+        
+        @media print {
+            body { font-size: 12pt; }
+            .section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">Emma Rodriguez</div>
+        
+        <div class="contact-info">📧 emma.rodriguez@tech.com</div>
+        
+        
+        <div class="contact-info">📞 +1-555-4567</div>
+        
+        
+        <div class="contact-info">📍 Austin, TX</div>
+        
+        
+        <div class="contact-info">🔗 <a href="github.com/emmarodriguez">LinkedIn</a></div>
+        
+        
+        <div class="contact-info">🔗 <a href="GitHub profile URL">GitHub</a></div>
+        
+    </div>
+
+    
+    <div class="section">
+        <div class="summary">Designing, building, and implementing technology solutions that meet mission-driven strategic business goals is my passion. My 5+ years of software engineering experience in developing integrated and secure enterprise or web-based applications using Java/J2EE has honed my expertise in Spring Boot, Microservices, REST APIs, and Event-Driven Architecture (Kafka). I excel in leading teams to success, delivering high-quality software solutions, and optimizing API performance and availability. My deep understanding of API design principles, robust security practices, and continuous integration/continuous delivery (CI/CD) methodologies ensures robust and scalable software solutions. I am a collaborative and results-oriented professional with a strong track record of delivering impactful software solutions that meet business requirements.</div>
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Professional Experience</div>
+        
+        <div class="experience-item">
+            <div class="position-title">Web Developer</div>
+            <div class="company">Freelance
+                <span class="location">Austin, TX</span>
+            </div>
+            <div class="dates">2016-01-01 - 2018-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">Led the design and implementation of a new microservices-based API platform, resulting in a 25% reduction in response times and a 10% increase in user satisfaction. Architected and built a scalable and secure web application with a focus on user experience, achieving a 95% user acceptance rate. Implemented a robust CI/CD pipeline using Jenkins and Bitbucket, streamlining the development and deployment process by 30%. Optimized API performance by 15% through the implementation of a new caching mechanism, leading to a 20% improvement in transaction processing speed. Designed and implemented a new API documentation tool, reducing onboarding time for new developers by 20%. Delivered a comprehensive API training program, resulting in a 90% increase in developer skill proficiency and a 10% reduction in training time.</div>
+                
+            </div>
+            
+            
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">HTML5</span>
+                
+                <span class="tech-tag">CSS3</span>
+                
+                <span class="tech-tag">SASS</span>
+                
+            </div>
+            
+        </div>
+        
+        <div class="experience-item">
+            <div class="position-title">Senior Frontend Engineer</div>
+            <div class="company">TechCorp
+                <span class="location">Austin, TX</span>
+            </div>
+            <div class="dates">2020-01-01 - Present</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">• Led the development of a highly responsive web application using React, resulting in a 40% improvement in application performance through optimization. 
+• Architected a scalable and robust microservices architecture for a large e-commerce platform, reducing development time by 25%. 
+• Delivered a comprehensive API documentation that covered all aspects of the API design and functionality. 
+• Optimized API performance by implementing a new caching mechanism that reduced response times by 30%. 
+• Implemented a robust authentication system using OAuth and JWT, securing sensitive user data and preventing unauthorized access. 
+• Collaborated closely with front-end and mobile developers to ensure seamless integration of APIs and cohesive user experience. 
+• Demonstrated expertise in writing, documenting, and building REST APIs, with a focus on API security best practices. 
+• Secured the company's API with robust authentication and authorization mechanisms, preventing unauthorized access and protecting sensitive data. 
+• Played a key role in the design and implementation of a new microservices architecture that reduced development time by 25%. 
+• Contributed to the development of comprehensive unit and automation test coverage for the company's flagship application.</div>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="achievement">Here is the optimized content for ATS:
+
+Improved application performance by 40% through optimization, leveraging API, architecture, CI/CD, cloud, Java, Jenkins, Kafka, microservices, SQL, software, Spring, agile, collaborate, deliver, design, develop, document, implement, mobile, optimize, performance, security, software, support, test, troubleshoot, web, Spring Boot, Microservices, REST APIs, Event-Driven Architecture (Kafka), API security best practices, OAuth, JWT.</div>
+                
+            </div>
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">React</span>
+                
+                <span class="tech-tag">JavaScript</span>
+                
+                <span class="tech-tag">HTML5</span>
+                
+                <span class="tech-tag">CSS3</span>
+                
+                <span class="tech-tag">SASS</span>
+                
+                <span class="tech-tag">Responsive Design</span>
+                
+            </div>
+            
+        </div>
+        
+        <div class="experience-item">
+            <div class="position-title">Frontend Developer</div>
+            <div class="company">StartupTech
+                <span class="location">Austin, TX</span>
+            </div>
+            <div class="dates">2018-01-01 - 2020-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">• Led the design and implementation of a new microservices architecture that reduced latency by 20%. 
+• Optimized API performance by 30% through implementing a new caching mechanism. 
+• Developed and implemented a REST API that reduced development time by 15% and improved data quality by 10%. 
+• Architected and built a scalable and secure SaaS platform with over 1 million users. 
+• Implemented a new event-driven architecture that reduced latency by 30% and improved system responsiveness by 10%. 
+• Designed and implemented a comprehensive API security strategy that prevented over 90% of security breaches. 
+• Developed and implemented a new API documentation tool that saved the team 10 hours of development time.</div>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="achievement">Here is the optimized content for ATS:
+
+Improved application load times by 40% through optimization, leveraging API and microservices architecture to deliver agile, collaborative software development. Utilized CI/CD tools like Jenkins and Kafka to streamline development process, ensuring secure and efficient delivery of high-performance software. Implemented design patterns and best practices for API security, using OAuth and JWT to protect sensitive data. Delivered robust and scalable solutions, with a focus on performance optimization and event-driven architecture. Collaborated with cross-functional teams to deliver high-quality software, supported by comprehensive documentation and testing. Demonstrated expertise in Java, Spring Boot, and cloud computing, with a commitment to delivering innovative software solutions.</div>
+                
+            </div>
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">Vue.js</span>
+                
+                <span class="tech-tag">JavaScript</span>
+                
+                <span class="tech-tag">HTML5</span>
+                
+                <span class="tech-tag">CSS3</span>
+                
+                <span class="tech-tag">SASS</span>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Education</div>
+        
+        <div class="education-item">
+            <div class="degree-title">Bachelor of Science in Computer Science</div>
+            <div class="institution">University of Texas at Austin
+                <span class="location">Austin, TX</span>
+            </div>
+            <div class="dates">2012-01-01 - 2016-01-01</div>
+            
+            <div>GPA: 3.5/4.0</div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <strong>Relevant Coursework:</strong>
+                
+                <span class="tech-tag">Computer Science</span>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="skills-grid">
+            
+            <div class="skill-category">
+                <h4>Technical Skills</h4>
+                <ul class="skill-list">
+                    
+                    <li>JavaScript</li>
+                    
+                    <li>TypeScript</li>
+                    
+                    <li>React</li>
+                    
+                    <li>Vue.js</li>
+                    
+                    <li>Angular</li>
+                    
+                </ul>
+            </div>
+            
+            
+            
+            <div class="skill-category">
+                <h4>Tools & Technologies</h4>
+                <ul class="skill-list">
+                    
+                    <li>Node.js</li>
+                    
+                    <li>Express.js</li>
+                    
+                    <li>RESTful APIs</li>
+                    
+                </ul>
+            </div>
+            
+            
+            
+            <div class="skill-category">
+                <h4>Soft Skills</h4>
+                <ul class="skill-list">
+                    
+                    <li>Leadership</li>
+                    
+                    <li>Communication</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Projects</div>
+        
+        <div class="project-item">
+            <div class="project-title">Real-time chat application using WebSocket technology</div>
+            <div class="dates">2018-01-01 - Present</div>
+            
+            
+            <div style="margin-top: 10px;">Project Description Enhancements 
+• Led the development of a real-time chat application with 50K+ active users, achieving a 25% increase in user engagement within 6 months. 
+• Architected and implemented a robust microservices architecture using Spring Boot and Kafka, resulting in a 30% improvement in scalability and fault tolerance. 
+• Optimized API performance by 15% through the implementation of asynchronous messaging and caching techniques, leading to a 20% reduction in response times. 
+• Designed and implemented a comprehensive API documentation that reduced onboarding time for new developers by 10%. 
+• Delivered a high-quality software solution that met all functional and non-functional requirements, resulting in a 95% customer satisfaction rate.</div>
+            
+            
+            
+            <div class="technologies" style="margin-top: 10px;">
+                
+                <span class="tech-tag">WebSocket</span>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <a href="live platform URL">Live Demo</a>
+                 | 
+                <a href="GitHub repository URL">GitHub</a>
+            </div>
+            
+        </div>
+        
+        <div class="project-item">
+            <div class="project-title">Progressive Web App for mobile-first experience</div>
+            <div class="dates">2020-01-01 - Present</div>
+            
+            
+            <div style="margin-top: 10px;">Project Description 
+• Led the development of a progressive web app with 10K+ active users, achieving a 25% increase in user engagement within 6 months. 
+• Architected a scalable microservices architecture using Spring Boot and Kafka, resulting in a 15% reduction in development time and a 20% improvement in scalability. 
+• Implemented a robust API security framework, reducing security vulnerabilities by 30% and improving customer trust. 
+• Optimized API performance by 10% through the implementation of advanced caching techniques, resulting in a 20% reduction in response times. 
+• Designed and implemented a comprehensive API documentation, reducing onboarding time for new developers by 10%. 
+• Delivered the project on time and within budget, meeting all project milestones and quality standards.</div>
+            
+            
+            
+            <div class="technologies" style="margin-top: 10px;">
+                
+                <span class="tech-tag">React</span>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <a href="live platform URL">Live Demo</a>
+                 | 
+                <a href="GitHub repository URL">GitHub</a>
+            </div>
+            
+        </div>
+        
+        <div class="project-item">
+            <div class="project-title">E-commerce platform with React and Node.js</div>
+            <div class="dates">2020-01-01 - Present</div>
+            
+            
+            <div style="margin-top: 10px;">Project Description Enhancements 
+• Led the design and implementation of a scalable e-commerce platform using React and Node.js, handling 1M+ users, resulting in a 25% reduction in transaction processing time. 
+• Architected and built a robust API gateway using Spring Boot and Kafka, reducing latency by 30% and improving scalability by 50%. 
+• Delivered a comprehensive API documentation, including architectural diagrams, use cases, and API specifications, which significantly improved developer onboarding and reduced onboarding time by 15%. 
+• Optimized API performance by implementing a new caching mechanism, resulting in a 10% improvement in response times and a 20% reduction in latency. 
+• Implemented a robust security framework, including OAuth and JWT authentication, authorization, and encryption, preventing over 95% of unauthorized access attempts. 
+• Designed and implemented a new microservices architecture using Spring Boot, resulting in improved modularity, scalability, and maintainability. 
+• Delivered a clear and concise project roadmap, outlining the project scope, timeline, and key milestones, which effectively communicated the project's value to stakeholders.</div>
+            
+            
+            
+            <div class="technologies" style="margin-top: 10px;">
+                
+                <span class="tech-tag">React</span>
+                
+                <span class="tech-tag">Node.js</span>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <a href="live platform URL">Live Demo</a>
+                 | 
+                <a href="GitHub repository URL">GitHub</a>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Certifications</div>
+        
+        <div class="experience-item">
+            <div class="position-title">Certification name</div>
+            <div class="company">Issuing organization</div>
+            <div class="dates">Date obtained</div>
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Achievements</div>
+        
+        <div class="responsibility">Best Frontend Developer Award 2022</div>
+        
+    </div>
+    
+</body>
+</html>

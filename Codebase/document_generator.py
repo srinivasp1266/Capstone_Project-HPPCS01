@@ -58,7 +58,7 @@ logger = logging.getLogger(__name__)
 class CVDocumentGenerator:
     """Generator for creating formatted CV documents."""
     
-    def __init__(self, templates_dir: str = "templates"):
+    def __init__(self, templates_dir: str = "."):
         """
         Initialize document generator.
         
@@ -865,7 +865,7 @@ class CVDocumentGenerator:
         if not output_path:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             name = cv_data.get('personal_info', {}).get('name', 'CV').replace(' ', '_')
-            output_path = f"data/output/{name}_{timestamp}.docx"
+            output_path = f"{name}_{timestamp}.docx"
         
         # Ensure output directory exists
         Path(output_path).parent.mkdir(parents=True, exist_ok=True)
@@ -890,7 +890,7 @@ class CVDocumentGenerator:
         if not output_path:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             name = cv_data.get('personal_info', {}).get('name', 'CV').replace(' ', '_')
-            output_path = f"data/output/{name}_{timestamp}.pdf"
+            output_path = f"{name}_{timestamp}.pdf"
         
         # Ensure output directory exists
         Path(output_path).parent.mkdir(parents=True, exist_ok=True)

@@ -1,42 +1,43 @@
-Dr. Michael Chen
-Contact: michael.chen@hospital.com
+Michael Chen
+Contact: michael.chen@techcompany.com
 Phone: (555) 987-6543
-Location: Chicago, IL
+Location: Seattle, WA
 
-Medical Experience:
-- Emergency Medicine Physician at Chicago General Hospital (2018-Present)
-  * Provide emergency medical care in high-pressure environment
-  * Diagnose and treat critical patients
-  * Lead emergency response teams
-  * Mentor medical residents
+Professional Experience:
+- Senior Software Engineer at Amazon Web Services (2018-Present)
+  * Design and develop cloud infrastructure solutions
+  * Lead cross-functional engineering teams
+  * Architect scalable distributed systems
+  * Mentor junior software engineers
 
-- Internal Medicine Resident at Northwestern Memorial (2015-2018)
-  * Completed comprehensive internal medicine training
-  * Managed patient care in various departments
-  * Participated in medical research studies
-  * Presented cases at medical conferences
+- Software Engineer at Microsoft (2015-2018)
+  * Developed enterprise software applications
+  * Implemented microservices architecture
+  * Collaborated on cloud platform development
+  * Contributed to open-source projects
 
 Education:
-Doctor of Medicine (MD)
-Harvard Medical School (2011-2015)
+Master of Science in Computer Science
+MIT (2013-2015)
 
-Bachelor of Science in Biology
+Bachelor of Science in Computer Engineering
 Stanford University (2007-2011)
 Summa Cum Laude
 
-Specializations:
-Emergency Medicine, Trauma Care, Critical Care
-Advanced Cardiac Life Support (ACLS)
-Pediatric Advanced Life Support (PALS)
-Advanced Trauma Life Support (ATLS)
+Technical Specializations:
+Cloud Computing, Distributed Systems, System Architecture
+Java, Python, Go, JavaScript, TypeScript
+AWS, Azure, Kubernetes, Docker
+Machine Learning, Data Engineering
 
-Research & Publications:
-- Published 12 peer-reviewed articles in medical journals
-- Presented research at International Emergency Medicine Conference
-- Principal investigator on cardiac arrest study
+Projects & Publications:
+- Published 12 technical articles in software engineering journals
+- Speaker at AWS re:Invent and Google Cloud Next conferences
+- Lead architect on serverless computing platform project
 
-Board Certifications:
-- American Board of Emergency Medicine
-- Basic Life Support (BLS) Instructor
+Professional Certifications:
+- AWS Certified Solutions Architect Professional
+- Google Cloud Professional Cloud Architect
+- Certified Kubernetes Administrator (CKA)
 
 Languages: English (Native), Mandarin (Fluent), Spanish (Conversational)

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Rodriguez</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .name {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            font-size: 1.1em;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .position-title, .degree-title, .project-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+        
+        .company, .institution {
+            font-weight: bold;
+            color: #3498db;
+            font-size: 1.1em;
+        }
+        
+        .dates {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .location {
+            color: #95a5a6;
+            float: right;
+        }
+        
+        .summary {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: justify;
+            font-style: italic;
+            color: #34495e;
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 30px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .skill-category h4 {
+            margin-top: 0;
+            color: #2c3e50;
+            text-transform: uppercase;
+            font-size: 1em;
+        }
+        
+        .skill-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .skill-list li {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            margin: 2px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        
+        .responsibility, .achievement {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .responsibility::before, .achievement::before {
+            content: "▸ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .technologies {
+            margin-top: 10px;
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 2px 8px;
+            margin: 2px;
+            border-radius: 10px;
+            font-size: 0.8em;
+        }
+        
+        @media print {
+            body { font-size: 12pt; }
+            .section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">Alex Rodriguez</div>
+        
+        <div class="contact-info">📧 alex.rodriguez@email.com</div>
+        
+        
+        <div class="contact-info">📞 +1-555-0234</div>
+        
+        
+        <div class="contact-info">📍 San Francisco, CA</div>
+        
+        
+        
+    </div>
+
+    
+    <div class="section">
+        <div class="summary">Designing, modifying, and implementing technology solutions. Building modern, architecturally sound components, tools, and applications to meet mission-driven strategic business goals. Applying Event-Driven Architecture using Kafka to build reliable, scalable, and decoupled systems. Leading a team of developers and mentoring junior developers to ensure high-quality software delivery.</div>
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Professional Experience</div>
+        
+        <div class="experience-item">
+            <div class="position-title">Senior Software Engineer</div>
+            <div class="company">TechCorp
+                <span class="location">San Francisco, CA</span>
+            </div>
+            <div class="dates">2021-01-01 - Present</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">• Led the design and implementation of a robust microservices architecture using Spring Boot, achieving a 20% reduction in latency for key API calls. 
+• Developed and implemented a new event-driven architecture using Kafka, resulting in a 30% improvement in scalability and fault tolerance. 
+• Reduced API response times by 15% through optimization and code refactoring, leading to a 20% improvement in user experience. 
+• Implemented a comprehensive API security framework that prevented 95% of unauthorized access attempts, resulting in a significant reduction in security breaches. 
+• Designed and documented comprehensive API specifications, which improved collaboration and project efficiency within the team. 
+• Optimized API performance by 10%, resulting in a 20% reduction in resource consumption and improved user experience. 
+• Implemented a robust CI/CD pipeline using Jenkins, automating the build, testing, and deployment of new software releases.</div>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="achievement">Led architecture design for microservices platform, delivering a scalable, secure, and efficient system using API, Cloud, Java, Jenkins, Kafka, Microservices, SQL, Software, Spring, agile, collaborate, develop, document, implement, mobile, optimize, performance, security, software, support, test, troubleshoot, web, Spring Boot, Microservices, REST APIs, Event-Driven Architecture (Kafka), API security best practices, OAuth, JWT.</div>
+                
+            </div>
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">React</span>
+                
+                <span class="tech-tag">Node.js</span>
+                
+            </div>
+            
+        </div>
+        
+        <div class="experience-item">
+            <div class="position-title">Full Stack Developer</div>
+            <div class="company">StartupInc
+                <span class="location">San Francisco, CA</span>
+            </div>
+            <div class="dates">2019-01-01 - 2021-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="responsibility">Enhanced Responsibility Section 
+• Led the design and implementation of a RESTful API that reduced development time by 20%. 
+• Architected and delivered a scalable microservices architecture that handled 100k concurrent users. 
+• Implemented a robust API security solution that prevented 95% of security breaches and improved customer confidence. 
+• Optimized API performance by 30% through automation and code refactoring. 
+• Designed and implemented a new mobile application that improved user engagement by 15%. 
+• Delivered a comprehensive API documentation that saved the development team 10 hours of onboarding new engineers.</div>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                
+                <div class="achievement">Designed and implemented RESTful APIs, leveraging expertise in API architecture, CI/CD pipelines, cloud computing, and software development best practices to deliver high-performance, secure solutions. Utilized Java and Jenkins for efficient development and automation, while incorporating security measures such as OAuth and JWT to protect API endpoints. Implemented event-driven architecture (Kafka) to enable real-time communication between microservices, ensuring seamless performance and scalability. Collaborated with cross-functional teams to design and develop mobile applications, web interfaces, and backend services using Spring Boot and Microservices. Optimized software performance through rigorous testing, troubleshooting, and optimization techniques, resulting in improved user experience and reduced downtime. Documented and implemented security best practices for API access control, data encryption, and authentication protocols to safeguard sensitive information.</div>
+                
+            </div>
+            
+            
+            
+            <div class="technologies">
+                
+                <span class="tech-tag">JavaScript</span>
+                
+                <span class="tech-tag">React</span>
+                
+                <span class="tech-tag">Node.js</span>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Education</div>
+        
+        <div class="education-item">
+            <div class="degree-title">Bachelor of Science in Computer Science</div>
+            <div class="institution">Stanford University
+                <span class="location">Stanford, CA</span>
+            </div>
+            <div class="dates">2015-09-01 - 2019-06-01</div>
+            
+            <div>GPA: 3.8/4.0</div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <strong>Relevant Coursework:</strong>
+                
+                <span class="tech-tag">Computer Systems Organization</span>
+                
+                <span class="tech-tag">Operating Systems</span>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="skills-grid">
+            
+            <div class="skill-category">
+                <h4>Technical Skills</h4>
+                <ul class="skill-list">
+                    
+                    <li>JavaScript</li>
+                    
+                    <li>Python</li>
+                    
+                    <li>React</li>
+                    
+                    <li>Node.js</li>
+                    
+                </ul>
+            </div>
+            
+            
+            
+            <div class="skill-category">
+                <h4>Tools & Technologies</h4>
+                <ul class="skill-list">
+                    
+                    <li>Git</li>
+                    
+                    <li>Agile Development</li>
+                    
+                    <li>Test-Driven Development</li>
+                    
+                    <li>System Design</li>
+                    
+                </ul>
+            </div>
+            
+            
+            
+            <div class="skill-category">
+                <h4>Soft Skills</h4>
+                <ul class="skill-list">
+                    
+                    <li>Leadership</li>
+                    
+                    <li>Communication</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Projects</div>
+        
+        <div class="project-item">
+            <div class="project-title">automated CI/CD pipeline reducing deployment time by 80%</div>
+            <div class="dates">2019-01-01 - 2021-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">Project Description Enhancements 
+• Led the implementation of an automated CI/CD pipeline using Jenkins, achieving a 80% reduction in deployment time. 
+• Architected and implemented a robust API gateway using Spring Boot and Kafka, reducing latency and improving performance by 25%. 
+• Delivered a comprehensive API documentation, including architectural diagrams and functional specifications, which improved developer onboarding by 30%. 
+• Optimized API performance by 15% through code refactoring and optimization techniques, resulting in a 20% reduction in performance metrics. 
+• Implemented robust API security measures, including OAuth and JWT authentication, preventing unauthorized access and protecting sensitive data. 
+• Collaborated effectively with the team, contributing to the design and implementation of a scalable and resilient API architecture.</div>
+            
+            
+            
+            <div class="technologies" style="margin-top: 10px;">
+                
+                <span class="tech-tag">Jenkins</span>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <a href="https://example.com/pipeline">Live Demo</a>
+                
+                
+            </div>
+            
+        </div>
+        
+        <div class="project-item">
+            <div class="project-title">real-time chat application using WebSocket technology</div>
+            <div class="dates">2019-01-01 - 2021-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">Project Description Enhancements 
+• Led the development of a real-time chat application using WebSocket technology, resulting in a 20% increase in user engagement within 6 months. 
+• Architected a scalable and robust microservices architecture using Spring Boot and Kafka, reducing development time by 30%. 
+• Implemented a robust API security framework, preventing 95% of unauthorized access attempts. 
+• Designed and delivered a comprehensive API documentation, including technical diagrams and user guides, saving 10 hours of onboarding time for new developers. 
+• Implemented a new automation workflow using Jenkins and GitLab CI/CD, reducing manual effort by 25%. 
+• Delivered a 10% improvement in API performance through code refactoring and optimization. 
+• Designed and implemented a new feature that significantly enhanced user experience and satisfaction.</div>
+            
+            
+            
+            <div class="technologies" style="margin-top: 10px;">
+                
+                <span class="tech-tag">WebSocket</span>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <a href="https://example.com/chat">Live Demo</a>
+                
+                
+            </div>
+            
+        </div>
+        
+        <div class="project-item">
+            <div class="project-title">e-commerce platform handling 10K+ daily transactions</div>
+            <div class="dates">2019-01-01 - 2021-01-01</div>
+            
+            
+            <div style="margin-top: 10px;">Enhanced Project Description: 
+• Led the development of a scalable e-commerce platform using Node.js and MongoDB, handling over 10,000 daily transactions. Achieved a 20% reduction in order processing time through process automation. 
+• Architected a robust API gateway using Spring Boot and Kafka, resulting in a 30% improvement in API performance. Implemented robust security measures, including OAuth and JWT authentication, preventing over 95% of unauthorized access attempts. 
+• Delivered a comprehensive API documentation, including architectural diagrams and detailed specifications, which significantly improved developer onboarding and maintenance. 
+• Optimized API performance by implementing a new caching mechanism, resulting in a 15% reduction in response times. 
+• Implemented a comprehensive testing framework using JUnit and TestNG, ensuring 95% code coverage and minimized bugs. 
+• Designed and implemented a new microservices architecture, reducing the development time for new features by 25%. 
+• Implemented agile development practices, ensuring continuous delivery and collaboration between development and operations teams. 
+• Demonstrated exceptional problem-solving skills by resolving a critical API security vulnerability within 24 hours, preventing a potential data breach.</div>
+            
+            
+            
+            <div class="technologies" style="margin-top: 10px;">
+                
+                <span class="tech-tag">Node.js</span>
+                
+                <span class="tech-tag">MongoDB</span>
+                
+            </div>
+            
+            
+            
+            <div style="margin-top: 10px;">
+                <a href="https://example.com/platform">Live Demo</a>
+                
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    
+    <div class="section">
+        <div class="section-title">Certifications</div>
+        
+        <div class="experience-item">
+            <div class="position-title">AWS Certified Developer Associate</div>
+            <div class="company">Amazon Web Services</div>
+            <div class="dates">2021-01-01</div>
+        </div>
+        
+        <div class="experience-item">
+            <div class="position-title">MongoDB Certified Developer</div>
+            <div class="company">MongoDB</div>
+            <div class="dates">2019-06-01</div>
+        </div>
+        
+        <div class="experience-item">
+            <div class="position-title">Kubernetes Application Developer (CKAD)</div>
+            <div class="company">Kubernetes</div>
+            <div class="dates">2021-01-01</div>
+        </div>
+        
+    </div>
+    
+
+    
+</body>
+</html>

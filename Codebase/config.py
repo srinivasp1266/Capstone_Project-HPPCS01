@@ -23,9 +23,9 @@ class Settings(BaseSettings):
     supported_formats: list = Field(default=["pdf", "docx", "doc"], description="Supported file formats")
     
     # Paths
-    upload_dir: str = Field(default="data/uploads", description="Upload directory")
-    output_dir: str = Field(default="data/output", description="Output directory")
-    templates_dir: str = Field(default="templates", description="Templates directory")
+    upload_dir: str = Field(default=".", description="Upload directory")
+    output_dir: str = Field(default=".", description="Output directory")
+    templates_dir: str = Field(default=".", description="Templates directory")
     
     # LLM Settings
     max_tokens: int = Field(default=2048, description="Maximum tokens for LLM response")

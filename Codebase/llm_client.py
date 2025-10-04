@@ -337,6 +337,10 @@ class OllamaClient:
         # Remove any leading/trailing whitespace
         json_str = json_str.strip()
         
+        # CRITICAL: Remove invalid control characters that cause parsing errors
+        # Remove control characters except for valid JSON whitespace (tab, newline, carriage return)
+        json_str = re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]', '', json_str)
+        
         # Remove markdown code block markers if present
         json_str = re.sub(r'^```json\s*', '', json_str)
         json_str = re.sub(r'^```\s*', '', json_str)
@@ -396,25 +400,28 @@ class OllamaClient:
         # Fix single quotes to double quotes (but be careful with apostrophes in content)
         json_str = re.sub(r"'([^']*)'(\s*[,:\]}])", r'"\1"\2', json_str)
         
-        # Fix line breaks within strings
+        # Fix line breaks within strings and handle control characters
         lines = json_str.split('\n')
         fixed_lines = []
         in_string = False
         current_line = ""
         
         for line in lines:
+            # Clean control characters from each line
+            line = re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]', '', line)
+            
             if not in_string:
                 # Count unescaped quotes
-                quote_count = len(re.findall(r'(?<!\\)"', line))
+                quote_count = len(re.findall(r'(?<!\\\\)"', line))
                 if quote_count % 2 == 1:
                     in_string = True
                     current_line = line
                 else:
                     fixed_lines.append(line)
             else:
-                # We're in a multiline string
-                current_line += " " + line.strip()
-                quote_count = len(re.findall(r'(?<!\\)"', line))
+                # We're in a multiline string - escape newlines properly
+                current_line += "\\n" + line.strip()
+                quote_count = len(re.findall(r'(?<!\\\\)"', line))
                 if quote_count % 2 == 1:
                     in_string = False
                     fixed_lines.append(current_line)
@@ -513,6 +520,18 @@ class OllamaClient:
         
         # Start with basic fixes
         json_str = self._fix_common_json_issues(json_str)
+        
+        # CRITICAL: Additional control character cleaning for stubborn cases
+        # Remove any remaining control characters that might have slipped through
+        json_str = re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F]', '', json_str)
+        
+        # Fix common encoding issues
+        json_str = json_str.replace('\u00a0', ' ')  # Replace non-breaking space
+        json_str = json_str.replace('\u2019', "'")  # Replace smart apostrophe
+        json_str = json_str.replace('\u201c', '"')  # Replace smart quote left
+        json_str = json_str.replace('\u201d', '"')  # Replace smart quote right
+        json_str = json_str.replace('\u2013', '-')  # Replace en dash
+        json_str = json_str.replace('\u2014', '-')  # Replace em dash
         
         # Try reconstruction approach first
         try:

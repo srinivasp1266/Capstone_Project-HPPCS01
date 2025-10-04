@@ -1,41 +1,38 @@
-Sarah Johnson
-Email: sarah.johnson@email.com
+Alex Rodriguez
+Contact: alex.rodriguez@email.com
 Phone: +1-555-0234
-Address: New York, NY
+Location: San Francisco, CA
 
 Professional Experience:
-- Marketing Manager at BrandCorp (2021-Present)
-  * Led digital marketing campaigns
-  * Managed social media strategy
-  * Analyzed marketing metrics and ROI
-  * Coordinated with design and content teams
+- Senior Software Engineer at TechCorp (2021-Present)
+  * Developed scalable web applications using React and Node.js
+  * Led architecture design for microservices platform
+  * Mentored junior developers and conducted code reviews
+  * Collaborated with product teams on feature development
 
-- Marketing Specialist at AdAgency (2019-2021)
-  * Created content for various campaigns
-  * Managed client relationships
-  * Conducted market research
-  * Assisted in campaign planning
+- Full Stack Developer at StartupInc (2019-2021)
+  * Built responsive web applications using JavaScript frameworks
+  * Designed and implemented RESTful APIs
+  * Optimized database queries and improved application performance
+  * Participated in agile development processes
 
 Education:
-MBA in Marketing
-Columbia Business School (2017-2019)
+Bachelor of Science in Computer Science
+Stanford University (2015-2019)
 
-Bachelor of Arts in Communications
-New York University (2013-2017)
+Technical Specializations:
+JavaScript, Python, React, Node.js, Express.js
+MongoDB, PostgreSQL, AWS, Docker, Kubernetes
+Git, Agile Development, Test-Driven Development, System Design
 
-Core Competencies:
-Digital Marketing, Social Media Management, Content Creation
-Google Analytics, Adobe Creative Suite, Salesforce
-Project Management, Team Leadership, Client Relations
+Projects & Publications:
+- Built e-commerce platform handling 10K+ daily transactions
+- Developed real-time chat application using WebSocket technology
+- Created automated CI/CD pipeline reducing deployment time by 80%
 
-Notable Projects:
-- Launched viral social media campaign resulting in 300% engagement increase
-- Managed $2M annual marketing budget
-- Developed brand guidelines for Fortune 500 client
-
-Certifications:
-- Google Ads Certified
-- HubSpot Content Marketing Certification
-- Facebook Blueprint Certified
+Professional Certifications:
+- AWS Certified Developer Associate
+- MongoDB Certified Developer
+- Kubernetes Application Developer (CKAD)
 
 Languages: English (Native), French (Intermediate)

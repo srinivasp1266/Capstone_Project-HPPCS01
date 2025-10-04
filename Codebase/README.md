@@ -25,7 +25,6 @@ Capstone_Project-HPPCS01/
 └── Codebase/                                   # ALL FILES IN SAME DIRECTORY
     ├── main.py                                 # ✅ Main entry point
     ├── execution.txt                           # ✅ Execution instructions
-    ├── app.py                                  # Streamlit web application
     ├── requirements.txt                        # Python dependencies
     ├── multi_llm_service.py                   # Multi-LLM orchestration
     ├── cv_generator.py                        # CV tailoring engine
@@ -36,6 +35,7 @@ Capstone_Project-HPPCS01/
     ├── document_extractor.py                  # File extraction utilities
     ├── config.py                              # Configuration settings
     ├── cv_template.html                       # Professional CV template
+    ├── cv_template.md                         # Markdown CV template
     ├── profile_01.txt                         # ✅ Sample input data
     ├── profile_02.txt                         # (10 total samples)
     ├── ...                                    #

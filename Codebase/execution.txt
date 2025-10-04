@@ -63,6 +63,7 @@ TROUBLESHOOTING:
 
 DIRECTORY STRUCTURE:
 --------------------
-data/output/     - Generated CV files
-data/uploads/    - Temporary uploaded files
-templates/       - CV templates
+./               - All files in single directory (HAAI++ compliant)
+- cv_template.html/md - CV templates in main directory
+- Generated CV files saved to main directory
+- 10 sample profiles (profile_01.txt to profile_10.txt)

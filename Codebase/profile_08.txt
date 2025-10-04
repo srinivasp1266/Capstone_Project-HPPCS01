@@ -1,53 +1,53 @@
 Rachel Green
-Email: rachel.green@teacher.edu
+Contact: rachel.green@edtech.com
 Phone: +1-555-8901
 Location: Denver, CO
 
-Teaching Experience:
-- High School Mathematics Teacher at Lincoln High School (2019-Present)
-  * Teach Algebra, Geometry, and Calculus to grades 9-12
-  * Develop innovative curriculum and lesson plans
-  * Mentor struggling students and provide extra support
-  * Coordinate with parents and school administration
+Professional Experience:
+- Full Stack Developer at EdTech Company (2019-Present)
+  * Develop educational software applications for K-12 students
+  * Build interactive learning platforms using React and Node.js
+  * Create APIs for student progress tracking and analytics
+  * Collaborate with educators and product managers on features
 
-- Middle School Math Teacher at Roosevelt Middle (2017-2019)
-  * Taught mathematics to grades 6-8
-  * Implemented technology-enhanced learning methods
-  * Led after-school tutoring programs
-  * Organized math competition teams
+- Software Developer at Learning Solutions (2017-2019)
+  * Built web applications for educational content management
+  * Implemented gamification features to enhance student engagement
+  * Developed mobile-responsive interfaces for various devices
+  * Integrated third-party educational APIs and services
 
-- Substitute Teacher (2016-2017)
-  * Provided instruction across multiple subjects and grade levels
-  * Maintained classroom management in various environments
-  * Adapted quickly to different teaching styles and curricula
+- Junior Developer at Tech Startup (2016-2017)
+  * Contributed to web application development across multiple projects
+  * Maintained and debugged existing codebases
+  * Adapted quickly to different technology stacks and requirements
 
 Education:
-Master of Education in Mathematics Education
+Master of Science in Software Engineering
 University of Colorado Denver (2015-2017)
 
-Bachelor of Science in Mathematics
+Bachelor of Science in Computer Science
 Colorado State University (2011-2015)
-Dean's List, Mathematics Honor Society
+Deans List, Computer Science Honor Society
 
-Teaching Credentials:
-- Colorado Teaching License (Mathematics 7-12)
-- ESL Endorsement
-- Special Education Endorsement
+Technical Certifications:
+- AWS Certified Developer Associate
+- React Developer Certification
+- Scrum Master Certified (CSM)
 
-Technical Skills:
-Curriculum Development, Lesson Planning, Assessment Design
-Google Classroom, Blackboard, Khan Academy
-Graphing Calculators, Mathematical Software
-Differentiated Instruction, Data-Driven Instruction
+Technical Specializations:
+JavaScript, Python, React, Node.js, Express
+MongoDB, PostgreSQL, RESTful APIs
+HTML5, CSS3, Bootstrap, Material-UI
+Git, Docker, AWS, Agile Development
 
-Achievements:
-- Improved student test scores by 25% in Algebra II
-- Teacher of the Year nominee (2022)
-- Led school to regional math competition victory
-- Implemented successful peer tutoring program
+Projects & Publications:
+- Improved application performance by 25% through optimization
+- Developer of the Month award (2022)
+- Led team to successful product launch used by 10K+ students
+- Implemented successful automated testing framework
 
 Professional Development:
-- National Council of Teachers of Mathematics member
+- Member of Society of Software Engineers
 - Attended summer workshops on STEM education
 - Completed training in trauma-informed teaching
 - Mentor teacher for student teachers
