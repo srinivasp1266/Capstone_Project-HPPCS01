@@ -27,14 +27,14 @@ logger = logging.getLogger(__name__)
 class OllamaClient:
     """Client for interacting with Ollama LLM server."""
     
-    def __init__(self, host: str = "http://localhost:11434", model: str = "gemma:2b", timeout: int = 120):
+    def __init__(self, host: str = "http://localhost:11434", model: str = "gemma:2b", timeout: int = 60):
         """
         Initialize Ollama client.
         
         Args:
             host: Ollama server URL
             model: Model name to use
-            timeout: Request timeout in seconds (reduced from 300 to 120)
+            timeout: Request timeout in seconds (reduced to 60 for better responsiveness)
         """
         self.host = host
         self.model = model
@@ -146,17 +146,20 @@ class OllamaClient:
         6. NO trailing commas after the last item in objects or arrays
         7. Do not include any text before {{ or after }}
         8. Start your response immediately with {{ and end with }}
+        9. Add commas between ALL adjacent elements (keys, values, objects, arrays)
+        10. Verify each closing brace/bracket has proper preceding syntax
         
-        Example of correct format:
+        VALID JSON STRUCTURE EXAMPLE:
         {{
-            "key": "value",
-            "array": ["item1", "item2"],
-            "object": {{
+            "key1": "value1",
+            "key2": ["item1", "item2"],
+            "key3": {{
                 "nested_key": "nested_value"
-            }}
+            }},
+            "key4": "final_value"
         }}
         
-        REMEMBER: NO TRAILING COMMAS - this is critical for JSON validity!
+        CRITICAL: Every element except the last in an object or array MUST end with a comma!
         """
         
         try:
@@ -274,31 +277,57 @@ class OllamaClient:
         except json.JSONDecodeError as e:
             logger.error(f"Initial JSON parse failed: {str(e)}")
             logger.debug(f"Failed JSON string (first 500 chars): {json_str[:500]}...")
-            logger.debug(f"Error at position {e.pos}: '{json_str[max(0, e.pos-20):e.pos+20]}'")
+            
+            # Show the specific lines around the error
+            if hasattr(e, 'pos') and e.pos:
+                lines = json_str.split('\n')
+                char_count = 0
+                error_line = 0
+                for i, line in enumerate(lines):
+                    if char_count + len(line) >= e.pos:
+                        error_line = i
+                        break
+                    char_count += len(line) + 1  # +1 for newline
+                
+                # Show 3 lines before and after the error
+                start_line = max(0, error_line - 3)
+                end_line = min(len(lines), error_line + 4)
+                context_lines = lines[start_line:end_line]
+                logger.debug(f"Error context around line {error_line + 1}:")
+                for i, line in enumerate(context_lines, start_line + 1):
+                    marker = " --> " if i == error_line + 1 else "     "
+                    logger.debug(f"{marker}Line {i}: {line}")
+            
+            # More specific error reporting
+            error_context = json_str[max(0, e.pos-50):e.pos+50] if hasattr(e, 'pos') else ""
+            logger.debug(f"Error context around position {getattr(e, 'pos', 'unknown')}: ...{error_context}...")
             
             # Try to fix common JSON issues
             fixed_json = self._fix_common_json_issues(json_str)
             try:
                 parsed = json.loads(fixed_json)
-                logger.debug("Successfully parsed JSON after fixing issues")
+                logger.info("Successfully parsed JSON after fixing common issues")
                 return parsed
             except json.JSONDecodeError as e2:
                 logger.error(f"Fixed JSON parse failed: {str(e2)}")
                 logger.debug(f"Fixed JSON string (first 500 chars): {fixed_json[:500]}...")
-                logger.debug(f"Error at position {e2.pos}: '{fixed_json[max(0, e2.pos-20):e2.pos+20]}'")
+                
+                # More specific error reporting for fixed JSON
+                error_context2 = fixed_json[max(0, e2.pos-50):e2.pos+50] if hasattr(e2, 'pos') else ""
+                logger.debug(f"Fixed JSON error context around position {getattr(e2, 'pos', 'unknown')}: ...{error_context2}...")
                 
                 # Try one more time with aggressive cleaning
                 try:
                     aggressive_clean = self._aggressive_json_clean(json_str)
                     parsed = json.loads(aggressive_clean)
-                    logger.debug("Successfully parsed JSON after aggressive cleaning")
+                    logger.info("Successfully parsed JSON after aggressive cleaning")
                     return parsed
                 except json.JSONDecodeError as e3:
                     logger.error(f"Aggressive clean JSON parse failed: {str(e3)}")
                     logger.debug(f"Aggressive clean JSON (first 500 chars): {aggressive_clean[:500]}...")
-                    logger.debug(f"Error at position {e3.pos}: '{aggressive_clean[max(0, e3.pos-20):e3.pos+20]}'")
                     
                     # Final fallback - try to extract key information manually
+                    logger.warning("Falling back to manual extraction due to persistent JSON errors")
                     return self._extract_json_manually(response)
     
     def _fix_common_json_issues(self, json_str: str) -> str:
@@ -332,25 +361,37 @@ class OllamaClient:
         # Fix unquoted keys (word: -> "word":)
         json_str = re.sub(r'([a-zA-Z_][a-zA-Z0-9_]*)\s*:', r'"\1":', json_str)
         
-        # Fix trailing commas before closing braces/brackets (most important for your error)
+        # CRITICAL: Fix trailing commas before closing braces/brackets - this is the main error cause
         json_str = re.sub(r',\s*([}\]])', r'\1', json_str)
         
         # Fix multiple consecutive commas
         json_str = re.sub(r',\s*,+', ',', json_str)
         
-        # Fix missing commas between objects/arrays/values
-        # Between } and {
-        json_str = re.sub(r'}\s*(?=\s*{)', r'},', json_str)
-        # Between ] and [
-        json_str = re.sub(r']\s*(?=\s*\[)', r'],', json_str)
-        # Between } and [
-        json_str = re.sub(r'}\s*(?=\s*\[)', r'},', json_str)
-        # Between ] and {
-        json_str = re.sub(r']\s*(?=\s*{)', r'],', json_str)
-        # Between quoted strings
-        json_str = re.sub(r'"\s*(?=\s*"[^:]*":)', r'",', json_str)
-        # Between value and next key
-        json_str = re.sub(r'(["\d}\]])\s*(?=\s*"[^:]*":)', r'\1,', json_str)
+        # Fix missing commas after closing braces/brackets when followed by another element
+        # Between } and { (object after object)
+        json_str = re.sub(r'}\s*\n\s*(?=\s*"[^:]*"\s*:)', r'},\n', json_str)
+        json_str = re.sub(r'}\s*(?=\s*"[^:]*"\s*:)', r'},', json_str)
+        
+        # Between ] and [ (array after array)
+        json_str = re.sub(r']\s*\n\s*(?=\s*"[^:]*"\s*:)', r'],\n', json_str)
+        json_str = re.sub(r']\s*(?=\s*"[^:]*"\s*:)', r'],', json_str)
+        
+        # Between } and [ (object before array)
+        json_str = re.sub(r'}\s*\n\s*(?=\s*"[^:]*"\s*:)', r'},\n', json_str)
+        json_str = re.sub(r'}\s*(?=\s*"[^:]*"\s*:)', r'},', json_str)
+        
+        # Between ] and { (array before object)
+        json_str = re.sub(r']\s*\n\s*(?=\s*"[^:]*"\s*:)', r'],\n', json_str)
+        json_str = re.sub(r']\s*(?=\s*"[^:]*"\s*:)', r'],', json_str)
+        
+        # Between quoted strings (value followed by key)
+        json_str = re.sub(r'"\s*\n\s*(?=\s*"[^:]*"\s*:)', r'",\n', json_str)
+        json_str = re.sub(r'"\s*(?=\s*"[^:]*"\s*:)', r'",', json_str)
+        
+        # Between number/boolean and next key
+        json_str = re.sub(r'([0-9]|true|false|null)\s*\n\s*(?=\s*"[^:]*"\s*:)', r'\1,\n', json_str)
+        json_str = re.sub(r'([0-9]|true|false|null)\s*(?=\s*"[^:]*"\s*:)', r'\1,', json_str)
+        
         
         # Fix single quotes to double quotes (but be careful with apostrophes in content)
         json_str = re.sub(r"'([^']*)'(\s*[,:\]}])", r'"\1"\2', json_str)
@@ -385,13 +426,46 @@ class OllamaClient:
         
         json_str = '\n'.join(fixed_lines)
         
-        # Fix specific comma delimiter issues
+        # Fix specific comma delimiter issues that cause the parsing errors
         # Remove comma before colon
         json_str = re.sub(r',\s*:', ':', json_str)
         # Remove comma at start of object/array
         json_str = re.sub(r'([{\[])\s*,', r'\1', json_str)
-        # Ensure comma after values (except before } or ])
-        json_str = re.sub(r'(["\d}\]])\s*(?=\s*"[^:}]*":)', r'\1,', json_str)
+        
+        # More aggressive comma fixing for the specific errors we're seeing
+        # Add missing commas between adjacent elements with proper line break handling
+        lines = json_str.split('\n')
+        for i in range(len(lines) - 1):
+            current_line = lines[i].strip()
+            next_line = lines[i + 1].strip()
+            
+            # If current line ends with }, ], ", number, true, false, null
+            # and next line starts with " followed by : (indicating a key)
+            if (current_line and next_line and 
+                re.match(r'.*[}\]"0-9]$|.*(?:true|false|null)$', current_line) and
+                re.match(r'"[^"]*"\s*:', next_line)):
+                if not current_line.endswith(','):
+                    lines[i] = current_line + ','
+            
+            # Also handle cases where a value is followed by another key without proper comma
+            # Look for patterns like: "value" "key": or } "key": or ] "key":
+            if (current_line and next_line and 
+                (current_line.endswith('"') or current_line.endswith('}') or current_line.endswith(']')) and
+                next_line.startswith('"') and ':' in next_line):
+                if not current_line.endswith(','):
+                    lines[i] = current_line + ','
+        
+        json_str = '\n'.join(lines)
+        
+        # Additional pattern-based fixes for common delimiter issues
+        # Fix pattern: value \n "key": (missing comma after value)
+        json_str = re.sub(r'(["\]}\d])\s*\n\s*("[\w\s]+"\s*:)', r'\1,\n\2', json_str)
+        
+        # Fix pattern: "value" "key": (missing comma between value and key)
+        json_str = re.sub(r'("\s*)\s+("[\w\s]+"\s*:)', r'\1,\2', json_str)
+        
+        # Final cleanup: ensure no trailing commas remain
+        json_str = re.sub(r',\s*([}\]])', r'\1', json_str)
         
         return json_str
     
