@@ -143,7 +143,9 @@ class OllamaClient:
         3. For nested objects, use proper JSON syntax with colons and braces
         4. For arrays, use square brackets with comma-separated values
         5. Ensure all brackets and braces are properly closed
-        6. No trailing commas after the last item in objects or arrays
+        6. NO trailing commas after the last item in objects or arrays
+        7. Do not include any text before {{ or after }}
+        8. Start your response immediately with {{ and end with }}
         
         Example of correct format:
         {{
@@ -153,6 +155,8 @@ class OllamaClient:
                 "nested_key": "nested_value"
             }}
         }}
+        
+        REMEMBER: NO TRAILING COMMAS - this is critical for JSON validity!
         """
         
         try:
@@ -168,12 +172,28 @@ class OllamaClient:
             return self._get_fallback_response(prompt)
     
     def _parse_json_response(self, response: str) -> Dict[str, Any]:
-        """Parse JSON response from LLM."""
+        """Parse JSON response from LLM with enhanced error handling."""
         if not response:
+            logger.warning("Empty response received")
             return {}
             
-        # Clean up the response
+        # Clean up the response first
         json_str = response.strip()
+        
+        # Remove common prefixes that might interfere with JSON
+        prefixes_to_remove = [
+            "Here is the JSON response:",
+            "Here's the JSON:",
+            "The JSON response is:",
+            "JSON:",
+            "Response:",
+            "Here is the extracted information:",
+            "Based on the resume, here is the JSON:"
+        ]
+        
+        for prefix in prefixes_to_remove:
+            if json_str.startswith(prefix):
+                json_str = json_str[len(prefix):].strip()
         
         # Find the first '{' or '[' and the last matching '}' or ']'
         start_brace = json_str.find('{')
@@ -182,6 +202,7 @@ class OllamaClient:
         # Determine which comes first
         if start_brace == -1 and start_bracket == -1:
             logger.warning("No JSON structure found in response")
+            logger.debug(f"Response content: {response[:200]}...")
             return self._extract_json_manually(response)
             
         if start_brace == -1:
@@ -202,46 +223,83 @@ class OllamaClient:
                 start_char = '['
                 end_char = ']'
         
-        # Find the matching closing character
+        # Extract JSON portion
         json_str = json_str[start_idx:]
+        
+        # Find the matching closing character with proper depth tracking
         depth = 0
         end_idx = -1
+        in_string = False
+        escape_next = False
         
         for i, char in enumerate(json_str):
-            if char == start_char:
-                depth += 1
-            elif char == end_char:
-                depth -= 1
-                if depth == 0:
-                    end_idx = i
-                    break
+            if escape_next:
+                escape_next = False
+                continue
+                
+            if char == '\\':
+                escape_next = True
+                continue
+                
+            if char == '"' and not escape_next:
+                in_string = not in_string
+                continue
+                
+            if not in_string:
+                if char == start_char:
+                    depth += 1
+                elif char == end_char:
+                    depth -= 1
+                    if depth == 0:
+                        end_idx = i
+                        break
         
         if end_idx == -1:
             logger.warning("No matching closing brace/bracket found")
-            # Try to find the last occurrence
+            # Try to find the last occurrence as fallback
             end_idx = max(json_str.rfind('}'), json_str.rfind(']'))
             if end_idx > 0:
                 json_str = json_str[:end_idx + 1]
+            else:
+                logger.error("Could not determine JSON boundaries")
+                return self._extract_json_manually(response)
         else:
             json_str = json_str[:end_idx + 1]
         
         # Try parsing the JSON
         try:
-            return json.loads(json_str)
+            parsed = json.loads(json_str)
+            logger.debug("Successfully parsed JSON on first attempt")
+            return parsed
         except json.JSONDecodeError as e:
             logger.error(f"Initial JSON parse failed: {str(e)}")
-            logger.debug(f"Failed JSON string: {json_str[:200]}...")
+            logger.debug(f"Failed JSON string (first 500 chars): {json_str[:500]}...")
+            logger.debug(f"Error at position {e.pos}: '{json_str[max(0, e.pos-20):e.pos+20]}'")
             
             # Try to fix common JSON issues
             fixed_json = self._fix_common_json_issues(json_str)
             try:
-                return json.loads(fixed_json)
+                parsed = json.loads(fixed_json)
+                logger.debug("Successfully parsed JSON after fixing issues")
+                return parsed
             except json.JSONDecodeError as e2:
                 logger.error(f"Fixed JSON parse failed: {str(e2)}")
-                logger.debug(f"Fixed JSON string: {fixed_json[:200]}...")
+                logger.debug(f"Fixed JSON string (first 500 chars): {fixed_json[:500]}...")
+                logger.debug(f"Error at position {e2.pos}: '{fixed_json[max(0, e2.pos-20):e2.pos+20]}'")
                 
-                # Final fallback - try to extract key information manually
-                return self._extract_json_manually(response)
+                # Try one more time with aggressive cleaning
+                try:
+                    aggressive_clean = self._aggressive_json_clean(json_str)
+                    parsed = json.loads(aggressive_clean)
+                    logger.debug("Successfully parsed JSON after aggressive cleaning")
+                    return parsed
+                except json.JSONDecodeError as e3:
+                    logger.error(f"Aggressive clean JSON parse failed: {str(e3)}")
+                    logger.debug(f"Aggressive clean JSON (first 500 chars): {aggressive_clean[:500]}...")
+                    logger.debug(f"Error at position {e3.pos}: '{aggressive_clean[max(0, e3.pos-20):e3.pos+20]}'")
+                    
+                    # Final fallback - try to extract key information manually
+                    return self._extract_json_manually(response)
     
     def _fix_common_json_issues(self, json_str: str) -> str:
         """Fix common JSON formatting issues."""
@@ -252,32 +310,172 @@ class OllamaClient:
         
         # Remove markdown code block markers if present
         json_str = re.sub(r'^```json\s*', '', json_str)
+        json_str = re.sub(r'^```\s*', '', json_str)
         json_str = re.sub(r'\s*```$', '', json_str)
         
+        # Remove any text before the first '{' or '['
+        first_brace = json_str.find('{')
+        first_bracket = json_str.find('[')
+        if first_brace != -1 and (first_bracket == -1 or first_brace < first_bracket):
+            json_str = json_str[first_brace:]
+        elif first_bracket != -1:
+            json_str = json_str[first_bracket:]
+        
+        # Remove any text after the last '}' or ']'
+        last_brace = json_str.rfind('}')
+        last_bracket = json_str.rfind(']')
+        if last_brace != -1 and last_brace > last_bracket:
+            json_str = json_str[:last_brace + 1]
+        elif last_bracket != -1:
+            json_str = json_str[:last_bracket + 1]
+        
         # Fix unquoted keys (word: -> "word":)
-        json_str = re.sub(r'(\w+)(\s*):', r'"\1"\2:', json_str)
+        json_str = re.sub(r'([a-zA-Z_][a-zA-Z0-9_]*)\s*:', r'"\1":', json_str)
         
-        # Fix trailing commas before closing braces/brackets
-        json_str = re.sub(r',(\s*[}\]])', r'\1', json_str)
+        # Fix trailing commas before closing braces/brackets (most important for your error)
+        json_str = re.sub(r',\s*([}\]])', r'\1', json_str)
         
-        # Fix single quotes to double quotes
-        json_str = json_str.replace("'", '"')
+        # Fix multiple consecutive commas
+        json_str = re.sub(r',\s*,+', ',', json_str)
         
-        # Fix escaped quotes that shouldn't be escaped
-        json_str = re.sub(r'\\"([^"]*)\\"', r'"\1"', json_str)
+        # Fix missing commas between objects/arrays/values
+        # Between } and {
+        json_str = re.sub(r'}\s*(?=\s*{)', r'},', json_str)
+        # Between ] and [
+        json_str = re.sub(r']\s*(?=\s*\[)', r'],', json_str)
+        # Between } and [
+        json_str = re.sub(r'}\s*(?=\s*\[)', r'},', json_str)
+        # Between ] and {
+        json_str = re.sub(r']\s*(?=\s*{)', r'],', json_str)
+        # Between quoted strings
+        json_str = re.sub(r'"\s*(?=\s*"[^:]*":)', r'",', json_str)
+        # Between value and next key
+        json_str = re.sub(r'(["\d}\]])\s*(?=\s*"[^:]*":)', r'\1,', json_str)
         
-        # Fix malformed strings with unescaped quotes
-        json_str = re.sub(r'"([^"]*)"([^",:}\]]*)"', r'"\1\2"', json_str)
+        # Fix single quotes to double quotes (but be careful with apostrophes in content)
+        json_str = re.sub(r"'([^']*)'(\s*[,:\]}])", r'"\1"\2', json_str)
         
-        # Fix missing commas between objects/arrays
-        json_str = re.sub(r'}(\s*)(?=["{[])', r'},\1', json_str)
-        json_str = re.sub(r'](\s*)(?=["{[])', r'],\1', json_str)
+        # Fix line breaks within strings
+        lines = json_str.split('\n')
+        fixed_lines = []
+        in_string = False
+        current_line = ""
         
-        # Fix duplicate commas
-        json_str = re.sub(r',+', ',', json_str)
+        for line in lines:
+            if not in_string:
+                # Count unescaped quotes
+                quote_count = len(re.findall(r'(?<!\\)"', line))
+                if quote_count % 2 == 1:
+                    in_string = True
+                    current_line = line
+                else:
+                    fixed_lines.append(line)
+            else:
+                # We're in a multiline string
+                current_line += " " + line.strip()
+                quote_count = len(re.findall(r'(?<!\\)"', line))
+                if quote_count % 2 == 1:
+                    in_string = False
+                    fixed_lines.append(current_line)
+                    current_line = ""
         
-        # Handle multiline strings by converting them to single line
-        json_str = re.sub(r'"([^"]*)\n([^"]*)"', r'"\1 \2"', json_str)
+        # If we ended in a string, add the remaining line
+        if current_line:
+            fixed_lines.append(current_line)
+        
+        json_str = '\n'.join(fixed_lines)
+        
+        # Fix specific comma delimiter issues
+        # Remove comma before colon
+        json_str = re.sub(r',\s*:', ':', json_str)
+        # Remove comma at start of object/array
+        json_str = re.sub(r'([{\[])\s*,', r'\1', json_str)
+        # Ensure comma after values (except before } or ])
+        json_str = re.sub(r'(["\d}\]])\s*(?=\s*"[^:}]*":)', r'\1,', json_str)
+        
+        return json_str
+    
+    def _reconstruct_json_from_parts(self, json_str: str) -> str:
+        """Reconstruct valid JSON by parsing individual components."""
+        import re
+        
+        # Find all key-value pairs
+        result_dict = {}
+        
+        # Extract simple key-value pairs
+        kv_pattern = r'"([^"]+)"\s*:\s*"([^"]*)"'
+        matches = re.findall(kv_pattern, json_str)
+        for key, value in matches:
+            result_dict[key] = value
+        
+        # Extract array patterns
+        array_pattern = r'"([^"]+)"\s*:\s*\[(.*?)\]'
+        array_matches = re.findall(array_pattern, json_str, re.DOTALL)
+        for key, array_content in array_matches:
+            if array_content.strip():
+                # Split by comma and clean up
+                items = [item.strip().strip('"').strip("'") for item in array_content.split(',')]
+                result_dict[key] = [item for item in items if item]
+            else:
+                result_dict[key] = []
+        
+        # Extract object patterns
+        obj_pattern = r'"([^"]+)"\s*:\s*\{(.*?)\}'
+        obj_matches = re.findall(obj_pattern, json_str, re.DOTALL)
+        for key, obj_content in obj_matches:
+            nested_dict = {}
+            nested_kv_matches = re.findall(kv_pattern, obj_content)
+            for nested_key, nested_value in nested_kv_matches:
+                nested_dict[nested_key] = nested_value
+            if nested_dict:
+                result_dict[key] = nested_dict
+        
+        # Convert back to JSON
+        return json.dumps(result_dict, ensure_ascii=False)
+    
+    def _aggressive_json_clean(self, json_str: str) -> str:
+        """Aggressive JSON cleaning as last resort before manual extraction."""
+        import re
+        
+        # Start with basic fixes
+        json_str = self._fix_common_json_issues(json_str)
+        
+        # Try reconstruction approach first
+        try:
+            reconstructed = self._reconstruct_json_from_parts(json_str)
+            # Test if it's valid
+            json.loads(reconstructed)
+            return reconstructed
+        except:
+            pass  # Continue with aggressive cleaning
+        
+        # More aggressive fixes
+        # Remove any remaining non-JSON content at start and end
+        json_str = re.sub(r'^[^{\[]*', '', json_str)
+        json_str = re.sub(r'[^}\]]*$', '', json_str)
+        
+        # Fix common malformed patterns
+        # Fix arrays that aren't properly formed
+        json_str = re.sub(r':\s*([^",\[\{][^,\]\}]*(?:,\s*[^",\[\{][^,\]\}]*)*)\s*([,}])', r': ["\1"]\2', json_str)
+        
+        # Fix missing quotes around string values
+        json_str = re.sub(r':\s*([^",\[\{][^,\]\}]*)\s*([,}])', r': "\1"\2', json_str)
+        
+        # Fix boolean and null values that got quoted
+        json_str = json_str.replace('"true"', 'true')
+        json_str = json_str.replace('"false"', 'false')
+        json_str = json_str.replace('"null"', 'null')
+        
+        # Fix numbers that got quoted but shouldn't be
+        json_str = re.sub(r'"\s*(\d+(?:\.\d+)?)\s*"', r'\1', json_str)
+        
+        # Remove trailing commas more aggressively
+        json_str = re.sub(r',\s*([}\]])', r'\1', json_str)
+        json_str = re.sub(r',\s*,+', ',', json_str)
+        
+        # Fix spacing issues
+        json_str = re.sub(r'\s*:\s*', ':', json_str)
+        json_str = re.sub(r'\s*,\s*', ',', json_str)
         
         return json_str
     
@@ -286,7 +484,7 @@ class OllamaClient:
         logger.warning("Falling back to manual JSON extraction")
         
         result = {
-            "personal_info": {"name": "Unknown", "email": "", "phone": ""},
+            "personal_info": {"name": "Unknown", "email": "", "phone": "", "address": "", "linkedin": ""},
             "summary": "",
             "experience": [],
             "education": [],
@@ -297,80 +495,108 @@ class OllamaClient:
             "languages": []
         }
         
-        lines = response.split('\n')
-        current_key = None
-        current_value = []
-        in_array = False
+        # Try to extract key information using regex patterns
+        patterns = {
+            "name": [
+                r'"?name"?\s*:\s*"([^"]+)"',
+                r'"?full_name"?\s*:\s*"([^"]+)"',
+                r'Name\s*:\s*([^\n,]+)',
+                r'name\s*=\s*"([^"]+)"'
+            ],
+            "email": [
+                r'"?email"?\s*:\s*"([^"]+)"',
+                r'([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})',
+                r'Email\s*:\s*([^\n,]+)'
+            ],
+            "phone": [
+                r'"?phone"?\s*:\s*"([^"]+)"',
+                r'Phone\s*:\s*([^\n,]+)',
+                r'(\+?[\d\s\-\(\)]+)'
+            ],
+            "summary": [
+                r'"?summary"?\s*:\s*"([^"]+)"',
+                r'"?professional_summary"?\s*:\s*"([^"]+)"',
+                r'Summary\s*:\s*([^\n]+)'
+            ]
+        }
         
-        for line in lines:
-            line = line.strip()
-            
-            # Skip empty lines and common prefixes
-            if not line or line.startswith('```') or line.startswith('Here') or line.startswith('The'):
-                continue
-            
-            # Check for key-value patterns
-            if ':' in line and not in_array:
-                # Handle the previous key if we were building an array
-                if current_key and current_value:
-                    result[current_key] = current_value if len(current_value) > 1 else (current_value[0] if current_value else "")
-                    current_value = []
-                
-                # Extract new key-value pair
-                parts = line.split(':', 1)
-                key = parts[0].strip().strip('"').strip("'").strip(',')
-                value = parts[1].strip().strip(',').strip('"').strip("'")
-                
-                # Clean up key name
-                key = key.replace('"', '').replace("'", '').strip()
-                
-                if key:
-                    # Check if value looks like an array start
-                    if value.startswith('['):
-                        in_array = True
-                        current_key = key
-                        # Extract any values on the same line
-                        array_content = value[1:].rstrip(']').strip()
-                        if array_content:
-                            items = [item.strip().strip('"').strip("'") for item in array_content.split(',')]
-                            current_value.extend([item for item in items if item])
-                        if value.endswith(']'):
-                            result[key] = current_value
-                            in_array = False
-                            current_key = None
-                            current_value = []
-                    elif value.startswith('{') and value.endswith('}'):
-                        # Handle inline objects
-                        try:
-                            result[key] = json.loads(value)
-                        except:
-                            result[key] = value.strip('{}')
-                    else:
-                        result[key] = value
-            
-            elif in_array:
-                # We're inside an array, collect values
-                line = line.strip(',').strip('"').strip("'")
-                if line.endswith(']'):
-                    line = line.rstrip(']')
-                    in_array = False
-                    if line:
-                        current_value.append(line)
-                    if current_key:
-                        result[current_key] = current_value
-                    current_key = None
-                    current_value = []
-                elif line and line != ',' and not line.startswith('}'):
-                    # Split by comma if multiple values on one line
-                    items = [item.strip().strip('"').strip("'") for item in line.split(',')]
-                    current_value.extend([item for item in items if item and item != ','])
+        # Extract using patterns
+        for key, regex_list in patterns.items():
+            for pattern in regex_list:
+                matches = re.findall(pattern, response, re.IGNORECASE | re.MULTILINE)
+                if matches:
+                    value = matches[0].strip()
+                    if key == "name" or key == "email" or key == "phone" or key == "summary":
+                        if key in ["name", "email", "phone"]:
+                            if "personal_info" not in result:
+                                result["personal_info"] = {}
+                            result["personal_info"][key] = value
+                        else:
+                            result[key] = value
+                    break
         
-        # Handle any remaining array data
-        if current_key and current_value:
-            result[current_key] = current_value
+        # Extract experience section
+        exp_patterns = [
+            r'"?experience"?\s*:\s*\[(.*?)\]',
+            r'"?work_experience"?\s*:\s*\[(.*?)\]'
+        ]
         
-        # Clean up empty values
-        result = {k: v for k, v in result.items() if v and k}
+        for pattern in exp_patterns:
+            exp_match = re.search(pattern, response, re.DOTALL | re.IGNORECASE)
+            if exp_match:
+                exp_text = exp_match.group(1)
+                # Try to extract individual experience entries
+                experiences = []
+                exp_entries = re.split(r'},{?', exp_text)
+                for entry in exp_entries:
+                    exp_obj = {}
+                    company_match = re.search(r'"?company"?\s*:\s*"([^"]+)"', entry, re.IGNORECASE)
+                    position_match = re.search(r'"?(?:position|title|job_title)"?\s*:\s*"([^"]+)"', entry, re.IGNORECASE)
+                    
+                    if company_match:
+                        exp_obj["company"] = company_match.group(1)
+                    if position_match:
+                        exp_obj["position"] = position_match.group(1)
+                    
+                    if exp_obj:
+                        exp_obj.setdefault("responsibilities", [])
+                        exp_obj.setdefault("start_date", "")
+                        exp_obj.setdefault("end_date", "")
+                        exp_obj.setdefault("location", "")
+                        experiences.append(exp_obj)
+                
+                if experiences:
+                    result["experience"] = experiences
+                break
+        
+        # Extract skills
+        skills_patterns = [
+            r'"?(?:technical_)?skills"?\s*:\s*\[(.*?)\]',
+            r'"?skills"?\s*:\s*{(.*?)}',
+        ]
+        
+        for pattern in skills_patterns:
+            skills_match = re.search(pattern, response, re.DOTALL | re.IGNORECASE)
+            if skills_match:
+                skills_text = skills_match.group(1)
+                if '{' in skills_text:  # Object format
+                    tech_match = re.search(r'"?technical"?\s*:\s*\[(.*?)\]', skills_text, re.IGNORECASE)
+                    if tech_match:
+                        tech_skills = [s.strip().strip('"') for s in tech_match.group(1).split(',')]
+                        result["skills"]["technical"] = [s for s in tech_skills if s]
+                else:  # Array format
+                    skills_list = [s.strip().strip('"') for s in skills_text.split(',')]
+                    result["skills"]["technical"] = [s for s in skills_list if s]
+                break
+        
+        # Clean up empty nested structures
+        if result.get("personal_info"):
+            result["personal_info"] = {k: v for k, v in result["personal_info"].items() if v}
+        
+        if result.get("skills"):
+            result["skills"] = {k: v for k, v in result["skills"].items() if v}
+            if not result["skills"]:
+                result["skills"] = {"technical": [], "soft": [], "tools": [], "languages": []}
         
         logger.debug(f"Manually extracted: {result}")
         return result

@@ -60,76 +60,655 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS
+# Custom CSS - Unique HAAI++ Design
 st.markdown("""
 <style>
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+    
+    /* Global Styling - Unified Green Theme */
+    .main {
+        background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #d1fae5 100%);
+        min-height: 100vh;
+    }
+    
     .main-header {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: #2c3e50;
+        font-family: 'Inter', sans-serif;
+        font-size: 3.5rem;
+        font-weight: 800;
         text-align: center;
-        margin-bottom: 2rem;
-        background: linear-gradient(90deg, #3498db, #e74c3c);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        padding: 1rem 0;
+        margin-bottom: 2.5rem;
+        /* Primary color fallback */
+        color: #065f46 !important;
+        text-shadow: 2px 2px 4px rgba(6, 95, 70, 0.3), 0 0 20px rgba(16, 185, 129, 0.4);
+        padding: 3rem 0;
+        position: relative;
+        z-index: 10;
+        /* Add a subtle background to ensure visibility */
+        background: linear-gradient(135deg, rgba(240, 253, 244, 0.8) 0%, rgba(220, 252, 231, 0.8) 100%);
+        border-radius: 20px;
+        margin: 2rem auto;
+        max-width: 90%;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(16, 185, 129, 0.3);
+        box-shadow: 0 8px 32px rgba(16, 185, 129, 0.2);
+    }
+    
+    .main-header::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 4px;
+        background: linear-gradient(90deg, #10b981, #34d399, #6ee7b7);
+        border-radius: 2px;
     }
     
     .section-header {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #34495e;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        padding: 0.5rem 0;
-        border-bottom: 2px solid #3498db;
+        font-family: 'Inter', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #065f46;
+        margin: 2.5rem 0 1.5rem 0;
+        padding: 1rem 1.5rem;
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(52, 211, 153, 0.1) 100%);
+        border-radius: 12px;
+        border-left: 6px solid #10b981;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(16, 185, 129, 0.2);
     }
     
     .info-box {
-        background-color: #ecf0f1;
-        padding: 1.5rem;
-        border-radius: 10px;
-        border-left: 5px solid #3498db;
-        margin: 1rem 0;
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(52, 211, 153, 0.08) 100%);
+        padding: 2rem;
+        border-radius: 16px;
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        margin: 1.5rem 0;
+        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.1);
+        backdrop-filter: blur(20px);
+        color: #064e3b;
     }
     
     .success-box {
-        background-color: #d5f4e6;
-        padding: 1rem;
-        border-radius: 8px;
-        border-left: 4px solid #27ae60;
-        margin: 1rem 0;
+        background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid rgba(34, 197, 94, 0.3);
+        margin: 1.5rem 0;
+        color: #065f46;
+        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.15);
     }
     
     .warning-box {
-        background-color: #fef9e7;
-        padding: 1rem;
-        border-radius: 8px;
-        border-left: 4px solid #f39c12;
-        margin: 1rem 0;
+        background: linear-gradient(135deg, rgba(246, 173, 85, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid rgba(246, 173, 85, 0.3);
+        margin: 1.5rem 0;
+        color: #744210;
+        box-shadow: 0 4px 12px rgba(246, 173, 85, 0.15);
     }
     
     .metric-card {
-        background: white;
-        padding: 1rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        background: linear-gradient(135deg, rgba(240, 253, 244, 0.95) 0%, rgba(220, 252, 231, 0.95) 100%);
+        padding: 1.5rem;
+        border-radius: 16px;
         text-align: center;
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.12);
+        backdrop-filter: blur(20px);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        color: #064e3b;
     }
     
+    .metric-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(16, 185, 129, 0.25);
+        border-color: #10b981;
+    }
+    
+    /* Button Styling - Green Theme */
     .stButton > button {
-        background: linear-gradient(90deg, #3498db, #2ecc71);
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 0.75rem 2rem;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        text-transform: none;
+    }
+    
+    .stButton > button:hover {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+    }
+    
+    /* Primary Button Variant - Green Theme */
+    .stButton > button[kind="primary"] {
+        background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+        box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);
+    }
+    
+    .stButton > button[kind="primary"]:hover {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        box-shadow: 0 8px 20px rgba(52, 211, 153, 0.4);
+    }
+    
+    /* Input Styling - Green Theme */
+    .stSelectbox > div > div {
+        background: linear-gradient(135deg, rgba(240, 253, 244, 0.9) 0%, rgba(220, 252, 231, 0.9) 100%);
+        border-radius: 12px;
+        border: 2px solid #86efac;
+        backdrop-filter: blur(10px);
+        color: #064e3b;
+        transition: all 0.3s ease;
+    }
+    
+    .stSelectbox > div > div:hover {
+        border-color: #10b981;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+    }
+    
+    .stTextArea > div > div > textarea {
+        background: linear-gradient(135deg, rgba(240, 253, 244, 0.9) 0%, rgba(220, 252, 231, 0.9) 100%);
+        border-radius: 12px;
+        border: 2px solid #86efac;
+        backdrop-filter: blur(10px);
+        color: #064e3b;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .stTextArea > div > div > textarea:focus {
+        border-color: #10b981;
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2), 0 6px 20px rgba(16, 185, 129, 0.15);
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    }
+    
+    .stFileUploader > div {
+        background: linear-gradient(135deg, rgba(240, 253, 244, 0.9) 0%, rgba(220, 252, 231, 0.9) 100%);
+        border-radius: 16px;
+        border: 3px dashed #86efac;
+        backdrop-filter: blur(10px);
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    
+    .stFileUploader > div:hover {
+        border-color: #10b981;
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+    }
+    
+    /* Progress Bar - Green Theme */
+    .stProgress > div > div > div {
+        background: linear-gradient(90deg, #10b981, #34d399, #6ee7b7);
+        border-radius: 6px;
+    }
+    
+    /* Text Input Fields - Green Theme */
+    .stTextInput > div > div > input {
+        background: linear-gradient(135deg, rgba(240, 253, 244, 0.9) 0%, rgba(220, 252, 231, 0.9) 100%);
+        border: 2px solid #86efac;
+        border-radius: 12px;
+        color: #064e3b;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+    }
+    
+    .stTextInput > div > div > input:focus {
+        border-color: #10b981;
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2), 0 6px 20px rgba(16, 185, 129, 0.15);
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    }
+    
+    /* Number Input Fields - Green Theme */
+    .stNumberInput > div > div > input {
+        background: linear-gradient(135deg, rgba(240, 253, 244, 0.9) 0%, rgba(220, 252, 231, 0.9) 100%);
+        border: 2px solid #86efac;
+        border-radius: 12px;
+        color: #064e3b;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .stNumberInput > div > div > input:focus {
+        border-color: #10b981;
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    }
+    
+    /* Multiselect and Tags - Green Theme */
+    .stMultiSelect > div > div {
+        background: linear-gradient(135deg, rgba(240, 253, 244, 0.9) 0%, rgba(220, 252, 231, 0.9) 100%);
+        border: 2px solid #86efac;
+        border-radius: 12px;
+        color: #064e3b;
+    }
+    
+    .stMultiSelect > div > div:focus-within {
+        border-color: #10b981;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+    }
+    
+    /* Checkbox and Radio - Green Theme */
+    .stCheckbox > label > div:first-child {
+        background-color: rgba(240, 253, 244, 0.9);
+        border: 2px solid #86efac;
+        border-radius: 6px;
+    }
+    
+    .stCheckbox > label > div:first-child:hover {
+        border-color: #10b981;
+    }
+    
+    .stRadio > div > label > div:first-child {
+        background-color: rgba(240, 253, 244, 0.9);
+        border: 2px solid #86efac;
+    }
+    
+    .stRadio > div > label > div:first-child:hover {
+        border-color: #10b981;
+    }
+    
+    /* Date Input - Green Theme */
+    .stDateInput > div > div > input {
+        background: linear-gradient(135deg, rgba(240, 253, 244, 0.9) 0%, rgba(220, 252, 231, 0.9) 100%);
+        border: 2px solid #86efac;
+        border-radius: 12px;
+        color: #064e3b;
+        font-weight: 500;
+    }
+    
+    .stDateInput > div > div > input:focus {
+        border-color: #10b981;
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    }
+    
+    /* Hide Streamlit default deploy and rerun buttons */
+    .stToolbar {
+        display: none !important;
+    }
+    
+    /* Hide deploy button specifically */
+    button[title="Deploy this app"],
+    button[data-testid="stToolbarActionButton"],
+    .stActionButton,
+    [data-testid="stDeployButton"],
+    [data-testid="stToolbar"] {
+        display: none !important;
+    }
+    
+    /* Hide the entire header toolbar area */
+    .stAppHeader,
+    header[data-testid="stHeader"],
+    .css-18ni7ap,
+    .css-vk3wp9 {
+        display: none !important;
+    }
+    
+    /* Hide rerun button and deploy options */
+    .stApp > header,
+    .stApp > div:first-child > div:first-child {
+        display: none !important;
+    }
+    
+    /* Alternative selectors for deploy button */
+    button[kind="secondary"][title*="Deploy"],
+    button[kind="secondary"][title*="deploy"],
+    .element-container button[title*="Deploy"] {
+        display: none !important;
+    }
+    
+    /* Sidebar Styling - Force Right Side with Green Theme */
+    .css-1d391kg, [data-testid="stSidebar"], .css-1cypcdb, .css-17eq0hr, 
+    section[data-testid="stSidebar"], .css-1lcbmhc, .css-6qob1r {
+        background: linear-gradient(180deg, rgba(34, 197, 94, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%);
+        backdrop-filter: blur(20px);
+        border-left: 3px solid #10b981;
+        border-right: none !important;
+        box-shadow: -4px 0 12px rgba(16, 185, 129, 0.1);
+    }
+    
+    /* Force sidebar to right side using comprehensive selectors */
+    section[data-testid="stSidebar"], 
+    [data-testid="stSidebar"],
+    .css-1d391kg,
+    .css-1lcbmhc,
+    .css-6qob1r,
+    .css-17eq0hr {
+        position: fixed !important;
+        right: 0 !important;
+        left: unset !important;
+        top: 0 !important;
+        height: 100vh !important;
+        z-index: 999999 !important;
+        transform: translateX(0) !important;
+        width: 21rem !important;
+    }
+    
+    /* Additional sidebar positioning */
+    .stSidebar, .css-1cypcdb {
+        position: fixed !important;
+        right: 0 !important;
+        left: unset !important;
+        top: 0 !important;
+        height: 100vh !important;
+        z-index: 999999 !important;
+    }
+    
+    /* Adjust main app content - Right sidebar layout */
+    .main, .stApp > div {
+        margin-right: 22rem !important;
+        margin-left: 1rem !important;
+        max-width: none !important;
+        transition: margin 0.3s ease;
+    }
+    
+    /* Adjust main content container - Optimized for right sidebar */
+    .main .block-container, [data-testid="stMainBlockContainer"] {
+        padding-right: 2rem !important;
+        padding-left: 2rem !important;
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+    }
+    
+    /* Sidebar content styling */
+    [data-testid="stSidebar"] .css-17eq0hr,
+    [data-testid="stSidebar"] .element-container {
+        background: rgba(34, 197, 94, 0.05);
+        border-radius: 8px;
+        margin: 0.5rem 0;
+        padding: 0.5rem;
+    }
+    
+    /* Sidebar headers */
+    [data-testid="stSidebar"] h1, 
+    [data-testid="stSidebar"] h2, 
+    [data-testid="stSidebar"] h3 {
+        color: #065f46 !important;
+        border-bottom: 2px solid #10b981;
+        padding-bottom: 0.5rem;
+    }
+    
+    /* Sidebar buttons */
+    [data-testid="stSidebar"] .stButton > button {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         color: white;
         border: none;
         border-radius: 8px;
-        padding: 0.5rem 1rem;
-        font-weight: bold;
+        box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
     }
     
-    .stSelectbox > div > div {
-        background-color: #f8f9fa;
+    [data-testid="stSidebar"] .stButton > button:hover {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+    }
+    
+    /* Sidebar content styling */
+    .css-1d391kg .css-17eq0hr {
+        background: rgba(34, 197, 94, 0.05);
+        border-radius: 8px;
+        margin: 0.5rem 0;
+        padding: 0.5rem;
+    }
+    
+    /* Sidebar headers */
+    .css-1d391kg h1, .css-1d391kg h2, .css-1d391kg h3 {
+        color: #065f46;
+        border-bottom: 2px solid #10b981;
+        padding-bottom: 0.5rem;
+    }
+    
+    /* Metrics Styling */
+    [data-testid="metric-container"] {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+        border-radius: 12px;
+        padding: 1rem;
+        border: 1px solid rgba(102, 126, 234, 0.1);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+        backdrop-filter: blur(20px);
+    }
+    
+    /* Expander Styling */
+    .streamlit-expanderHeader {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+    }
+    
+    /* Code Block Styling */
+    .stCode {
+        background: rgba(45, 55, 72, 0.95);
+        border-radius: 8px;
+        font-family: 'JetBrains Mono', monospace;
+    }
+    
+    /* Custom Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .section-header {
+        animation: fadeInUp 0.6s ease-out;
+    }
+    
+    /* Custom Badge */
+    .haai-badge {
+        display: inline-block;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin: 0.5rem;
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    }
+    
+    /* Custom Status Indicators */
+    .status-active {
+        color: #48bb78;
+        font-weight: 600;
+    }
+    
+    .status-pending {
+        color: #ed8936;
+        font-weight: 600;
+    }
+    
+    .status-complete {
+        color: #667eea;
+        font-weight: 600;
     }
 </style>
+
+<script>
+    // Enhanced sidebar positioning with multiple selectors and robust approach
+    function moveSidebarToRight() {
+        // Multiple selectors to catch all possible sidebar variations
+        const selectors = [
+            '[data-testid="stSidebar"]',
+            '.css-1d391kg',
+            '.css-1lcbmhc', 
+            '.css-6qob1r',
+            '.css-17eq0hr',
+            '.css-1cypcdb',
+            'section[data-testid="stSidebar"]',
+            '.stSidebar'
+        ];
+        
+        let sidebarFound = false;
+        
+        selectors.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(sidebar => {
+                if (sidebar && !sidebarFound) {
+                    // Apply comprehensive right-side positioning
+                    sidebar.style.setProperty('position', 'fixed', 'important');
+                    sidebar.style.setProperty('right', '0', 'important');
+                    sidebar.style.setProperty('left', 'unset', 'important');
+                    sidebar.style.setProperty('top', '0', 'important');
+                    sidebar.style.setProperty('height', '100vh', 'important');
+                    sidebar.style.setProperty('z-index', '999999', 'important');
+                    sidebar.style.setProperty('width', '21rem', 'important');
+                    sidebar.style.setProperty('transform', 'translateX(0)', 'important');
+                    
+                    sidebarFound = true;
+                    console.log('Sidebar moved to right using selector:', selector);
+                }
+            });
+        });
+        
+        // Center main content with proper spacing for right sidebar
+        const mainSelectors = ['.main', '.stApp > div', '[data-testid="stAppViewContainer"]'];
+        mainSelectors.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(main => {
+                if (main) {
+                    main.style.setProperty('margin-right', '22rem', 'important');
+                    main.style.setProperty('margin-left', '1rem', 'important');
+                    main.style.setProperty('max-width', 'none', 'important');
+                }
+            });
+        });
+        
+        // Center main block container
+        const containerSelectors = ['[data-testid="stMainBlockContainer"]', '.main .block-container'];
+        containerSelectors.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(container => {
+                if (container) {
+                    container.style.setProperty('max-width', '1200px', 'important');
+                    container.style.setProperty('margin', '0 auto', 'important');
+                    container.style.setProperty('padding-left', '2rem', 'important');
+                    container.style.setProperty('padding-right', '2rem', 'important');
+                }
+            });
+        });
+        
+        return sidebarFound;
+    }
+    
+    // Enhanced monitoring with mutation observer
+    function setupSidebarMonitoring() {
+        // Initial attempts
+        moveSidebarToRight();
+        
+        // Mutation observer to catch dynamic changes
+        const observer = new MutationObserver((mutations) => {
+            let shouldReposition = false;
+            
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'childList' || mutation.type === 'attributes') {
+                    const addedNodes = Array.from(mutation.addedNodes);
+                    const hasRelevantChanges = addedNodes.some(node => 
+                        node.nodeType === Node.ELEMENT_NODE && 
+                        (node.querySelector && (
+                            node.querySelector('[data-testid="stSidebar"]') ||
+                            node.matches && node.matches('[data-testid="stSidebar"]')
+                        ))
+                    );
+                    
+                    if (hasRelevantChanges) {
+                        shouldReposition = true;
+                    }
+                }
+            });
+            
+            if (shouldReposition) {
+                setTimeout(moveSidebarToRight, 50);
+            }
+        });
+        
+        // Observe the entire document for changes
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['class', 'style']
+        });
+        
+        // Periodic checks as fallback
+        setInterval(moveSidebarToRight, 2000);
+    }
+    
+    // Run setup when page loads and on updates
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSidebarMonitoring);
+    } else {
+        setupSidebarMonitoring();
+    }
+    
+    // Function to hide deploy and rerun buttons
+    function hideDeployButtons() {
+        const deploySelectors = [
+            'button[title="Deploy this app"]',
+            'button[data-testid="stToolbarActionButton"]',
+            '[data-testid="stDeployButton"]',
+            '[data-testid="stToolbar"]',
+            'button[title*="Deploy"]',
+            'button[title*="deploy"]',
+            '.stToolbar',
+            '.stActionButton',
+            '.stAppHeader',
+            'header[data-testid="stHeader"]',
+            '.css-18ni7ap',
+            '.css-vk3wp9',
+            '.stApp > header'
+        ];
+        
+        deploySelectors.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(element => {
+                if (element) {
+                    element.style.setProperty('display', 'none', 'important');
+                    element.style.setProperty('visibility', 'hidden', 'important');
+                    element.remove(); // Completely remove the element
+                }
+            });
+        });
+    }
+    
+    // Hide deploy buttons on load and periodically
+    hideDeployButtons();
+    setInterval(hideDeployButtons, 1000);
+    
+    // Also hide on mutations
+    const deployObserver = new MutationObserver(() => {
+        hideDeployButtons();
+    });
+    
+    deployObserver.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+    
+    // Additional timeout-based attempts for robustness
+    setTimeout(moveSidebarToRight, 100);
+    setTimeout(moveSidebarToRight, 500);
+    setTimeout(moveSidebarToRight, 1000);
+    setTimeout(moveSidebarToRight, 2000);
+</script>
 """, unsafe_allow_html=True)
 
 
@@ -163,7 +742,14 @@ def initialize_services():
                     timeout=settings.ollama_timeout
                 )
             st.success("✅ Multi-LLM AI services initialized successfully!")
-            st.info("🎓 **HAAI++ Capstone**: Using Gemma 2B for content generation and Llama2 7B for data analysis")
+            st.markdown('''
+                <div class="info-box">
+                    <strong>🎓 HAAI++ Neural Architecture Active</strong><br/>
+                    <span class="status-active">●</span> Gemma 2B: Content Generation Specialist<br/>
+                    <span class="status-active">●</span> Llama2 7B: Data Analysis Specialist<br/>
+                    <span class="status-complete">●</span> Multi-model coordination enabled
+                </div>
+            ''', unsafe_allow_html=True)
         except Exception as e:
             st.error(f"❌ Failed to initialize AI services: {str(e)}")
             st.error("Please make sure Ollama is running and both models (gemma:2b, llama2:7b) are available.")
@@ -173,7 +759,14 @@ def initialize_services():
 
 def handle_resume_upload():
     """Handle resume file upload and processing."""
-    st.markdown('<div class="section-header">📁 Upload Your Resume</div>', unsafe_allow_html=True)
+    st.markdown('''
+        <div class="section-header">
+            � Neural Resume Analysis
+            <div style="font-size: 0.9rem; font-weight: 400; opacity: 0.7; margin-top: 0.3rem;">
+                Upload your resume for AI-powered content extraction
+            </div>
+        </div>
+    ''', unsafe_allow_html=True)
     
     uploaded_file = st.file_uploader(
         "Choose your resume file",
@@ -332,7 +925,14 @@ def handle_resume_upload():
 
 def handle_job_description():
     """Handle job description input and processing."""
-    st.markdown('<div class="section-header">📋 Job Description</div>', unsafe_allow_html=True)
+    st.markdown('''
+        <div class="section-header">
+            🎯 Smart Job Requirements Analysis
+            <div style="font-size: 0.9rem; font-weight: 400; opacity: 0.7; margin-top: 0.3rem;">
+                Input job description for intelligent keyword extraction
+            </div>
+        </div>
+    ''', unsafe_allow_html=True)
     
     job_text = st.text_area(
         "Paste the job description here:",
@@ -403,7 +1003,14 @@ def handle_job_description():
 
 def handle_cv_tailoring():
     """Handle CV tailoring process."""
-    st.markdown('<div class="section-header">🤖 AI-Powered CV Tailoring</div>', unsafe_allow_html=True)
+    st.markdown('''
+        <div class="section-header">
+            � Neural CV Optimization Engine
+            <div style="font-size: 0.9rem; font-weight: 400; opacity: 0.7; margin-top: 0.3rem;">
+                Advanced AI tailoring using dual-model architecture
+            </div>
+        </div>
+    ''', unsafe_allow_html=True)
     
     if not st.session_state.resume_data:
         st.warning("⚠️ Please upload and process your resume first.")
@@ -414,17 +1021,24 @@ def handle_cv_tailoring():
         return
     
     # Tailoring options
-    st.subheader("⚙️ Tailoring Options")
+    st.markdown('''
+        <div style="margin: 2rem 0;">
+            <h3 style="color: #2d3748; font-family: 'Inter', sans-serif; margin-bottom: 1rem;">
+                🎛️ Neural Optimization Settings
+            </h3>
+        </div>
+    ''', unsafe_allow_html=True)
+    
     col1, col2 = st.columns(2)
     with col1:
-        optimize_summary = st.checkbox("📝 Optimize professional summary", value=True)
-        highlight_skills = st.checkbox("⭐ Highlight relevant skills", value=True)
+        optimize_summary = st.checkbox("🧠 Neural Summary Enhancement", value=True)
+        highlight_skills = st.checkbox("⚡ Smart Skill Prioritization", value=True)
     with col2:
-        optimize_projects = st.checkbox("🚀 Optimize project descriptions", value=True)
-        add_achievements = st.checkbox("🏆 Enhance achievement statements", value=True)
+        optimize_projects = st.checkbox("� Project Intelligence Boost", value=True)
+        add_achievements = st.checkbox("� Achievement Amplification", value=True)
     
-    if st.button("🤖 Start AI Tailoring", type="primary", disabled=st.session_state.tailored_cv is not None):
-        with st.spinner("AI is tailoring your CV... This may take a few minutes."):
+    if st.button("🚀 Activate Neural Tailoring", type="primary", disabled=st.session_state.tailored_cv is not None):
+        with st.spinner("🧠 Neural networks analyzing and optimizing your CV... This may take a few minutes."):
             try:
                 # Create tailoring engine with Multi-LLM service
                 engine = CVTailoringEngine(st.session_state.llm_client)
@@ -433,7 +1047,7 @@ def handle_cv_tailoring():
                 progress_bar = st.progress(0)
                 status_text = st.empty()
                 
-                status_text.text("🔍 Analyzing compatibility...")
+                status_text.markdown('<p class="status-active">🔍 Neural analysis in progress...</p>', unsafe_allow_html=True)
                 progress_bar.progress(20)
                 
                 # Tailor the CV
@@ -443,20 +1057,25 @@ def handle_cv_tailoring():
                 )
                 
                 progress_bar.progress(60)
-                status_text.text("✨ Optimizing content...")
+                status_text.markdown('<p class="status-active">✨ Content optimization active...</p>', unsafe_allow_html=True)
                 
                 # Store result
                 st.session_state.tailored_cv = tailored_cv
                 
                 progress_bar.progress(100)
-                status_text.text("✅ CV tailoring completed!")
+                status_text.markdown('<p class="status-complete">✅ Neural optimization complete!</p>', unsafe_allow_html=True)
                 
-                st.success("🎉 Your CV has been successfully tailored!")
+                st.markdown('''
+                    <div class="success-box">
+                        🎉 <strong>Neural CV Optimization Complete!</strong><br/>
+                        Your resume has been intelligently tailored using advanced AI models.
+                    </div>
+                ''', unsafe_allow_html=True)
                 
                 # Show tailoring score
                 score = tailored_cv.tailoring_score
                 st.metric(
-                    "🎯 Tailoring Score", 
+                    "🎯 Neural Compatibility Score", 
                     f"{score:.1f}%",
                     delta=f"{score-75:.1f}%" if score > 75 else None
                 )
@@ -532,7 +1151,14 @@ def display_tailoring_results(tailored_cv):
 
 def handle_document_generation():
     """Handle final document generation."""
-    st.markdown('<div class="section-header">📄 Generate Final CV</div>', unsafe_allow_html=True)
+    st.markdown('''
+        <div class="section-header">
+            � Professional Document Synthesis
+            <div style="font-size: 0.9rem; font-weight: 400; opacity: 0.7; margin-top: 0.3rem;">
+                Generate polished CV documents in multiple formats
+            </div>
+        </div>
+    ''', unsafe_allow_html=True)
     
     if not st.session_state.tailored_cv:
         st.warning("⚠️ Please complete the CV tailoring step first.")
@@ -549,14 +1175,24 @@ def handle_document_generation():
         pdf_available = False
     
     # Document format selection
-    st.subheader("📋 Document Options")
+    st.markdown('''
+        <div style="margin: 2rem 0;">
+            <h3 style="color: #2d3748; font-family: 'Inter', sans-serif; margin-bottom: 1rem;">
+                🎨 Output Configuration
+            </h3>
+        </div>
+    ''', unsafe_allow_html=True)
     
     # Format selection: HTML always available, PDF conditionally
     format_options = ["HTML"]
     if pdf_available:
         format_options.append("PDF")
     else:
-        st.warning("⚠️ PDF generation is not available. Please install reportlab: `pip install reportlab`")
+        st.markdown('''
+            <div class="warning-box">
+                ⚠️ PDF generation is not available. Please install reportlab: <code>pip install reportlab</code>
+            </div>
+        ''', unsafe_allow_html=True)
     
     format_type = st.selectbox(
         "📄 Choose Output Format:",
@@ -566,9 +1202,19 @@ def handle_document_generation():
     )
     
     if format_type == "HTML":
-        st.info("📄 **HTML Format**: Interactive web-based resume with modern styling")
+        st.markdown('''
+            <div class="info-box">
+                🌐 <strong>HTML Format</strong><br/>
+                Interactive web-based resume with modern responsive styling
+            </div>
+        ''', unsafe_allow_html=True)
     else:
-        st.info("📄 **PDF Format**: Print-ready document with preserved styling")
+        st.markdown('''
+            <div class="info-box">
+                📄 <strong>PDF Format</strong><br/>
+                Print-ready document with professional formatting and layout
+            </div>
+        ''', unsafe_allow_html=True)
     
     # Template selection
     template_style = st.selectbox(
@@ -606,11 +1252,7 @@ def handle_document_generation():
                             f.write(document_content)
                         
                         # Verify the file was created
-                        if output_path.exists():
-                            file_size = output_path.stat().st_size
-                            st.success(f"✅ HTML CV document generated and saved successfully!")
-                            st.info(f"📁 File saved to: {output_path} ({file_size:,} bytes)")
-                        else:
+                        if not output_path.exists():
                             st.error(f"❌ Failed to save HTML file to {output_path}")
                     except Exception as e:
                         st.error(f"❌ Error saving HTML file: {str(e)}")
@@ -667,10 +1309,7 @@ def handle_document_generation():
                             f.write(html_content)
                         
                         # Verify the file was created
-                        if html_output_path.exists():
-                            file_size = html_output_path.stat().st_size
-                            st.success(f"✅ HTML file saved successfully: {html_output_path} ({file_size:,} bytes)")
-                        else:
+                        if not html_output_path.exists():
                             st.error(f"❌ Failed to save HTML file to {html_output_path}")
                     except Exception as e:
                         st.error(f"❌ Error saving HTML file: {str(e)}")
@@ -682,10 +1321,7 @@ def handle_document_generation():
                             f.write(pdf_bytes)
                         
                         # Verify the file was created
-                        if pdf_output_path.exists():
-                            file_size = pdf_output_path.stat().st_size
-                            st.success(f"✅ PDF file saved successfully: {pdf_output_path} ({file_size:,} bytes)")
-                        else:
+                        if not pdf_output_path.exists():
                             st.error(f"❌ Failed to save PDF file to {pdf_output_path}")
                     except Exception as e:
                         st.error(f"❌ Error saving PDF file: {str(e)}")
@@ -780,7 +1416,16 @@ def main():
         print("=" * 60)
     
     # Header
-    st.markdown('<div class="main-header">🤖 Multi-LLM AI-Powered CV Builder</div>', unsafe_allow_html=True)
+    st.markdown('''
+        <div class="main-header">
+            ⚡ CV Builder
+            <div style="font-size: 1.2rem; font-weight: 1000; margin-top: 0.5rem; opacity: 0.8;">
+                <span class="haai-badge">Multi-LLM</span>
+                <span class="haai-badge">AI-Powered</span>
+                <span class="haai-badge">Gemma + Llama2</span>
+            </div>
+        </div>
+    ''', unsafe_allow_html=True)
     
     # Ensure session state is initialized
     init_session_state()
