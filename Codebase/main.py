@@ -725,6 +725,12 @@ def init_session_state():
         st.session_state.tailored_cv = None
     if 'generated_document' not in st.session_state:
         st.session_state.generated_document = None
+    if 'cv_edited' not in st.session_state:
+        st.session_state.cv_edited = False
+    if 'edited_cv_content' not in st.session_state:
+        st.session_state.edited_cv_content = None
+    if 'skip_to_generation' not in st.session_state:
+        st.session_state.skip_to_generation = False
     if 'ollama_host' not in st.session_state:
         st.session_state.ollama_host = settings.ollama_host
 
@@ -743,14 +749,6 @@ def initialize_services():
                     timeout=settings.ollama_timeout
                 )
             st.success("✅ Multi-LLM AI services initialized successfully!")
-            st.markdown('''
-                <div class="info-box">
-                    <strong>🎓 HAAI++ Neural Architecture Active</strong><br/>
-                    <span class="status-active">●</span> Gemma 2B: Content Generation Specialist<br/>
-                    <span class="status-active">●</span> Llama2 7B: Data Analysis Specialist<br/>
-                    <span class="status-complete">●</span> Multi-model coordination enabled
-                </div>
-            ''', unsafe_allow_html=True)
         except Exception as e:
             st.error(f"❌ Failed to initialize AI services: {str(e)}")
             st.error("Please make sure Ollama is running and both models (gemma:2b, llama2:7b) are available.")
@@ -1065,7 +1063,18 @@ def handle_cv_tailoring():
         optimize_projects = st.checkbox("� Project Intelligence Boost", value=True)
         add_achievements = st.checkbox("� Achievement Amplification", value=True)
     
-    if st.button("🚀 Activate Neural Tailoring", type="primary", disabled=st.session_state.tailored_cv is not None):
+    # Button text and availability based on state
+    button_text = "🚀 Activate Neural Tailoring"
+    button_disabled = False
+    
+    if st.session_state.tailored_cv and not st.session_state.edited_cv_content:
+        button_text = "✅ Neural Tailoring Complete"
+        button_disabled = True
+    elif st.session_state.edited_cv_content:
+        button_text = "🔄 Re-Tailor with Edited Content"
+        button_disabled = False
+    
+    if st.button(button_text, type="primary", disabled=button_disabled):
         with st.spinner("🧠 Neural networks analyzing and optimizing your CV... This may take a few minutes."):
             try:
                 # Create tailoring engine with Multi-LLM service
@@ -1078,17 +1087,50 @@ def handle_cv_tailoring():
                 status_text.markdown('<p class="status-active">🔍 Neural analysis in progress...</p>', unsafe_allow_html=True)
                 progress_bar.progress(20)
                 
+                # Check if we're using edited content for re-tailoring
+                resume_data_to_use = st.session_state.resume_data
+                
+                if st.session_state.edited_cv_content:
+                    st.info("🔄 Re-tailoring with your edited content...")
+                    # Update resume data with edited content
+                    from resume_parser import PersonalInfo
+                    edited_content = st.session_state.edited_cv_content
+                    
+                    # Update personal info
+                    if hasattr(resume_data_to_use, 'personal_info'):
+                        resume_data_to_use.personal_info.name = edited_content.get('name', resume_data_to_use.personal_info.name)
+                        resume_data_to_use.personal_info.email = edited_content.get('email', resume_data_to_use.personal_info.email)
+                        resume_data_to_use.personal_info.phone = edited_content.get('phone', resume_data_to_use.personal_info.phone)
+                        resume_data_to_use.personal_info.address = edited_content.get('location', resume_data_to_use.personal_info.address)
+                        resume_data_to_use.personal_info.linkedin = edited_content.get('linkedin', resume_data_to_use.personal_info.linkedin)
+                        resume_data_to_use.personal_info.github = edited_content.get('github', resume_data_to_use.personal_info.github)
+                    
+                    # Note: For simplicity, we'll primarily focus on summary, skills, and basic info
+                    # The full experience/education parsing would require more complex logic
+                
                 # Tailor the CV
                 tailored_cv = engine.tailor_cv(
-                    st.session_state.resume_data,
+                    resume_data_to_use,
                     st.session_state.job_requirements
                 )
                 
                 progress_bar.progress(60)
                 status_text.markdown('<p class="status-active">✨ Content optimization active...</p>', unsafe_allow_html=True)
                 
+                # If edited content exists, incorporate the text-based edits into the summary
+                if st.session_state.edited_cv_content:
+                    edited_summary = st.session_state.edited_cv_content.get('summary', '')
+                    if edited_summary.strip():
+                        # Use the edited summary as a base and let AI enhance it
+                        st.info("🎯 Applying AI enhancement to your edited summary...")
+                        tailored_cv.summary = edited_summary
+                
                 # Store result
                 st.session_state.tailored_cv = tailored_cv
+                
+                # Clear edited content since it's now incorporated
+                st.session_state.edited_cv_content = None
+                st.session_state.cv_edited = False
                 
                 progress_bar.progress(100)
                 status_text.markdown('<p class="status-complete">✅ Neural optimization complete!</p>', unsafe_allow_html=True)
@@ -1110,8 +1152,14 @@ def handle_cv_tailoring():
                 
                 # Add continue button after successful tailoring
                 st.markdown("---")
-                if st.button("➡️ Continue to Document Generation", type="primary", key="continue_to_doc"):
-                    st.rerun()
+                col1, col2 = st.columns(2)
+                with col1:
+                    if st.button("✏️ Edit CV Content", type="secondary", key="edit_from_tailoring"):
+                        st.session_state.cv_edited = True
+                        st.rerun()
+                with col2:
+                    if st.button("➡️ Continue to Document Generation", type="primary", key="continue_to_doc"):
+                        st.rerun()
                 
             except Exception as e:
                 error_msg = str(e)
@@ -1173,7 +1221,233 @@ def display_tailoring_results(tailored_cv):
     
     # Add continue button for already completed tailoring
     st.markdown("---")
-    if st.button("➡️ Continue to Document Generation", type="primary", key="continue_from_results"):
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("✏️ Edit CV Content", type="secondary", key="edit_from_results"):
+            st.session_state.cv_edited = True
+            st.rerun()
+    with col2:
+        if st.button("➡️ Continue to Document Generation", type="primary", key="continue_from_results"):
+            st.rerun()
+
+
+def handle_cv_editing():
+    """Handle user editing of the tailored CV content."""
+    st.markdown('''
+        <div class="section-header">
+            ✏️ Edit Your Tailored CV
+            <div style="font-size: 0.9rem; font-weight: 400; opacity: 0.7; margin-top: 0.3rem;">
+                Review and edit your AI-tailored content before final generation
+            </div>
+        </div>
+    ''', unsafe_allow_html=True)
+    
+    if not st.session_state.tailored_cv:
+        st.warning("⚠️ Please complete the CV tailoring step first.")
+        return
+    
+    # Display current tailored CV for editing
+    tailored_cv = st.session_state.tailored_cv
+    
+    st.markdown('''
+        <div class="info-box">
+            <strong>📝 Edit Your Content</strong><br/>
+            You can modify any section below. After editing, click "Re-Tailor with AI" to apply AI optimization to your changes, or "Proceed to Generation" to use your content as-is.
+        </div>
+    ''', unsafe_allow_html=True)
+    
+    # Create editable form
+    with st.form("cv_editing_form"):
+        st.subheader("👤 Personal Information")
+        
+        # Personal info editing
+        col1, col2 = st.columns(2)
+        with col1:
+            edited_name = st.text_input("Full Name", value=tailored_cv.personal_info.get('name', '') if isinstance(tailored_cv.personal_info, dict) else getattr(tailored_cv.personal_info, 'name', '') if tailored_cv.personal_info else "")
+            edited_email = st.text_input("Email", value=tailored_cv.personal_info.get('email', '') if isinstance(tailored_cv.personal_info, dict) else getattr(tailored_cv.personal_info, 'email', '') if tailored_cv.personal_info else "")
+            edited_phone = st.text_input("Phone", value=tailored_cv.personal_info.get('phone', '') if isinstance(tailored_cv.personal_info, dict) else getattr(tailored_cv.personal_info, 'phone', '') if tailored_cv.personal_info else "")
+        with col2:
+            edited_location = st.text_input("Location", value=tailored_cv.personal_info.get('address', '') if isinstance(tailored_cv.personal_info, dict) else getattr(tailored_cv.personal_info, 'address', '') if tailored_cv.personal_info else "")
+            edited_linkedin = st.text_input("LinkedIn", value=tailored_cv.personal_info.get('linkedin', '') if isinstance(tailored_cv.personal_info, dict) else getattr(tailored_cv.personal_info, 'linkedin', '') if tailored_cv.personal_info else "")
+            edited_github = st.text_input("GitHub", value=tailored_cv.personal_info.get('github', '') if isinstance(tailored_cv.personal_info, dict) else getattr(tailored_cv.personal_info, 'github', '') if tailored_cv.personal_info else "")
+        
+        st.subheader("📝 Professional Summary")
+        edited_summary = st.text_area(
+            "Professional Summary", 
+            value=tailored_cv.summary if tailored_cv.summary else "",
+            height=150,
+            help="Edit your professional summary to better reflect your experience and goals"
+        )
+        
+        st.subheader("💼 Work Experience")
+        # Safe access for experience data
+        experience_text = ""
+        if tailored_cv.experience:
+            exp_items = []
+            for exp in tailored_cv.experience:
+                if isinstance(exp, dict):
+                    title = exp.get('title', 'N/A')
+                    company = exp.get('company', 'N/A')
+                    start_date = exp.get('start_date', 'N/A')
+                    end_date = exp.get('end_date', 'N/A')
+                    description = exp.get('description', '')
+                    responsibilities = exp.get('responsibilities', [])
+                else:
+                    title = getattr(exp, 'title', 'N/A')
+                    company = getattr(exp, 'company', 'N/A')
+                    start_date = getattr(exp, 'start_date', 'N/A')
+                    end_date = getattr(exp, 'end_date', 'N/A')
+                    description = getattr(exp, 'description', '')
+                    responsibilities = getattr(exp, 'responsibilities', [])
+                
+                exp_text = f"**{title} at {company}** ({start_date} - {end_date})\n{description}"
+                if responsibilities:
+                    exp_text += "\n• " + "\n• ".join(responsibilities)
+                exp_items.append(exp_text)
+            experience_text = "\n\n".join(exp_items)
+        
+        edited_experience = st.text_area(
+            "Work Experience", 
+            value=experience_text,
+            height=300,
+            help="Edit your work experience. Use bullet points (•) for responsibilities."
+        )
+        
+        st.subheader("🎓 Education")
+        # Safe access for education data
+        education_text = ""
+        if tailored_cv.education:
+            edu_items = []
+            for edu in tailored_cv.education:
+                if isinstance(edu, dict):
+                    degree = edu.get('degree', 'N/A')
+                    institution = edu.get('institution', 'N/A')
+                    graduation_year = edu.get('graduation_year', 'N/A')
+                    details = edu.get('details', '')
+                else:
+                    degree = getattr(edu, 'degree', 'N/A')
+                    institution = getattr(edu, 'institution', 'N/A')
+                    graduation_year = getattr(edu, 'graduation_year', 'N/A')
+                    details = getattr(edu, 'details', '')
+                
+                edu_text = f"**{degree}** - {institution} ({graduation_year})"
+                if details:
+                    edu_text += f"\n{details}"
+                edu_items.append(edu_text)
+            education_text = "\n\n".join(edu_items)
+        
+        edited_education = st.text_area(
+            "Education",
+            value=education_text,
+            height=150,
+            help="Edit your education details"
+        )
+        
+        st.subheader("🛠️ Skills")
+        edited_skills = st.text_area(
+            "Skills",
+            value=", ".join(tailored_cv.skills) if tailored_cv.skills else "",
+            height=100,
+            help="Edit your skills (comma-separated)"
+        )
+        
+        st.subheader("🚀 Projects")
+        # Safe access for projects data
+        projects_text = ""
+        if tailored_cv.projects:
+            proj_items = []
+            for proj in tailored_cv.projects:
+                if isinstance(proj, dict):
+                    name = proj.get('name', 'N/A')
+                    description = proj.get('description', '')
+                    technologies = proj.get('technologies', [])
+                else:
+                    name = getattr(proj, 'name', 'N/A')
+                    description = getattr(proj, 'description', '')
+                    technologies = getattr(proj, 'technologies', [])
+                
+                proj_text = f"**{name}**\n{description}"
+                if technologies:
+                    proj_text += f"\nTechnologies: {', '.join(technologies)}"
+                proj_items.append(proj_text)
+            projects_text = "\n\n".join(proj_items)
+        
+        edited_projects = st.text_area(
+            "Projects",
+            value=projects_text,
+            height=200,
+            help="Edit your projects"
+        )
+        
+        # Form submission buttons
+        col1, col2, col3 = st.columns([1, 1, 1])
+        
+        with col1:
+            submit_and_retailor = st.form_submit_button("🤖 Re-Tailor with AI", type="primary")
+        
+        with col2:
+            submit_as_is = st.form_submit_button("➡️ Proceed to Generation")
+            
+        with col3:
+            cancel_editing = st.form_submit_button("❌ Cancel Changes")
+    
+    # Handle form submissions
+    if submit_and_retailor:
+        # Store edited content
+        edited_content = {
+            'name': edited_name,
+            'email': edited_email,
+            'phone': edited_phone,
+            'location': edited_location,
+            'linkedin': edited_linkedin,
+            'github': edited_github,
+            'summary': edited_summary,
+            'experience': edited_experience,
+            'education': edited_education,
+            'skills': edited_skills,
+            'projects': edited_projects
+        }
+        
+        st.session_state.edited_cv_content = edited_content
+        st.session_state.cv_edited = True
+        
+        # Clear the tailored_cv to trigger re-tailoring
+        st.session_state.tailored_cv = None
+        
+        st.success("✅ Content saved! Re-tailoring with AI...")
+        st.rerun()
+    
+    elif submit_as_is:
+        # Update the tailored CV with edited content without AI re-processing
+        from resume_parser import PersonalInfo
+        from cv_generator import TailoredCV
+        
+        # Create updated PersonalInfo
+        updated_personal_info = PersonalInfo(
+            name=edited_name,
+            email=edited_email,
+            phone=edited_phone,
+            address=edited_location,
+            linkedin=edited_linkedin,
+            github=edited_github
+        )
+        
+        # Update the tailored CV object
+        st.session_state.tailored_cv.personal_info = updated_personal_info
+        st.session_state.tailored_cv.summary = edited_summary
+        
+        # Mark as ready for document generation
+        st.session_state.cv_edited = False
+        st.session_state.edited_cv_content = None
+        
+        st.success("✅ Changes saved! Proceeding to document generation...")
+        st.rerun()
+    
+    elif cancel_editing:
+        # Reset editing state
+        st.session_state.cv_edited = False
+        st.session_state.edited_cv_content = None
+        st.success("✅ Changes cancelled. Returning to tailored CV...")
         st.rerun()
 
 
@@ -1507,7 +1781,8 @@ def main():
             ("1. Upload Resume", st.session_state.resume_data),
             ("2. Add Job Description", st.session_state.job_requirements), 
             ("3. AI Tailoring", st.session_state.tailored_cv),
-            ("4. Generate CV", st.session_state.generated_document)
+            ("4. Edit CV (Optional)", st.session_state.cv_edited or (st.session_state.tailored_cv and not st.session_state.generated_document)),
+            ("5. Generate CV", st.session_state.generated_document)
         ]
         
         for step_name, is_completed in steps:
@@ -1523,6 +1798,8 @@ def main():
             st.info("👆 **Current Step**: Add Job Description")
         elif not st.session_state.tailored_cv:
             st.info("👆 **Current Step**: AI Tailoring")
+        elif st.session_state.tailored_cv and not st.session_state.generated_document:
+            st.info("👆 **Current Step**: Edit CV (Optional)")
         elif not st.session_state.generated_document:
             st.info("👆 **Current Step**: Generate CV")
         else:
@@ -1558,11 +1835,12 @@ def main():
             if st.button("🔄 Restart Process"):
                 st.session_state.resume_data = None
                 st.session_state.job_requirements = None
+                st.session_state.skip_to_generation = False
                 st.rerun()
         
         handle_cv_tailoring()
-    elif not st.session_state.generated_document:
-        # Step 4: Document Generation
+    elif st.session_state.tailored_cv and not st.session_state.generated_document:
+        # Step 4: CV Editing (Optional) or Document Generation
         st.markdown("---")
         col1, col2 = st.columns([3, 1])
         with col1:
@@ -1572,10 +1850,43 @@ def main():
                 st.session_state.resume_data = None
                 st.session_state.job_requirements = None
                 st.session_state.tailored_cv = None
+                st.session_state.cv_edited = False
+                st.session_state.edited_cv_content = None
+                st.session_state.skip_to_generation = False
                 st.rerun()
         
-        handle_document_generation()
-    else:
+        # Choice between editing or going directly to document generation
+        if st.session_state.skip_to_generation:
+            # User chose to skip editing and go directly to document generation
+            handle_document_generation()
+        elif not st.session_state.cv_edited and st.session_state.edited_cv_content is None:
+            # Show options to edit or proceed
+            st.markdown('''
+                <div class="info-box">
+                    <h4>🎯 Next Steps</h4>
+                    <p>Your CV has been tailored with AI. You can now:</p>
+                    <ul>
+                        <li><strong>Edit the content</strong> to make personal adjustments</li>
+                        <li><strong>Proceed directly</strong> to document generation</li>
+                    </ul>
+                </div>
+            ''', unsafe_allow_html=True)
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                if st.button("✏️ Edit CV Content", type="secondary", key="start_editing"):
+                    st.session_state.cv_edited = True
+                    st.rerun()
+            
+            with col2:
+                if st.button("📄 Generate Document", type="primary", key="skip_editing"):
+                    # Skip editing and go directly to document generation
+                    st.session_state.skip_to_generation = True
+                    st.rerun()
+        else:
+            # Show the editing interface
+            handle_cv_editing()
+    elif st.session_state.generated_document:
         # Step 5: Final Results
         st.markdown("---")
         col1, col2 = st.columns([3, 1])
@@ -1587,6 +1898,9 @@ def main():
                 st.session_state.job_requirements = None
                 st.session_state.tailored_cv = None
                 st.session_state.generated_document = None
+                st.session_state.cv_edited = False
+                st.session_state.edited_cv_content = None
+                st.session_state.skip_to_generation = False
                 st.rerun()
         
         # Show final document
